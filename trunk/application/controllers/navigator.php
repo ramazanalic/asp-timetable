@@ -35,7 +35,7 @@
 
             $this->data['page'] = $page;
             $this->data['sub'] = $sub; 
-            $this->data['title'] = $page; 
+            $this->data['title'] = $title; 
 
             $this->assetsload->getassets($page, $sub, $this);
 

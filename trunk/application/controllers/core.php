@@ -8,7 +8,7 @@ class Core extends navigator
         parent::__construct(); 
     }
 
-    function index(){ show_404(); } 
+    function index(){ $this->core_index('home','home','HOME'); } 
       
     function add(){
         

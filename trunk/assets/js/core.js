@@ -2,6 +2,7 @@
 * @author Alexander Farkas
 * v. 1.02
 */
+
 (function($) {
     $.extend($.fx.step,{
         backgroundPosition: function(fx) {
@@ -85,26 +86,4 @@ $(function() {
     });
 
 
-    /*Fact Sheets Open*/
-
-    if(page!='home'){
-        $('.sheets ul li').live('click',function(){
-            window.open(base_url+'assets/pdf/fact_sheets/'+this.id+'.pdf', '_blank');   
-        });
-        $('.sheets ul li')
-        .css( {backgroundPosition: "0 0"} )
-        .mouseover(function(){
-            $(this).stop().animate({backgroundPosition:"(0 -4px)"}, {duration:75})
-        })
-        .mouseout(function(){
-            $(this).stop().animate({backgroundPosition:"(0 0)"}, {duration:75}) 
-        })
-    }
-
-
-    /*FAQ - Scroll pane*/
-
-    if(page=='faq'){
-        $('.scroll-pane').jScrollPane(); 
-    }
 });
