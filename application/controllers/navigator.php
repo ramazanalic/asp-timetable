@@ -8,11 +8,13 @@
         function __construct()
         {
             parent::__construct();
+            $this->load->model('translator');  
+            $this->load->library('dataload');  
+            $this->load->library('assetsload');
+            $this->lang->load('asp', $this->lang_ses->getlang());
         }
 
-        function index() {
-            show_404();
-        } 
+        function index() { show_404(); } 
 
         function seo_data($rows){
 
@@ -29,7 +31,19 @@
 
         }        
 
-        function navigate($page)
+        function core_index($page=NULL,$sub=NULL,$title=NULL){
+
+            $this->data['page'] = $page;
+            $this->data['sub'] = $sub; 
+            $this->data['title'] = $page; 
+
+            $this->assetsload->getassets($page, $sub, $this);
+
+            if($sub==NULL){ $this->navigate($page); }else{ $this->navigate($page.'/'.$sub); }
+
+        }
+
+        function navigate($page=NULL)
         {
             $this->layout->view($page, $this->data);            
         }
