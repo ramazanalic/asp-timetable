@@ -10,6 +10,7 @@
         var $errors = '';
 
         function listaj_prevoznike(){
+            $this->db->order_by("naziv", "asc");             
             return $this->db->get('prevoznik')->result_array();            
         }
 

@@ -1,0 +1,242 @@
+table.tablesorter thead tr .header {  
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+table.tablesorter thead tr .headerSortDown { 
+    background-image: url(desc.gif);
+}
+table.tablesorter thead tr .headerSortUp {
+    background-image: url(asc.gif);
+}
+
+.main-table-style table, .main-table-style tbody, .main-table-style tfoot, .main-table-style thead, .main-table-style tr, .main-table-style th, .main-table-style td, .main-table-style ul, .main-table-style li {
+    border: 0 none;
+    font-family: inherit;
+    font-size: 100%;
+    font-style: inherit;
+    font-weight: inherit;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    vertical-align: baseline;
+}
+.main-table-style ul {
+    list-style: none outside none;
+}
+.main-table-style table {
+    border: 0 none;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.main-table-style {
+    text-align: left;
+    font-size: 11px;
+}
+.main-table-style img {
+    border: 0 none;
+    vertical-align: top;
+}
+.main-table-style table {
+    background-color: #FFFFFF;
+    border-left: 1px solid #B2B2B2;
+    border-top: 1px solid #B2B2B2 !important;
+    font-size: 12px;
+    width: 100%;
+}
+.main-table-style table table {
+    background-color: transparent;
+    border: medium none;
+}
+.main-table-style table tr.head {
+    background-repeat: repeat;
+}
+.main-table-style table tr.head th {
+    border-bottom: 1px solid #B2B2B2;
+    border-right: 1px solid #B2B2B2;
+    font-size: 11px !important;
+    font-weight: bold;
+    padding: 3px 2px 3px 10px;
+    text-align: left;
+    vertical-align: middle;
+}
+.main-table-style table tr.head th input {
+    margin: -2px 0 0;
+}
+.main-table-style table tr.head th a, .main-table-style table tr.head th a:link, .main-table-style table tr.head th a:visited {
+    color: #000000;
+    text-decoration: underline;
+}
+.main-table-style table thead th a:hover {
+    text-decoration: none;
+}
+.main-table-style table thead th img {
+    vertical-align: text-bottom;
+}
+.main-table-style table tr td {
+    border-bottom: 1px solid #B2B2B2;
+    border-right: 1px solid #B2B2B2;
+    padding: 5px 10px;
+    vertical-align: middle;
+}
+.main-table-style table tr td span.expiring {
+    color: #E36C1B;
+    font-weight: bold;
+}
+.main-table-style table tr.open-row td {
+    border-bottom: medium none !important;
+    font-weight: bold;
+}
+.main-table-style table tr td.last {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    vertical-align: middle;
+}
+
+
+.main-table-style table tr.header-row {
+    background: url(../../img/tablesorter/table_header_1x45.gif) repeat-x scroll 0 0 transparent;
+    height: 45px;
+}
+.main-table-style table tr.header-row th {
+    border-bottom: 1px solid #B2B2B2;
+    border-right: 1px solid #B2B2B2;
+    font-size: 11px !important;
+    font-weight: bold;
+    padding: 0 10px;
+    vertical-align: middle;
+}
+.main-table-style table tr.header-row th a, .main-table-style table tr.header-row th a:link, .main-table-style table tr.header-row th a:visited {
+    color: #000000;
+    text-decoration: underline;
+}
+.main-table-style table thead th a:hover {
+    text-decoration: none;
+}
+.main-table-style table thead th img {
+    vertical-align: text-bottom;
+}
+.main-table-style table tr.table-row {
+    height: 42px;
+}
+.main-table-style table tr.table-row td {
+    padding: 3px 10px;
+    vertical-align: middle;
+}
+.main-table-style table tr.odd {
+    background-color: #F5F5F5 !important;
+}
+.main-table-style table tr.even {
+    background-color: #FFFFFF !important;
+}
+
+/*Pager*/
+.pager{
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    border-color: -moz-use-text-color #B2B2B2 #B2B2B2;
+    border-right: 1px solid #B2B2B2;
+    border-style: none solid solid;
+    border-width: medium 1px 1px;
+    font-size: 11px;
+    height: 29px;
+    line-height: 29px;
+    /*width: 707px;*/
+}
+.myr-sprite {
+    background: url(../../img/tablesorter/MYR_sprite_09102010.png) repeat scroll 0 0 transparent;
+    overflow: hidden;
+}
+.myr-sort-arrow-spacing {
+    position: relative;
+    top: 3px;
+}
+.myr-up-arrow {
+    background-position: -124px -29px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    height: 5px;
+    width: 7px;
+}
+.myr-down-arrow {
+    background-position: -117px -29px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    height: 5px;
+    width: 7px;
+}
+.myr-forward-arrow {
+    background-position: -148px -29px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    height: 17px;
+    width: 17px;
+}
+.myr-back-arrow {
+    background-position: -131px -29px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    height: 17px;
+    width: 17px;
+}
+.myr-forward-arrow-gray {
+    background-position: -182px -29px;
+    background-repeat: no-repeat;
+    height: 17px;
+    width: 17px;
+}
+.myr-back-arrow-gray {
+    background-position: -165px -29px;
+    background-repeat: no-repeat;
+    height: 17px;
+    width: 17px;
+}
+.myr-last-arrow {
+    background-position: -216px -29px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    height: 17px;
+    width: 17px;
+}
+.myr-first-arrow {
+    background-position: -199px -29px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    height: 17px;
+    width: 17px;
+}
+.myr-last-arrow-gray {
+    background-position: -250px -29px;
+    background-repeat: no-repeat;
+    height: 17px;
+    width: 17px;
+}
+.myr-first-arrow-gray {
+    background-position: -233px -29px;
+    background-repeat: no-repeat;
+    height: 17px;
+    width: 17px;
+}
+.myr-search-btn {
+    background-position: -750px -51px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    height: 21px;
+    width: 54px;
+}
+
+.pagesize{
+    font-size: 13px;
+}
+.pagedisplay{
+    background: none;
+    border: none;
+    width: 31px;
+    font-size: 11px;
+    text-indent: 0;
+}

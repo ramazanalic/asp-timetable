@@ -21,7 +21,7 @@ class assetsload {
 
         $this->CI->carabiner->css('simple-modal.css');
         $this->CI->carabiner->js('jquery.simplemodal.js');
-        
+
         $this->CI->carabiner->css('jqueryslidemenu.css');                
         $this->CI->carabiner->js('jqueryslidemenu.js');        
         $this->CI->carabiner->js('swfobject.js');        
@@ -52,6 +52,9 @@ class assetsload {
                 case 'edit':
                     break;
                 case 'view':
+                    $this->CI->carabiner->js('tablesorter/jquery.tablesorter.js');
+                    $this->CI->carabiner->js('tablesorter/pager/jquery.tablesorter.pager.js');
+                    $this->CI->carabiner->css('tablesorter/style.css');
                     break;
             }
             break;
