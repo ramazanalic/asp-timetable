@@ -46,7 +46,7 @@ class assetsload {
             case 'prevoznik':    
             switch($this->sub){
                 case 'add':
-                    $this->CI->carabiner->js('tiny_mc/tiny_mce.js');
+                    $this->CI->carabiner->js('tiny_mce/tiny_mce.js');
                     $this->CI->carabiner->js('prevoznik/add.js');
                     break;
                 case 'edit':

@@ -257,7 +257,7 @@ body {
 .box .cnt-inner .cnt_ttl{
     color: #000000;
     text-transform: uppercase;
-    padding: 26px 12px 24px 41px;
+    padding: 26px 12px 14px 41px;
     font-weight: bold;
 }
 .box .cnt-inner .cnt_cnt{
@@ -306,4 +306,56 @@ body {
 }
 .pl-9{
     padding-left: 9px;
+}
+
+
+/*CMS vars*/
+.lineinput {
+    display: block;
+    margin: 10px 0;
+}
+input, select {
+    border: 1px solid #D3D3D3;
+    color: #000000;
+    font-family: Arial,Helvetica;
+    font-size: 15px;
+}
+input {
+    background: url("../img/backgnds/bg_input.gif") repeat-x scroll 0 0 #FFFFFF;
+    text-indent: 7px;
+}
+.inputbox {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #DEDEDE;
+    border-style: solid;
+    border-width: 1px 1px 1px 4px;
+    color: #444444;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 18px;
+    margin-top: 2px;
+    padding: 3px;
+    width: 400px;
+}
+i{
+    color: #848484;
+    font-family: Tahoma;
+    font-size: 11px;
+    line-height: 16px;
+    text-decoration: none;
+}
+.cmsbtn {
+    background: none repeat scroll 0 0 #414141;
+    border: medium none;
+    border-radius: 5px 5px 5px 5px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 4px;
+    padding: 5px;
+    text-indent: 0;
 }
