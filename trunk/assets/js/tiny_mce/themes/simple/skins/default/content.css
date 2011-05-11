@@ -1,6 +1,9 @@
 body, td, pre {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 10px;
+    color: #444444;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 18px;
+    margin-top: 2px;
+    padding: 3px;
 }
 
 body {

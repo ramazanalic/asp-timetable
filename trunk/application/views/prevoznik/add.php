@@ -23,15 +23,15 @@
 
                     <div class="lineinput">
                         <label>
-                            Opsi:<br />
+                            Kratak opis:<br />
                             <textarea name="description" id="description" rows="5" class="inputbox tinymce" cols="40"></textarea>
-                            <i>description for excursion list page</i> 
+                            <i>kratak opis prevoznika</i> 
                         </label>
                     </div>
 
                     <div class="lineinput">
                         <label>
-                            <input type="submit" value="Dodaj" class="greenbtn" />
+                            <input type="submit" value="Dodaj" class="cmsbtn" />
                         </label>
                     </div>
 
