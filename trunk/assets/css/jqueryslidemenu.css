@@ -1,0 +1,74 @@
+/*Top level list items*/
+.jqueryslidemenu{
+    z-index: 53;
+}
+.jqueryslidemenu ul li{
+    position: relative;
+    display: inline;
+    float: left;
+    z-index: 53; 
+}
+* html .jqueryslidemenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+    display: inline-block;
+}
+
+/*1st sub level menu*/
+.jqueryslidemenu ul li ul{
+    position: absolute;
+    left: 0;
+    display: block;
+    visibility: hidden;
+    list-style: none;
+    z-index: 100;
+    
+    border-right: none;
+}
+
+/*Sub level menu list items (undo style from Top level List Items)*/
+.jqueryslidemenu ul li ul li{
+    display: list-item;
+    float: none;
+    border: 1px solid #EEEEEE; 
+    border-top: none;
+}
+
+/*All subsequent sub menu levels vertical offset after 1st level sub menu */
+.jqueryslidemenu ul li ul li ul{
+    top: 0;
+}
+
+/* Sub level menu links style */
+.jqueryslidemenu ul li ul li a{
+    font: normal 13px;
+    width: 200px; /*width of sub menus*/
+    padding: 8px 15px ;
+    margin: 0;
+    border-top-width: 0;
+    border-bottom: 1px solid #EEEEEE;
+    background-color: #c84800; /*background of tabs (default state)*/
+    color: white;
+    text-align: left;    
+    font-size: 11px;
+}
+
+.jqueryslidemenu ul li ul li a:hover{ /*sub menus hover style*/
+    background-color: #b03300;
+    color: white;
+}
+
+/* ######### CSS classes applied to down and right arrow images  ######### */
+
+.downarrowclass{
+    position: absolute;
+    top: 17px;
+    right: 7px;
+}
+
+.rightarrowclass{
+    position: absolute;
+    top: 6px;
+    right: 5px;
+}
+#main-nav ul li ul li{
+    margin: 0;
+}
