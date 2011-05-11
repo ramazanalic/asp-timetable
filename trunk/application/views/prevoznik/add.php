@@ -10,21 +10,21 @@
                     <div class="lineinput">
                         <label>
                             Naziv:<br />
-                            <input name="title" id="title" type="text" class="inputbox" />
+                            <input name="naziv" id="naziv" type="text" class="inputbox" />
                         </label>
                     </div>
                     
                     <div class="lineinput">
                         <label>
                             Grad:<br />
-                            <input name="title" id="title" type="text" class="inputbox" />
+                            <input name="grad" id="grad" type="text" class="inputbox" />
                         </label>
                     </div>
 
                     <div class="lineinput">
                         <label>
                             Kratak opis:<br />
-                            <textarea name="description" id="description" rows="5" class="inputbox tinymce" cols="40"></textarea>
+                            <textarea name="opis" id="opis" rows="5" class="inputbox tinymce" cols="40"></textarea>
                             <i>kratak opis prevoznika</i> 
                         </label>
                     </div>

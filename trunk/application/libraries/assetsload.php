@@ -19,8 +19,8 @@ class assetsload {
         $this->CI->carabiner->css('core.css');       
         $this->CI->carabiner->css('basic.css');       
 
-        /*$this->CI->carabiner->css('simple-modal.css');
-        $this->CI->carabiner->js('jquery.simplemodal.js');*/
+        $this->CI->carabiner->css('simple-modal.css');
+        $this->CI->carabiner->js('jquery.simplemodal.js');
         
         $this->CI->carabiner->css('jqueryslidemenu.css');                
         $this->CI->carabiner->js('jqueryslidemenu.js');        

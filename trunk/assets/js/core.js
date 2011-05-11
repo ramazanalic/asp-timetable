@@ -86,4 +86,24 @@ $(function() {
     });
 
 
+    function loadingmain()
+    {
+        $.modal(
+        "<div><div id='loader'><h2>Please wait...</h2><div class='animate'><img src='"+base_url+"assets/img/backgnds/loadingfinal.gif'></div></div></div>" , {
+
+            closeHTML: "",
+            containerCss:{
+                height:80,
+                width:130,
+                borderColor:"#dedede"
+            },
+            opacity:10,
+            overlayCss: {
+                backgroundColor: "#000000"
+            }  
+        });
+    }
+
+    $('.cmsbtn').live('click',function(){ loadingmain(); })
+
 });
