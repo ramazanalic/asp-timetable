@@ -20,7 +20,7 @@
     visibility: hidden;
     list-style: none;
     z-index: 100;
-    
+
     border-right: none;
 }
 
@@ -60,8 +60,8 @@
 
 .downarrowclass{
     position: absolute;
-    top: 17px;
-    right: 7px;
+    right: 26px;
+    top: 19px;
 }
 
 .rightarrowclass{
