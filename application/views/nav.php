@@ -2,14 +2,14 @@
     <ul>
         <li><a href="<?=base_url();?>prevoznik/core/view">Prevoznik</a>
             <ul>
-                <li><a href="<?=base_url();?>prevoznik/core/index/add">Dodaj</a></li>
-                <li><a href="<?=base_url();?>prevoznik/core/index/view">Pregledaj</a></li>
+                <li><a href="<?=base_url();?>prevoznik/core/add">Dodaj</a></li>
+                <li><a href="<?=base_url();?>prevoznik/core/view">Pregledaj</a></li>
             </ul>
         </li>
         <li><a href="<?=base_url();?>ruta/core/index/view">Ruta</a>
             <ul>
-                <li><a href="<?=base_url();?>ruta/core/index/add">Dodaj</a></li>
-                <li><a href="<?=base_url();?>ruta/core/index/view">Pregledaj</a></li>
+                <li><a href="<?=base_url();?>ruta/core/add">Dodaj</a></li>
+                <li><a href="<?=base_url();?>ruta/core/view">Pregledaj</a></li>
             </ul>
         </li>
         <li><a <? if($page=='services') echo'class="selected"'; ?> href="services">Polazak</a>
