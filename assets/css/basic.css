@@ -43,9 +43,11 @@
 }
 #simplemodal-container h2{ 
     text-align:center;
+    margin-top: 24px;
 }
 #simplemodal-container .logo{
 }
 #simplemodal-container .animate{
     text-align:center;
+    margin-top: 4px;
 }
