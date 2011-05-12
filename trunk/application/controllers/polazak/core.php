@@ -12,7 +12,9 @@ class Core extends navigator
     function index(){ show_404(); }
 
     function add(){
-        $this->core_index('ruta','add','RUTA');
+        $this->data['prevoznici'] = $this->prevoznik->listaj_prevoznike();
+        $this->load->helper('timemaker');
+        $this->core_index('polazak','add','POLAZAK');
     }
 
     function edit($id){

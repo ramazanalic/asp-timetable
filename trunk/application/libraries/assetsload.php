@@ -75,9 +75,27 @@ class assetsload {
                 case 'view':
                     break;
             }
+            break;
+
+            
+            
+            case 'polazak':    
+            switch($this->sub){
+                case 'add':
+                    $this->CI->carabiner->css('jquery-ui-1.8.5.css');
+                    $this->CI->carabiner->js('jquery-ui-1.8.5.min.js');
+                    $this->CI->carabiner->js('jquery.tagger.js');
+                    $this->CI->carabiner->js('polazak/add.js');
+                    break;
+                case 'edit':
+                    break;
+                case 'view':
+                    break;
+            }
             break; 
 
 
+            
 
         }
 
