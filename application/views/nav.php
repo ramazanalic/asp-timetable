@@ -19,10 +19,11 @@
             </ul>
         </li>
         <li><a <? if($page=='pretrazivac') echo'class="selected"'; ?> href="parking">Pretraživač</a></li>
-        <li class="no-margin"><a href="news" class="no-margin" <? if($page=='news') echo'class="selected"'; ?>>Stanica</a>
+
+        <li class="no-margin"><a href="<?=base_url();?>stanica/core/view" class="no-margin" <? if($page=='stanica') echo'class="selected"'; ?>>Stanica</a>
             <ul>
-                <li><a href="#">Dodaj</a></li>
-                <li><a href="#">Pregledaj</a></li>
+                <li><a href="<?=base_url();?>stanica/core/add">Dodaj</a></li>
+                <li><a href="<?=base_url();?>stanica/core/view">Pregledaj</a></li>
             </ul>
         </li>
     </ul>
