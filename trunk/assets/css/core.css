@@ -389,3 +389,18 @@ i{
     margin: 10px 0 10px 2px;
     padding: 2px 0 2px 10px;
 }
+ul.tagList {
+    margin: 3px 0 0;
+    overflow: hidden;
+    padding: 0;
+    width: 415px;
+}
+.tagList li {
+    background: none repeat scroll 0 0 #EFEFEF;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    font-size: 11px;
+    margin: 2px 3px 0 0;
+    padding: 2px 10px 2px 4px;
+}
