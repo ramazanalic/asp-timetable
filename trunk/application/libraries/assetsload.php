@@ -86,6 +86,7 @@ class assetsload {
                     $this->CI->carabiner->js('jquery-ui-1.8.5.min.js');
                     $this->CI->carabiner->js('jquery.tagger.js');
                     $this->CI->carabiner->js('polazak/add.js');
+                    $this->CI->carabiner->js('polazak/shared.js');
                     break;
                 case 'edit':
                     break;

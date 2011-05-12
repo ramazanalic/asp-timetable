@@ -47,5 +47,20 @@
         {
             $this->layout->view($page, $this->data);            
         }
+
+        function json_encode_get($html)
+        {
+            if(isset($_GET['jsoncall'])) {
+
+                $html = preg_replace(
+                array('/\n/','/\r/','/\t/'),
+                array(''),
+                $html);
+                echo $_GET['jsoncall'] . '(' . json_encode(array('html'=>$html)) . ');';
+
+            }else {
+                echo json_encode(array('html',$html));
+            }
+        }
     }
 ?>
