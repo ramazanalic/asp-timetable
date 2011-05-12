@@ -39,4 +39,17 @@ class Core extends navigator
         $this->prevoznik->delete();
     }
 
+    function daj_stop_stanicu(){
+        $this->load->helper('timemaker');
+        echo json_encode(array('html' => $this->load->view('polazak/stopstanica', array('stoptype'=>'stop','id'=>$_POST['rb_stanice']), TRUE)));
+    }
+
+    function db_brisi_stop_stanicu($answer_id){            
+        if($this->anketa->deleteanswer($answer_id)) {
+            echo json_encode(array('seccess'=>'seccess'));
+        }else echo json_encode(array('seccess'=>'failed')); 
+    }
+
+
+
 }
