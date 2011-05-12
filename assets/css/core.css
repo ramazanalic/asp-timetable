@@ -343,6 +343,10 @@ input {
     padding: 3px;
     width: 400px;
 }
+.short{
+    width: 237px; 
+    margin-right: 7px;
+}
 i{
     color: #848484;
     font-family: Tahoma;
@@ -403,4 +407,42 @@ ul.tagList {
     font-size: 11px;
     margin: 2px 3px 0 0;
     padding: 2px 10px 2px 4px;
+}
+
+/*Stop stanica*/
+.stopstanica{
+    padding: 12px 12px;
+    border: 1px solid #dedede;
+    border-bottom: none;
+    font-size: 14px;
+}
+.zadnja{
+    border-bottom: 1px solid #dedede; ;
+}
+.stopstanica .inputbox {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #DEDEDE;
+    border-style: solid;
+    border-width: 1px 1px 1px 4px;
+    color: #444444;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 18px;
+    margin-top: 2px;
+    padding: 3px;
+    width: 356px;
+}
+.stopstanica .lineinput {
+    display: block;
+    margin: 0 0 10px 4px;
+    float: left; 
+}
+.stopstanica #vrijemepolaska, .stopstanica #vrijemedolaska{
+    width: 140px;
+}
+.stopstanica #km{
+    width: 80px;
 }
