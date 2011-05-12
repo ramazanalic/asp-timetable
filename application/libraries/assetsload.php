@@ -67,6 +67,8 @@ class assetsload {
             case 'ruta':    
             switch($this->sub){
                 case 'add':
+                    $this->CI->carabiner->js('jquery.tagger.js');
+                    $this->CI->carabiner->js('ruta/add.js');
                     break;
                 case 'edit':
                     break;

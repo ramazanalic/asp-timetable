@@ -6,40 +6,35 @@ class Core extends navigator
     function __construct()
     {
         parent::__construct();
-        $this->load->model('translator');  
-        $this->load->library('dataload');  
-        $this->load->library('assetsload');
+        $this->load->model('prevoznik/core_m', 'prevoznik');
     }
 
-    function index($page='home',$sub='') 
-    {   
-        
-        $this->data['page'] = $page;
-        $this->data['sub'] = $sub; 
-        $this->data['title'] = 'RUTA';
+    function index(){ show_404(); }
 
-
-        $this->dataload->getdata($page, $this);
-        $this->assetsload->getassets($page, $this);
-
-        if($sub==''){ $this->navigate('ruta/'.$page); }else{ $this->navigate('ruta/'.$page.'/'.$sub); }            
-
-    }
-    
     function add(){
-        
+        $this->core_index('ruta','add','RUTA');
     }
-    
-    function edit(){
-        
-    }
-    
-    function delete(){
-        
-    }
-    
+
+    function edit($id){
+        $this->data['prevoznik'] = $this->prevoznik->listaj_prevoznika($id);
+        $this->core_index('prevoznik','edit','PREVOZNIK');
+    }    
+
     function view(){
-        
+        $this->data['prevoznici'] = $this->prevoznik->listaj_prevoznike();
+        $this->core_index('prevoznik','view','PREVOZNIK');
+    }
+
+    function db_add(){
+        $this->prevoznik->add();        
+    }
+
+    function db_edit(){
+        $this->prevoznik->edit();        
+    }
+
+    function db_delete(){
+        $this->prevoznik->delete();
     }
 
 }
