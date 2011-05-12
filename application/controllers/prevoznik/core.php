@@ -15,13 +15,10 @@ class Core extends navigator
         $this->core_index('prevoznik','add','PREVOZNIK');
     }
 
-    function edit(){
-
-    }
-
-    function delete(){
-
-    }
+    function edit($id){
+        $this->data['prevoznik'] = $this->prevoznik->listaj_prevoznika($id);
+        $this->core_index('prevoznik','edit','PREVOZNIK');
+    }    
 
     function view(){
         $this->data['prevoznici'] = $this->prevoznik->listaj_prevoznike();
@@ -30,6 +27,14 @@ class Core extends navigator
     
     function db_add(){
         $this->prevoznik->add();        
+    }
+    
+    function db_edit(){
+        $this->prevoznik->edit();        
+    }
+    
+    function db_delete(){
+        $this->prevoznik->delete();
     }
 
 }

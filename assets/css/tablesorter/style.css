@@ -1,14 +1,20 @@
+
 table.tablesorter thead tr .header {  
+    
+}
+table.tablesorter thead tr .headerSortDown { 
+    background-image: url(desc.gif);
     background-repeat: no-repeat;
     background-position: center right;
     cursor: pointer;
 }
-table.tablesorter thead tr .headerSortDown { 
-    background-image: url(desc.gif);
-}
 table.tablesorter thead tr .headerSortUp {
     background-image: url(asc.gif);
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
 }
+ 
 
 .main-table-style table, .main-table-style tbody, .main-table-style tfoot, .main-table-style thead, .main-table-style tr, .main-table-style th, .main-table-style td, .main-table-style ul, .main-table-style li {
     border: 0 none;

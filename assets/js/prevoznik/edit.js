@@ -1,19 +1,17 @@
-/*
-*      ADD EXCURSION JS FILE
-*      28.05.2010
-*/
 
 $(document).ready(function(){
 
-    $('#addexcursion').live('submit',function(){
+    $('#editprevoznik').live('submit',function(){
         $.ajax({
-            url: site_url+'index.php/excursions/excursions/update/',
+            url: base_url+'prevoznik/core/db_edit/',
             type: 'POST',
             data: $(this).serialize(),
             success: function(data){
+                $.modal.close();
                 if(data.success == 'success'){
-                    $('#infomessage').html('Uredili ste izlet.').fadeIn('normal');
-                    $('#addexcursion').fadeOut('normal',function(){$('#addexcursion').remove()});
+                    $('#infomessage').css('border-left','4px solid #7c9c59');
+                    $('#infomessage').html('Uredili ste prevoznika.<a class="cmsbtn ml-6" href='+base_url+'prevoznik/core/view>Pregledaj</a>').fadeIn('normal');
+                    $('#editprevoznik').fadeOut('fast',function(){$('#editprevoznik').remove()});
                 }else{
                     $('#infomessage').html(data.message).fadeIn('normal');
                 }
@@ -21,10 +19,8 @@ $(document).ready(function(){
             dataType: 'json'
         });
     });
-
     tinyMCE.init({
         mode : "textareas",
         theme : "simple"
     });
-
 });

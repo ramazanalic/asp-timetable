@@ -50,11 +50,14 @@ class assetsload {
                     $this->CI->carabiner->js('prevoznik/add.js');
                     break;
                 case 'edit':
+                    $this->CI->carabiner->js('tiny_mce/tiny_mce.js');
+                    $this->CI->carabiner->js('prevoznik/edit.js');
                     break;
                 case 'view':
                     $this->CI->carabiner->js('tablesorter/jquery.tablesorter.js');
                     $this->CI->carabiner->js('tablesorter/pager/jquery.tablesorter.pager.js');
                     $this->CI->carabiner->css('tablesorter/style.css');
+                    $this->CI->carabiner->js('prevoznik/view.js');
                     break;
             }
             break;

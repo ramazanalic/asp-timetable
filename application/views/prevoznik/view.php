@@ -19,11 +19,11 @@
                             <tr>
                                 <td style="text-align: center;"><?=$prevoznik['id']?></td>
                                 <td  class="exc_title"><strong><?=$prevoznik['naziv'].' '.$prevoznik['grad']?></strong></td>                    
-                                <td  class="exc_title"><?=$prevoznik['opis']?></td>                    
+                                <td  class="exc_title"><?=$prevoznik['opis']; if($prevoznik['opis']=='')echo '&nbsp;'?></td>                    
 
                                 <td style="text-align: center; padding-top: 4px;" class="actiontd">
                                     <a href="<?=base_url();?>prevoznik/core/edit/<?=$prevoznik['id'];?>" class="edit_grid cmsbtnsml" id="<?=$prevoznik['id']?>">Uredi</a> 
-                                    <a href="javascript:void(null);" class="delete_grid cmsbtnsml" id="<?=$prevoznik['id']?>">Briši</a>
+                                    <a href="javascript:void(null);" class="delete_grid cmsbtnsml" id="pz_<?=$prevoznik['id']?>">Briši</a>
                                 </td>
                             </tr>
                             <? endforeach;  ?>
@@ -69,27 +69,3 @@
         </div>
     </div>
 </div>
-<script>
-    var rowCount = $('#prevoznik_tbl tr').length;
-    $("#prevoznik_tbl").tablesorter({
-        // pass the headers argument and assing a object
-        headers: {
-            2: {
-                sorter: false
-            },
-            3: {
-                sorter: false
-            }
-        },
-        widthFixed: false,
-        widgets: ['zebra']
-    }).tablesorterPager({
-        container: $("#prevoznik_pgr"),
-        size: 5,
-        seperator: ' / ',
-        positionFixed: false
-    }); 
-    
-    $('.tbl_total').html(rowCount);
-
-</script>
