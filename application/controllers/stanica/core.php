@@ -16,7 +16,7 @@ class Core extends navigator
     }
 
     function edit($id){
-        $this->data['stanica'] = $this->prevoznik->listaj_stanicu($id);
+        $this->data['stanica'] = $this->stanica->listaj_stanicu($id);
         $this->core_index('stanica','edit','STANICA');
     }    
 

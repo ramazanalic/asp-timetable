@@ -22,7 +22,7 @@ $(document).ready(function(){
 
 
     $('.delete_grid').live('click',function(){
-        if(confirm('Briöi?')){
+        if(confirm('Bri≈°i?')){
             
             //Must be 2 char length with _  -  #pz_
             
