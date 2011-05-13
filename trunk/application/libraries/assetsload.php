@@ -89,6 +89,7 @@ class assetsload {
                     $this->CI->carabiner->js('stanica/add.js');
                     break;
                 case 'edit':
+                    $this->CI->carabiner->js('stanica/edit.js');
                     break;
                 case 'view':
                     $this->CI->carabiner->js('tablesorter/jquery.tablesorter.js');
