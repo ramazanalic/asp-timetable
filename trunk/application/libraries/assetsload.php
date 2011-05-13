@@ -62,8 +62,8 @@ class assetsload {
             }
             break;
 
-            
-            
+
+
             case 'polazak':    
             switch($this->sub){
                 case 'add':
@@ -81,8 +81,8 @@ class assetsload {
             break; 
 
 
-            
-            
+
+
             case 'stanica':    
             switch($this->sub){
                 case 'add':
@@ -91,10 +91,14 @@ class assetsload {
                 case 'edit':
                     break;
                 case 'view':
+                    $this->CI->carabiner->js('tablesorter/jquery.tablesorter.js');
+                    $this->CI->carabiner->js('tablesorter/pager/jquery.tablesorter.pager.js');
+                    $this->CI->carabiner->css('tablesorter/style.css');
+                    $this->CI->carabiner->js('stanica/view.js');
                     break;
             }
             break;
-            
+
 
         }
 

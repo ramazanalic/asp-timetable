@@ -2,7 +2,7 @@
 <div class="box">
     <div class="clearfix">
         <div class="cnt-inner">                        
-            <div class="cnt_ttl">Pregled prevoznika</div>
+            <div class="cnt_ttl">Pregled stanica</div>
             <div class="cnt_cnt main-table-style">
                 <div id="infomessage" style="display: none;"></div>
                 <table class="tablesorter" id="prevoznik_tbl" cellpadding="0" cellspacing="0" width="100%">
@@ -10,20 +10,18 @@
                         <tr class="header-row">
                             <th width="30" style="text-align: center;">ID</th>
                             <th>Naziv</th>
-                            <th>Opis</th>
                             <th width="120" style="text-align: center;">Akcija</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <? foreach($prevoznici as $prevoznik): ?>
+                        <? foreach($stanice as $stanica): ?>
                             <tr>
-                                <td style="text-align: center;"><?=$prevoznik['id']?></td>
-                                <td  class="exc_title"><strong><?=$prevoznik['naziv'].' '.$prevoznik['grad']?></strong></td>                    
-                                <td  class="exc_title"><?=$prevoznik['opis']; if($prevoznik['opis']=='')echo '&nbsp;'?></td>                    
+                                <td style="text-align: center;"><?=$stanica['id']?></td>
+                                <td  class="exc_title"><strong><?=$stanica['naziv']; ?></strong></td>                                        
 
                                 <td style="text-align: center; padding-top: 4px;" class="actiontd">
-                                    <a href="<?=base_url();?>prevoznik/core/edit/<?=$prevoznik['id'];?>" class="edit_grid cmsbtnsml" id="<?=$prevoznik['id']?>">Uredi</a> 
-                                    <a href="javascript:void(null);" class="delete_grid cmsbtnsml" id="pz_<?=$prevoznik['id']?>">Briši</a>
+                                    <a href="<?=base_url();?>prevoznik/core/edit/<?=$stanica['id'];?>" class="edit_grid cmsbtnsml" id="<?=$stanica['id']?>">Uredi</a> 
+                                    <a href="javascript:void(null);" class="delete_grid cmsbtnsml" id="pz_<?=$stanica['id']?>">Briši</a>
                                 </td>
                             </tr>
                             <? endforeach;  ?>
