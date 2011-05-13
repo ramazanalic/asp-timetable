@@ -18,21 +18,21 @@
                             ?>
                         </select>                        
                     </div>
-
+                       
                     <div class="lineinput">
-                        <input name="vrstapolaska" value="dnevni" type="RADIO" > Dnevni
-                        <input name="vrstapolaska" value="vikendom" type="RADIO" > Vikendom
+                        <input name="vrsta_polaska" id="vrstapolaska_dnevni" value="dnevni" type="radio"> Dnevni
+                        <input name="vrsta_polaska" id="vrstapolaska_vikendom" value="vikendom" type="radio"> Vikendom
                         <input name="sezonski" id="sezonski" type="checkbox" > Sezonski 
                     </div>                    
 
                     <div class="lineinput">
                         <label>Prvi polazak:</label><br />                 
-                        <input name="prvipolazak" id="prvipolazak" type="text" class="inputbox short" disabled="disabled" />                        
+                        <input name="prvi_polazak" id="prvipolazak" type="text" class="inputbox short" />                        
                     </div>
 
                     <div class="lineinput">
                         <label>Zadnji polazak:</label><br />                 
-                        <input name="zadnjipolazak" id="zadnjipolazak" type="text" class="inputbox short" disabled="disabled" />                        
+                        <input name="zadnji_polazak" id="zadnjipolazak" type="text" class="inputbox short" />                        
                     </div>
 
                     <div class="lineinput">
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="cnt_ttl" style="padding: 14px 0 7px;">Ruta i vremena na stop stanicama</div>
-
+                    
 
                     <? $this->load->view('polazak/stopstanica', array('stoptype'=>'pocetna','id'=>00)); ?>
 

@@ -8,7 +8,7 @@
 
             <div class="lineinput">
                 <label>Početna stanica:</label><br />                            
-                <input name="stanica-<?=$id?>" id="stanica-<?=$id?>" type="text" class="inputbox" />                        
+                <input name="pocetna_stanica" id="pocetna_stanica" type="text" class="inputbox" />                        
             </div>
 
             <div class="lineinput">
@@ -20,9 +20,9 @@
 
             <div class="lineinput">
                 <label>KM:</label><br />                            
-                <input name="km-<?=$id?>" id="km-<?=$id?>" type="text" class="inputbox km" />                        
+                <input name="km_<?=$id?>" id="km_<?=$id?>" type="text" class="inputbox km" />                        
             </div>
-
+             
         </div>
 
         <?break;
@@ -39,7 +39,7 @@
 
                 <div class="lineinput stop-stanica-holder">
                     <label>Stop stanica:</label><br />                            
-                    <input name="stanica-<?=$id?>" id="stanica-<?=$id?>" type="text" class="inputbox idle" value="Ostavite prazno da bi obrisali stanicu" />                        
+                    <input name="stanica_<?=$id?>" id="stanica_<?=$id?>" type="text" class="inputbox idle" value="Ostavite prazno da bi obrisali stanicu" />                        
                 </div>
 
                 <div class="lineinput">
@@ -54,7 +54,7 @@
 
                 <div class="lineinput">
                     <label>KM:</label><br />                            
-                    <input name="km-<?=$id?>" id="km-<?=$id?>" type="text" class="inputbox km" />                        
+                    <input name="km_<?=$id?>" id="km_<?=$id?>" type="text" class="inputbox km" />                        
                 </div>
 
                 <div class="lineinput">
@@ -74,7 +74,7 @@
 
             <div class="lineinput">
                 <label>Zadnja stanica:</label><br />                            
-                <input name="stanica-<?=$id?>" id="stanica-<?=$id?>" type="text" class="inputbox"  />                        
+                <input name="zadnja_stanica" id="zadnja_stanica" type="text" class="inputbox"  />                        
             </div>
 
             <div class="lineinput space"></div>
@@ -86,7 +86,7 @@
 
             <div class="lineinput">
                 <label>KM:</label><br />                            
-                <input name="km-<?=$id?>" id="km-<?=$id?>" type="text" class="inputbox km" />                        
+                <input name="km_<?=$id?>" id="km_<?=$id?>" type="text" class="inputbox km" />                        
             </div> 
 
         </div>
