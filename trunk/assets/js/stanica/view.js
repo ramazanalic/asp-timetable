@@ -1,14 +1,11 @@
 $(document).ready(function(){
 
     // TABLSE SORTER
-    var rowCount = $('#prevoznik_tbl tr').length;
-    $("#prevoznik_tbl").tablesorter({
+    var rowCount = $('#stanica_tbl tr').length;
+    $("#stanica_tbl").tablesorter({
         // pass the headers argument and assing a object
         headers: {
             2: {
-                sorter: false
-            },
-            3: {
                 sorter: false
             }
         },
@@ -16,7 +13,7 @@ $(document).ready(function(){
         widgets: ['zebra']
     }).tablesorterPager({
         container: $("#prevoznik_pgr"),
-        size: 5,
+        size: 10,
         seperator: ' / ',
         positionFixed: false
     }); 
@@ -31,7 +28,7 @@ $(document).ready(function(){
             
             var id = $(this).attr('id').substr(3);
             $.ajax({
-                url : base_url+'prevoznik/core/db_delete',
+                url : base_url+'stanica/core/db_delete',
                 type: 'post',
                 data: {id:id},
                 dataType:'json',
