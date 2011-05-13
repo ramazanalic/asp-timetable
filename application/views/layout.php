@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="content-type" content="text/html;charset=utf-8" />        
-        <meta name="keywords" content="Autobuska, Autobuska stanica podgorica, asp.co.me, putovanja, prevoz, autobus, stanica, autobuski prevoznik, putovanje crna gora, autobuska crna gora, prevoz podorica, autobuska podgorica, prevoznik podgorica, bus podgorica, putovanje podgorica, stanica podgorica, autobuska stanica" />
-        <meta name="description" content="Autobuska stanica Podgorica je locirana na Trgu Golootčkih žrtava. Više od 300 autobuskih polazaka dnevno, 100 prevoznika i preko milion korisnika usluga godišnje. Sadržaji koji su dostupni putnicima i građanima - kafei, prodavnice, restoran, pošta, banka, renta a car, usluge turističke agencije, brodske i avio karte, ATM automati, platni terminal, wireless Internet." />
+        <meta name="keywords" content="Autobuska stanica Administracija" />
+        <meta name="description" content="Autobuska stanica Podgorica - Administrativne strane" />
         <meta name="Language" content="en" />
         <meta name="Robots" content="index,follow" />
         <meta name="Author" content="Kukic Ivan # ikukic@yahoo.com" />
         <meta name="revisit-after" content="2 days" />
         <meta name="Distribution" content="global" />
-        <title>Autobuska stanica Podgorica | Mjesto dobrih putovanja | Free Parking</title>  
+        <title>Autobuska stanica Podgorica | CMS</title>  
         <link rel="icon" href="#" type="image/x-icon" />       
 
 

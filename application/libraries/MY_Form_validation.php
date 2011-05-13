@@ -5,47 +5,58 @@ class MY_Form_validation extends CI_Form_validation {
     function __construct()
     {
         parent::__construct(); 
+
     }    
+    
 
-    function checkAnswers(){
-        $i=0;
-        foreach($_POST as $key => $value){
-            if((substr($key,0,6)=='answer')&&($value!='Ostavi prazno da bi obrisao odgovor')){
-                $i++;   
-            }                
-        }        
-        if($i>=2){
-            return TRUE; 
-        }else return FALSE;
-    }
+    function provjeri_prevoznika() {    
 
-    function checkStyle(){ 
-        if($_POST['styleID']){
-            return TRUE;
-        }
-        else return FALSE;
-    }
+        $CI =& get_instance();
+        
+        $CI->form_validation->set_message('provjeri_prevoznika', 'Molimo odaberite %s.');
 
-    function provjeriPervoznika(){   
         if($_POST['prevoznik_id']==0){
+
             return FALSE;
+
         }
+
         else return TRUE;
+
+    }
+    
+
+    function provjeri_stanicu($str, $field){
+        
+        $message = '';
+        
+        if(substr($field,0,7)=='stanica'){
+
+            $message = '<b>Stop '.substr($field,0,7).' '.substr($field,8,strlen ($field)).'</b>';
+            
+        }else{
+            if($field=="pocetna_stanica"){
+               $message = '<b>Početna stanica</b>'; 
+            }else if($field=='zadnja_stanica'){
+                $message = '<b>Zadnja stanica</b>';
+            }
+
+            
+        }
+
+        $CI =& get_instance();
+        
+        $CI->form_validation->set_message('provjeri_stanicu', $message.' ne postoji u bazi.');
+
+        if($str=='a'){
+
+            return FALSE;
+
+        }
+
+        else return TRUE; 
+
     }
 
-    function checkPollWidth(){         
-        if(isset($_POST['styleID'])){   
-            if(!isset($_POST['poll_width'])){   
-                return FALSE;
-            }
-        }                      
-        return TRUE;
-    }  
-    function registrationCountry(){
-        if(strlen($_POST['country_ccode'])==2){
-            return TRUE;
-        }
-        else return FALSE; 
-    }
 }
 
