@@ -5,7 +5,7 @@
             <div class="cnt_ttl">Pregled stanica</div>
             <div class="cnt_cnt main-table-style">
                 <div id="infomessage" style="display: none;"></div>
-                <table class="tablesorter" id="prevoznik_tbl" cellpadding="0" cellspacing="0" width="100%">
+                <table class="tablesorter" id="stanica_tbl" cellpadding="0" cellspacing="0" width="100%">
                     <thead>
                         <tr class="header-row">
                             <th width="30" style="text-align: center;">ID</th>
@@ -20,7 +20,7 @@
                                 <td  class="exc_title"><strong><?=$stanica['naziv']; ?></strong></td>                                        
 
                                 <td style="text-align: center; padding-top: 4px;" class="actiontd">
-                                    <a href="<?=base_url();?>prevoznik/core/edit/<?=$stanica['id'];?>" class="edit_grid cmsbtnsml" id="<?=$stanica['id']?>">Uredi</a> 
+                                    <a href="<?=base_url();?>stanica/core/edit/<?=$stanica['id'];?>" class="edit_grid cmsbtnsml" id="<?=$stanica['id']?>">Uredi</a> 
                                     <a href="javascript:void(null);" class="delete_grid cmsbtnsml" id="pz_<?=$stanica['id']?>">Briši</a>
                                 </td>
                             </tr>
@@ -28,13 +28,13 @@
                     </tbody>
                 </table>
                 <div id="prevoznik_pgr" class="pager">
-                    <div style="float: left; width: 280px; padding-left: 10px;">Ukupno <b><span class="tbl_total"></span></b> &nbsp;prevoznika</div>
+                    <div style="float: left; width: 280px; padding-left: 10px;">Ukupno <b><span class="tbl_total"></span></b> &nbsp;stanica</div>
                     <div class="clear-fix" style="float: left; width: 230px;">
                         <div style="float: left; height: 29px; line-height: 29px; padding-right: 5px;">
                             Rezultati po strani:</div>
                         <div class="stylish-select-container" style="float: left; line-height: 16px; padding-top: 4px;">
                             <select style="float: left;" class="pagesize">
-                                <option value="5" selected="selected">5</option><option value="10">10</option><option value="20">20</option>
+                                <option value="5">5</option><option value="10" selected="selected">10</option><option value="20">20</option>
                             </select>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <i>* Prevoznici su sortirani po nazivu.</i>
+                <i>* Stanice su sortirani po nazivu.</i>
             </div>
         </div>
     </div>
