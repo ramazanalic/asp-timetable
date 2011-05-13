@@ -5,15 +5,13 @@
             <div class="cnt_ttl">Kreiraj polazak</div>
             <div class="cnt_cnt">
                 <div id="infomessage" style="display: none;"></div>
-                <form name="addprevoznik" id="addprevoznik" method="post" action="javascript: void(0);">
+                <form name="addpolazak" id="addpolazak" method="post" action="javascript: void(0);">
 
                     <div class="lineinput">
                         <label>Prevoznik:</label><br />                 
                         <select name="prevoznik_id" class="inputbox">
                             <option value="0" class="idle">- Molimo odaberite prevoznika - </option>
                             <?
-                                $weekday = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
-
                                 foreach ($prevoznici as $prevoznik) {
                                     echo "<option value='". $prevoznik['id'] . "'>" . $prevoznik['naziv'] . ' ' . $prevoznik['grad'] . "</option>";                         
                                 }

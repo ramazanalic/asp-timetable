@@ -7,6 +7,7 @@ class Core extends navigator
     {
         parent::__construct();
         $this->load->model('prevoznik/core_m', 'prevoznik');
+        $this->load->model('polazak/core_m', 'polazak');
     }
 
     function index(){ show_404(); }
