@@ -117,9 +117,6 @@ body {
     margin:0 auto;
     width:890px;
 }
-#wrap .col-mid #main-nav ul .no-margin, #home #wrap .col-mid #main-nav ul li .no-margin {
-    width: 176px;
-}
 .news .hdr{
     background: #F1EEE5; 
     padding-left: 39px;
@@ -150,7 +147,7 @@ body {
     text-decoration: none;
     font-size: 14px;
     float: left;  
-    width: 174px;  
+    width: 218px;  
     text-align: center;
 }
 #main-nav ul li a.selected {
@@ -159,7 +156,7 @@ body {
 }
 #main-nav ul .no-margin, #main-nav ul li .no-margin{
     margin: 0;
-    width: 176px; 
+    width: 220px; 
 }
 
 
