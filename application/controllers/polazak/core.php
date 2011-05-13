@@ -7,7 +7,7 @@ class Core extends navigator
     {
         parent::__construct();
         $this->load->model('prevoznik/core_m', 'prevoznik');
-        $this->load->model('polazak/core_m', 'polazak');
+        $this->load->model('polazak/polazak_m', 'polazak');
     }
 
     function index(){ show_404(); }
@@ -19,17 +19,17 @@ class Core extends navigator
     }
 
     function edit($id){
-        $this->data['prevoznik'] = $this->prevoznik->listaj_prevoznika($id);
-        $this->core_index('prevoznik','edit','PREVOZNIK');
+        /*$this->data['prevoznik'] = $this->prevoznik->listaj_prevoznika($id);
+        $this->core_index('prevoznik','edit','PREVOZNIK');*/
     }    
 
     function view(){
-        $this->data['prevoznici'] = $this->prevoznik->listaj_prevoznike();
-        $this->core_index('prevoznik','view','PREVOZNIK');
+        /*$this->data['prevoznici'] = $this->prevoznik->listaj_prevoznike();
+        $this->core_index('prevoznik','view','PREVOZNIK');*/
     }
 
     function db_add(){
-        $this->prevoznik->add();        
+        $this->polazak->add();        
     }
 
     function db_edit(){
@@ -37,7 +37,7 @@ class Core extends navigator
     }
 
     function db_delete(){
-        $this->prevoznik->delete();
+        $this->polazak->delete();
     }
 
     function daj_stop_stanicu(){
