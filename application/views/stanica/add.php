@@ -5,7 +5,7 @@
             <div class="cnt_ttl">Dodaj stanicu / stop stanicu</div>
             <div class="cnt_cnt">
                 <div id="infomessage" style="display: none;"></div>
-                <form name="addprevoznik" id="addprevoznik" method="post" action="javascript: void(0);">
+                <form name="addstanica" id="addstanica" method="post" action="javascript: void(0);">
 
                     <div class="lineinput">
                         <label>
