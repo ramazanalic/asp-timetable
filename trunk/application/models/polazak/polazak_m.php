@@ -19,9 +19,121 @@
         }*/
 
         function add(){
+
             if($this->validate()) {
-                //$this->db->insert('prevoznik',$_POST);
-                echo json_encode(array('success'=>'success'));
+
+
+                /* Vrsta polaska */
+
+                if($_POST['vrstapolaska']=='dnevni'){
+                    $dnevni = TRUE;
+                    $vikendom = FALSE;
+                }else if($_POST['vrstapolaska']=='vikendom'){
+                        $dnevni = FALSE;
+                        $vikendom = TRUE;
+                    }
+                    if(isset($_POST['sezonski'])){
+                    $sezonski = TRUE;
+                }else{
+                    $sezonski = FALSE;
+                }
+
+                /* Polazak */
+
+                $polazak = array(
+                'datumvrijeme' => strtotime($_POST['prvipolazak']),
+                'dnevni' => $dnevni,
+                'vikendom' => $vikendom,
+                'sezonski' => $sezonski,
+                'prevoznik_id' => $_POST['prevoznik_id'],
+                'prvipolazak' => strtotime($_POST['prvipolazak']),
+                'zadnjipolazak' => strtotime($_POST['zadnjipolazak']),
+                'peron' => $_POST['peron'],
+                );
+
+                $this->db->insert('polazak',$polazak);
+
+
+                /* Uzmi id polaska */
+
+                $polazak_id = $this->db->insert_id();
+
+
+
+                /* Pocetna */
+
+                /* Uzmi id stanice */
+
+                $stanica = $this->db->get_where('stanica',array('naziv'=>$_POST['pocetna_stanica']))->row_array();
+
+                $pocetna = array(
+
+                'stanica_id' => $stanica['id'],
+                'vrijemepolaska' => strtotime($_POST['vrijemepolaska_pocetna']),
+                'vrijemedolaska' => NULL,
+                'km' => $_POST['km_pocetna'],
+                'polazak_id' => $polazak_id                    
+
+                );
+
+                $this->db->insert('stopstanica',$pocetna);
+
+
+
+                /* Stop Stanice */
+
+                $cnt = count($_POST['stanica']);
+
+                for($i=0;$i<$cnt;$i++) {
+
+                    
+                    /* Uzmi id stanice */
+                    
+                    
+                    $stanica = $this->db->get_where('stanica',array('naziv'=>$_POST['stanica'][$i]))->row_array();
+
+
+                    $stop_stanica = array(
+
+                    'stanica_id' => $stanica['id'],
+                    'vrijemepolaska' => strtotime($_POST['vrijemepolaska'][$i]),
+                    'vrijemedolaska' => strtotime($_POST['vrijemedolaska'][$i]),
+                    'km' => $_POST['km'][$i],
+                    'polazak_id' => $polazak_id                    
+
+                    );
+
+
+                    $this->db->insert('stopstanica',$stop_stanica);
+
+
+                }
+
+
+
+                /* Zadnja */
+
+                /* Uzmi id stanice */
+
+                $stanica = $this->db->get_where('stanica',array('naziv'=>$_POST['zadnja_stanica']))->row_array();
+
+                $zadnja = array(
+
+                'stanica_id' => $stanica['id'],
+                'vrijemepolaska' => NULL,
+                'vrijemedolaska' => strtotime($_POST['vrijemedolaska_zadnja']),
+                'km' => $_POST['km_zadnja'],
+                'polazak_id' => $polazak_id                    
+
+                );
+
+                $this->db->insert('stopstanica',$zadnja);              
+
+
+                //echo json_encode(array('success'=>'success'));
+
+
+
             }else {
                 echo json_encode(array('success'=>'failed','message'=>$this->errors));
             }
@@ -46,9 +158,9 @@
 
 
             $this->form_validation->set_rules('prevoznik_id','odaberite <b>prevoznika</b>','provjeri_prevoznika');       
-            $this->form_validation->set_rules('vrsta_polaska','odaberite <b>vrstu</b> polaska','required');
-            $this->form_validation->set_rules('prvi_polazak','odaberite datum <b>prvog</b> polaska','required');
-            $this->form_validation->set_rules('zadnji_polazak','odaberite datum <b>zadnjeg</b> polaska','required');
+            $this->form_validation->set_rules('vrstapolaska','odaberite <b>vrstu</b> polaska','required');
+            $this->form_validation->set_rules('prvipolazak','odaberite datum <b>prvog</b> polaska','required');
+            $this->form_validation->set_rules('prvipolazak','odaberite datum <b>zadnjeg</b> polaska','required');
             $this->form_validation->set_rules('pocetna_stanica','unesite <b>početnu stanicu</b>','required|provjeri_stanicu[pocetna_stanica]');
 
             foreach($_POST as $key => $value){
@@ -56,7 +168,7 @@
                 if(substr($key,0,7)=='stanica') {
 
                     if($value!='Ostavite prazno da bi obrisali stanicu'){
-                        $this->firephp->fb($value);
+
                         $this->form_validation->set_rules($key,'unesite <b>zadnju stanicu</b>','provjeri_stanicu['.$key.']');     
                     }
 

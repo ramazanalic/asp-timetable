@@ -20,19 +20,19 @@
                     </div>
                        
                     <div class="lineinput">
-                        <input name="vrsta_polaska" id="vrstapolaska_dnevni" value="dnevni" type="radio"> Dnevni
-                        <input name="vrsta_polaska" id="vrstapolaska_vikendom" value="vikendom" type="radio"> Vikendom
-                        <input name="sezonski" id="sezonski" type="checkbox" > Sezonski 
+                        <input name="vrstapolaska" id="vrstapolaska_dnevni" value="dnevni" type="radio" checked="checked"> Dnevni
+                        <input name="vrstapolaska" id="vrstapolaska_vikendom" value="vikendom" type="radio"> Vikendom
+                        <input name="sezonski" id="sezonski" type="checkbox" value="1" > Sezonski 
                     </div>                    
 
                     <div class="lineinput">
                         <label>Prvi polazak:</label><br />                 
-                        <input name="prvi_polazak" id="prvipolazak" type="text" class="inputbox short" />                        
+                        <input name="prvipolazak" id="prvipolazak" type="text" class="inputbox short" />                        
                     </div>
 
                     <div class="lineinput">
                         <label>Zadnji polazak:</label><br />                 
-                        <input name="zadnji_polazak" id="zadnjipolazak" type="text" class="inputbox short" />                        
+                        <input name="zadnjipolazak" id="zadnjipolazak" type="text" class="inputbox short" />                        
                     </div>
 
                     <div class="lineinput">
