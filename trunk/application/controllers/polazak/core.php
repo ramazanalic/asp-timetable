@@ -14,6 +14,7 @@ class Core extends navigator
 
     function add(){
         $this->data['prevoznici'] = $this->prevoznik->listaj_prevoznike();
+        $this->data['stanice'] = $this->polazak->listaj_stanice(); 
         $this->load->helper('timemaker');
         $this->core_index('polazak','add','POLAZAK');
     }
@@ -24,8 +25,8 @@ class Core extends navigator
     }    
 
     function view(){
-        /*$this->data['prevoznici'] = $this->prevoznik->listaj_prevoznike();
-        $this->core_index('prevoznik','view','PREVOZNIK');*/
+        $this->data['polasci'] = $this->polazak->listaj_polaske(); 
+        $this->core_index('polazak','view','POLASCI');
     }
 
     function db_add(){

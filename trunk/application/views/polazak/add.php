@@ -18,7 +18,7 @@
                             ?>
                         </select>                        
                     </div>
-                       
+
                     <div class="lineinput">
                         <input name="vrstapolaska" id="vrstapolaska_dnevni" value="dnevni" type="radio" checked="checked"> Dnevni
                         <input name="vrstapolaska" id="vrstapolaska_vikendom" value="vikendom" type="radio"> Vikendom
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="cnt_ttl" style="padding: 14px 0 7px;">Ruta i vremena na stop stanicama</div>
-                    
+
 
                     <? $this->load->view('polazak/stopstanica', array('stoptype'=>'pocetna','id'=>00)); ?>
 
@@ -69,3 +69,15 @@
         </div>
     </div>
 </div>
+
+<!--AUTOCOMPLETE-->
+
+<script>
+
+    var stanice = new Array();
+
+    <? foreach ($stanice as $val){ ?> stanice.push('<?=$val?>'); <? } ?>
+
+    $("input.ac_stanica").autocomplete({ source: stanice });         
+
+</script>

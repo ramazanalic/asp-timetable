@@ -39,11 +39,8 @@ $(function(){
     $('#zadnjipolazak').click(function(){
         $('#zadnjipolazak').datepicker("show");  
     }); 
-
-    $("input#nazivi").autocomplete({
-        source: ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"]
-    });
-
+   
+    
     delete_answer = false;
     var rb_stanice = 6;
     //BRISI STANICU IZ DB
