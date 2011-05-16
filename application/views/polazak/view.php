@@ -4,8 +4,13 @@
     <div class="clearfix">
         <div class="cnt-inner">                        
             <div class="cnt_ttl">Pregled polazaka</div>
-            <div class="cnt_cnt main-table-style">
-                <div id="infomessage" style="display: none;"></div>
+            <div class="cnt_cnt main-table-style"   style="position: relative;">
+                <div id="infomessage" style="display: block;">
+                <div id="stanice_tooltip">
+                    Test tooltip!
+                </div>
+                </div>
+                
                 <table class="tablesorter" id="prevoznik_tbl" cellpadding="0" cellspacing="0" width="100%">
                     <thead>
                         <tr class="header-row">
@@ -37,8 +42,8 @@
                                 <td> <?=$polazak['naziv_prevoznika']. '<br />'.$polazak['grad_prevoznika']; ?> </td>    
                                 <td><?=date('d.m.Y',$polazak['prvipolazak']).'<br />'. date('d.m.Y',$polazak['zadnjipolazak']);?></td>                    
                                 <td><?=$polazak['peron'];?></td>
-                                <td><a href="#">POGLEADJ</a></td>
-                               
+                                <td><a href="javacript:void(0)" class="stanice_tip">POGLEADJ</a></td>
+
                                 <td style="text-align: center; padding-top: 4px;" class="actiontd">
                                     <a href="<?=base_url();?>prevoznik/core/edit/<?=$polazak['id'];?>" class="edit_grid cmsbtnsml" id="<?=$polazak['id']?>">Uredi</a> 
                                     <a href="javascript:void(null);" class="delete_grid cmsbtnsml" id="pz_<?=$polazak['id']?>">Briši</a>
@@ -55,3 +60,4 @@
         </div>
     </div>
 </div>
+

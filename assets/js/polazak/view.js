@@ -41,4 +41,15 @@ $(document).ready(function(){
             });
         }
     });
+    
+    /* JavaScript code */ 
+    // Selects one or more elements to assign a simpletip to 
+    $(".stanice_tip").simpletip({ 
+        // Configuration properties 
+        content: 'stanice_tooltip', 
+         position: 'right', offset: [30, 0]
+    });
+
+    
+    
 });
