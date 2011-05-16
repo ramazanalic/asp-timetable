@@ -8,7 +8,7 @@
 
             <div class="lineinput">
                 <label>Početna stanica:</label><br />                            
-                <input name="pocetna_stanica" id="pocetna_stanica" type="text" class="inputbox" />                        
+                <input name="pocetna_stanica" id="pocetna_stanica" type="text" class="inputbox ac_stanica" />                        
             </div>
 
             <div class="lineinput">
@@ -39,7 +39,7 @@
 
                 <div class="lineinput stop-stanica-holder">
                     <label>Stop stanica:</label><br />                            
-                    <input name="stanica[]" id="stanica_<?=$id?>" type="text" class="inputbox idle" value="Ostavite prazno da bi obrisali stanicu" />                        
+                    <input name="stanica[]" id="stanica_<?=$id?>" type="text" class="inputbox idle ac_stanica" value="Ostavite prazno da bi obrisali stanicu" />                        
                 </div>
 
                 <div class="lineinput">
@@ -74,7 +74,7 @@
 
             <div class="lineinput">
                 <label>Zadnja stanica:</label><br />                            
-                <input name="zadnja_stanica" id="zadnja_stanica" type="text" class="inputbox"  />                        
+                <input name="zadnja_stanica" id="zadnja_stanica" type="text" class="inputbox ac_stanica"  />                        
             </div>
 
             <div class="lineinput space"></div>

@@ -76,6 +76,10 @@ class assetsload {
                 case 'edit':
                     break;
                 case 'view':
+                    $this->CI->carabiner->js('tablesorter/jquery.tablesorter.js');
+                    $this->CI->carabiner->js('tablesorter/pager/jquery.tablesorter.pager.js');
+                    $this->CI->carabiner->js('polazak/view.js');
+                    $this->CI->carabiner->css('tablesorter/style.css');
                     break;
             }
             break; 

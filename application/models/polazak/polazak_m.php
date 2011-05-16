@@ -9,14 +9,33 @@
 
         var $errors = '';
 
-        /*function listaj_prevoznike(){
-        $this->db->order_by("naziv", "asc");             
-        return $this->db->get('prevoznik')->result_array();            
-        }*/
+        function listaj_stanice(){
 
-        /*function listaj_prevoznika($id){             
-        return $this->db->get_where('prevoznik',array('id'=>$id))->row_array();            
-        }*/
+
+            //RETURN AS REGULAR STRING ARRAY
+            $arr = array();
+            $this->db->order_by("naziv", "asc");             
+            $res = $this->db->get('stanica')->result_array();  
+
+            //Prepare data for autocomplete
+            foreach($res as $stanica){
+                $arr[]= $stanica['naziv'];
+            }
+
+            return $arr;          
+        }
+
+        function listaj_polazak($id){             
+            return $this->db->get_where('polazak',array('id'=>$id))->row_array();            
+        }
+
+        function listaj_polaske(){             
+            $this->db->select('polazak.*, prevoznik.naziv as naziv_prevoznika, prevoznik.grad as grad_prevoznika', FALSE);
+            $this->db->join('prevoznik', 'prevoznik.id = polazak.prevoznik_id ');
+            $res = $this->db->get('polazak')->result_array();  
+            $this->firephp->fb($this->db->last_query());
+            return $res;
+        }
 
         function add(){
 
@@ -41,7 +60,10 @@
                 /* Polazak */
 
                 $polazak = array(
-                'datumvrijeme' => strtotime($_POST['prvipolazak']),
+                'pocetnastanica' => $_POST['pocetna_stanica'],
+                'zadnjastanica' => $_POST['zadnja_stanica'],
+                'vrijemepolaska' => strtotime($_POST['vrijemepolaska_pocetna']),
+                'vrijemedolaska' => strtotime($_POST['vrijemedolaska_zadnja']),
                 'dnevni' => $dnevni,
                 'vikendom' => $vikendom,
                 'sezonski' => $sezonski,
