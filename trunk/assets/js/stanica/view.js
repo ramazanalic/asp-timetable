@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     // TABLSE SORTER
-    var rowCount = $('#stanica_tbl tr').length;
+    var rowCount = $('#stanica_tbl tr').length-1;
     $("#stanica_tbl").tablesorter({
         // pass the headers argument and assing a object
         headers: {
