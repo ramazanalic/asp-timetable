@@ -74,6 +74,6 @@
             <div id="main-nav">  <? $this->load->view('nav'); ?> </div>      
             <div class="clear"></div>
             <div id="main-cont"> <? $this->load->view('inner'); ?> </div>            
-        </div>                                                                                     
+        </div>
     </body>
 </html>

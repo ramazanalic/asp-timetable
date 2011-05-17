@@ -247,3 +247,130 @@ table.tablesorter thead tr .headerSortUp {
     font-size: 11px;
     text-indent: 0;
 }
+
+
+
+
+/* Stop stanice TABLE STYLE */
+
+#tooltip table, #tooltip tbody, #tooltip tfoot, #tooltip thead, #tooltip tr, #tooltip th, #tooltip td, #tooltip ul, #tooltip li {
+    border: 0 none;
+    font-family: inherit;
+    font-size: 100%;
+    font-style: inherit;
+    font-weight: inherit;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    vertical-align: baseline;
+}
+#tooltip ul {
+    list-style: none outside none;
+}
+#tooltip table {
+    border: 0 none;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+#tooltip {
+    text-align: left;
+    font-size: 11px;
+}
+#tooltip img {
+    border: 0 none;
+    vertical-align: top;
+}
+#tooltip table {
+    background-color: #FFFFFF;
+    border-left: 1px solid #B2B2B2;
+    border-top: 1px solid #B2B2B2 !important;
+    font-size: 12px;
+    width: 100%;
+}
+#tooltip table table {
+    background-color: transparent;
+    border: medium none;
+}
+#tooltip table tr.head {
+    background-repeat: repeat;
+}
+#tooltip table tr.head th {
+    border-bottom: 1px solid #B2B2B2;
+    border-right: 1px solid #B2B2B2;
+    font-size: 11px !important;
+    font-weight: bold;
+    padding: 3px 2px 3px 10px;
+    text-align: left;
+    vertical-align: middle;
+}
+#tooltip table tr.head th input {
+    margin: -2px 0 0;
+}
+#tooltip table tr.head th a, #tooltip table tr.head th a:link, #tooltip table tr.head th a:visited {
+    color: #000000;
+    text-decoration: underline;
+}
+#tooltip table thead th a:hover {
+    text-decoration: none;
+}
+#tooltip table thead th img {
+    vertical-align: text-bottom;
+}
+#tooltip table tr td {
+    border-bottom: 1px solid #B2B2B2;
+    border-right: 1px solid #B2B2B2;
+    padding: 5px 10px;
+    vertical-align: middle;
+}
+#tooltip table tr td span.expiring {
+    color: #E36C1B;
+    font-weight: bold;
+}
+#tooltip table tr.open-row td {
+    border-bottom: medium none !important;
+    font-weight: bold;
+}
+#tooltip table tr td.last {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    vertical-align: middle;
+}
+
+
+#tooltip table tr.header-row {
+    background: url(../../img/tablesorter/table_header_1x45.gif) repeat-x scroll 0 0 transparent;
+    height: 32px;
+}
+#tooltip table tr.header-row th {
+    border-bottom: 1px solid #B2B2B2;
+    border-right: 1px solid #B2B2B2;
+    font-size: 11px !important;
+    font-weight: bold;
+    padding: 0 10px;
+    vertical-align: middle;
+    line-height: 13px;
+}
+#tooltip table tr.header-row th a, #tooltip table tr.header-row th a:link, #tooltip table tr.header-row th a:visited {
+    color: #000000;
+    text-decoration: underline;
+}
+#tooltip table thead th a:hover {
+    text-decoration: none;
+}
+#tooltip table thead th img {
+    vertical-align: text-bottom;
+}
+#tooltip table tr.table-row {
+    height: 42px;
+}
+#tooltip table tr.table-row td {
+    padding: 3px 10px;
+    vertical-align: middle;
+}
+#tooltip table tr.odd {
+    background-color: #F5F5F5 !important;
+}
+#tooltip table tr.even {
+    background-color: #FFFFFF !important;
+}

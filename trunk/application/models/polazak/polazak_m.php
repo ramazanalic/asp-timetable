@@ -25,6 +25,28 @@
             return $arr;          
         }
 
+        function pogledaj_stop_stanice(){
+
+            $data = array();
+
+            $this->db->select('stopstanica.*, stanica.naziv as naziv_stanice', FALSE);
+            $this->db->join('stanica', 'stanica.id = stopstanica.stanica_id ');
+            $data['res'] = $this->db->get_where('stopstanica',array('polazak_id'=>$_POST['id_polaska']))->result_array();
+
+            $this->firephp->fb($this->db->last_query());   
+            
+            $HTML = '<div class="lista_stop_stanica">';
+
+            //$HTML .= "Ovako readi";
+            $HTML .= $this->load->view('polazak/pogledaj_stop_stanice', $data, TRUE);
+
+            $HTML .= '</div">';
+
+            return $HTML;
+
+
+        }
+
         function listaj_polazak($id){             
             return $this->db->get_where('polazak',array('id'=>$id))->row_array();            
         }
@@ -33,7 +55,7 @@
             $this->db->select('polazak.*, prevoznik.naziv as naziv_prevoznika, prevoznik.grad as grad_prevoznika', FALSE);
             $this->db->join('prevoznik', 'prevoznik.id = polazak.prevoznik_id ');
             $res = $this->db->get('polazak')->result_array();  
-            $this->firephp->fb($this->db->last_query());
+            //$this->firephp->fb($this->db->last_query());
             return $res;
         }
 
