@@ -47,7 +47,7 @@ $(function(){
 
     $('.delete-stop').live('click',function(){
         if(delete_answer){
-            if (confirm('Da li Å¾elite izbrisati stanicu iz baze?')) {
+            if (confirm('Da li želite izbrisati stanicu iz baze?')) {
                 var remove = this;
                 var id=remove.id.substr(7,remove.id.length);
                 $.ajax({
