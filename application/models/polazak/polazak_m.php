@@ -34,7 +34,7 @@
             $data['res'] = $this->db->get_where('stopstanica',array('polazak_id'=>$_POST['id_polaska']))->result_array();
 
             $this->firephp->fb($this->db->last_query());   
-            
+
             $HTML = '<div class="lista_stop_stanica">';
 
             //$HTML .= "Ovako readi";
@@ -199,8 +199,8 @@
         }
 
         function delete() {
-            /*$this->db->where('id',$this->input->post('id'))->delete('prevoznik');
-            echo json_encode(array('success'=>'success'));*/
+            $this->db->where('id',$this->input->post('id'))->delete('polazak');
+            echo json_encode(array('success'=>'success'));
         }
 
         function validate() {

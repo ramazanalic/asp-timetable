@@ -20,7 +20,7 @@
                             <th>PREVOZNIK</th>
                             <th>VAŽI OD/DO</th>
                             <th>PERON</th>
-                            <th>STANICE</th>
+                            <th style="text-align: center;">STANICE</th>
                             <th style="text-align: center;">AKCIJA</th>
 
                         </tr>
