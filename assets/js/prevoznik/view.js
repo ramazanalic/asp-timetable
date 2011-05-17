@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     // TABLSE SORTER
-    var rowCount = $('#prevoznik_tbl tr').length;
+    var rowCount = $('#prevoznik_tbl tr').length-1;
     $("#prevoznik_tbl").tablesorter({
         // pass the headers argument and assing a object
         headers: {
