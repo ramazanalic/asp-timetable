@@ -13,12 +13,12 @@
                 <td><?=$st_stanica['naziv_stanice']?></td>
                 <td><strong>
                 <?
-                    if($st_stanica['vrijemepolaska'] != NULL) echo date('H.s',$st_stanica['vrijemepolaska']).' h';
+                    if($st_stanica['vrijemepolaska'] != NULL) echo date('H:i',$st_stanica['vrijemepolaska']).' h';
                 ?>
                 </strong></td>                    
                 <td><strong>
                 <?
-                    if($st_stanica['vrijemedolaska'] != NULL) echo date('H.s',$st_stanica['vrijemedolaska']).' h';
+                    if($st_stanica['vrijemedolaska'] != NULL) echo date('H:i',$st_stanica['vrijemedolaska']).' h';
                 ?>
                 </strong></td>                    
                 <td><?=$st_stanica['km']?></td>

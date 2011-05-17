@@ -8,7 +8,7 @@ $(function(){
     $('.stop-stanica-holder input').live('blur', function() {
         if($(this).val()==''){
             $(this).addClass('idle');
-            $(this).val('Ostavi prazno da bi obrisao odgovor');
+            $(this).val('Ostavite prazno da bi obrisali stanicu');
         }
     });
     $( "#sortable" ).sortable({

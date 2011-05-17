@@ -41,16 +41,16 @@
                     <label>Stop stanica:</label><br />                            
                     <input name="stanica[]" id="stanica_<?=$id?>" type="text" class="inputbox idle ac_stanica" value="Ostavite prazno da bi obrisali stanicu" />                        
                 </div>
-
-                <div class="lineinput">
-                    <label>Vrijeme dolaska:</label><br />                 
-                    <? echo makefull('vrijemedolaska[]',5,'id="vrijemedolaska-'.$id.'"','class="inputbox vrijemedolaska"'); ?>                        
-                </div>
                 
                 <div class="lineinput">
                     <label>Vrijeme polaska:</label><br />                 
                     <? echo makefull('vrijemepolaska[]',5,'id="vrijemepolaska-'.$id.'"','class="inputbox vrijemepolaska"'); ?>                        
-                </div>                
+                </div>
+
+                <div class="lineinput">
+                    <label>Vrijeme dolaska:</label><br />                 
+                    <? echo makefull('vrijemedolaska[]',5,'id="vrijemedolaska-'.$id.'"','class="inputbox vrijemedolaska"'); ?>                        
+                </div>                        
 
                 <div class="lineinput">
                     <label>KM:</label><br />                            

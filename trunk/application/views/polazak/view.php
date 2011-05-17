@@ -30,7 +30,7 @@
                             <tr>
                                 <td style="text-align: center;"><?=$polazak['id']?></td>
                                 <td><strong><?=$polazak['pocetnastanica'].' <br />'. $polazak['zadnjastanica']?></strong></td>                    
-                                <td><strong><?=date('H.s',$polazak['vrijemepolaska']).'h <br />'. date('H.s',$polazak['vrijemedolaska']).'h';?></strong></td>                    
+                                <td><strong><?=date('H:i',$polazak['vrijemepolaska']).' h <br />'. date('H:s',$polazak['vrijemedolaska']).' h';?></strong></td>                    
                                 <td>
                                     <?
                                         if($polazak['dnevni'] == 1) echo 'Dnevni';
