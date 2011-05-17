@@ -20,8 +20,15 @@ class Core extends navigator
     }
 
     function edit($id){
-        /*$this->data['prevoznik'] = $this->prevoznik->listaj_prevoznika($id);
-        $this->core_index('prevoznik','edit','PREVOZNIK');*/
+         
+        $this->data['polazak'] = $this->polazak->listaj_polazak($id);
+        
+        $this->data['prevoznici'] = $this->prevoznik->listaj_prevoznike();
+        $this->data['stanice'] = $this->polazak->listaj_stanice(); 
+        
+        $this->load->helper('timemaker');
+        
+        $this->core_index('polazak','edit','POLAZAK');
     }    
 
     function view(){
@@ -45,7 +52,7 @@ class Core extends navigator
         $this->load->helper('timemaker');
         echo json_encode(array('html' => $this->load->view('polazak/stopstanica', array('stoptype'=>'stop','id'=>$_POST['rb_stanice']), TRUE)));
     }
-    
+
     function pogledaj_stop_stanice(){        
         echo json_encode(array('html' => $this->polazak->pogledaj_stop_stanice(), TRUE));
     }
