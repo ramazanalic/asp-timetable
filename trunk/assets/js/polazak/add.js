@@ -39,8 +39,8 @@ $(function(){
     $('#zadnjipolazak').click(function(){
         $('#zadnjipolazak').datepicker("show");  
     }); 
-   
-    
+
+
     delete_answer = false;
     var rb_stanice = 6;
     //BRISI STANICU IZ DB
@@ -107,5 +107,44 @@ $(function(){
         });
     });
 
+
+    /* Time Set Handlers */
+
+    $('#vrijemepolaska_pocetna').change(function(){
+        
+        $("#vrijemedolaska-1").val($(this).val());
+        
+    })
+
+    $('.vrijemedolaska').live('change', function(){
+        
+        var id = this.id.substring(15,this.id.length);
+        
+        console.log("#vrijemepolaska-"+id)
+        
+        $("#vrijemepolaska-"+id).val($(this).val());
+        
+    })
+    
+    $('.vrijemepolaska').live('change', function(){
+        
+        var id = this.id.substring(15,this.id.length);
+        
+        id = parseInt(id)+1;
+        
+        console.log("#vrijemedolaska-"+id)
+        console.log("rb_stanice:"+rb_stanice)
+        
+        if(rb_stanice == id){
+            
+            $("#vrijemedolaska_zadnja").val($(this).val());    
+            
+        }else{
+            
+            $("#vrijemedolaska-"+id).val($(this).val());     
+            
+        }
+        
+    })
 
 });

@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "core";
+$route['default_controller'] = "polazak/core/view";
 $route['404_override'] = 'core/index/$0';
 
 //$route['^(?!booking|test|login).*'] = "core/index/$0"; 

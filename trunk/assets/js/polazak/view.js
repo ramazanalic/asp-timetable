@@ -31,7 +31,7 @@ $(document).ready(function(){
 
             var id = $(this).attr('id').substr(3);
             $.ajax({
-                url : base_url+'prevoznik/core/db_delete',
+                url : base_url+'polazak/core/db_delete',
                 type: 'post',
                 data: {id:id},
                 dataType:'json',
@@ -42,15 +42,9 @@ $(document).ready(function(){
         }
     });
 
-    /* JavaScript code */ 
-    // Selects one or more elements to assign a simpletip to 
-    /*$('.stanice_tip').quicktip({
-        speed:100,
-        xOffset:-8,
-        yOffset:-140,
-        elem:'#tip_cont'
-    });*/
-    
+   
+    /* Toll tip */
+   
     $('.stanice_tip').quicktip({
         speed:100,
         xOffset:-16,
@@ -58,8 +52,7 @@ $(document).ready(function(){
         elem:'#tip_cont'
     });
 
-
-
+    
 
 
 });

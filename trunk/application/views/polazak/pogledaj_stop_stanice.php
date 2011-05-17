@@ -11,8 +11,16 @@
         <? foreach($res as $st_stanica): ?>
             <tr>
                 <td><?=$st_stanica['naziv_stanice']?></td>
-                <td><strong><?=date('H.s',$st_stanica['vrijemepolaska']).'h'?></strong></td>                    
-                <td><strong><?=date('H.s',$st_stanica['vrijemedolaska']).'h'?></strong></td>                    
+                <td><strong>
+                <?
+                    if($st_stanica['vrijemepolaska'] != NULL) echo date('H.s',$st_stanica['vrijemepolaska']).' h';
+                ?>
+                </strong></td>                    
+                <td><strong>
+                <?
+                    if($st_stanica['vrijemedolaska'] != NULL) echo date('H.s',$st_stanica['vrijemedolaska']).' h';
+                ?>
+                </strong></td>                    
                 <td><?=$st_stanica['km']?></td>
             </tr>
             <? endforeach;  ?>
