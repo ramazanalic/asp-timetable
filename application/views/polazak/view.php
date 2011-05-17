@@ -13,7 +13,7 @@
                 <table class="tablesorter" id="prevoznik_tbl" cellpadding="0" cellspacing="0" width="100%">
                     <thead>
                         <tr class="header-row">
-                            <th width="30" style="text-align: center;">ID</th>
+                            <th width="20" style="text-align: center;">ID</th>
                             <th>DESTINACIJA OD/DO</th>
                             <th>VRIJEME</th>
                             <th>TIP POLASKA</th>
@@ -46,7 +46,7 @@
                                 </td>
 
                                 <td style="text-align: center; padding-top: 4px;" class="actiontd">
-                                    <a href="<?=base_url();?>prevoznik/core/edit/<?=$polazak['id'];?>" class="edit_grid cmsbtnsml" id="<?=$polazak['id']?>">Uredi</a> 
+                                    <a href="<?=base_url();?>polazak/core/edit/<?=$polazak['id'];?>" class="cmsbtnsml" id="<?=$polazak['id']?>">Uredi</a> 
                                     <a href="javascript:void(null);" class="delete_grid cmsbtnsml" id="pz_<?=$polazak['id']?>">Briši</a>
                                 </td>
                             </tr>

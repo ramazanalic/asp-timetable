@@ -74,6 +74,11 @@ class assetsload {
                     $this->CI->carabiner->js('polazak/shared.js');
                     break;
                 case 'edit':
+                    $this->CI->carabiner->css('jquery-ui-1.8.5.css');
+                    $this->CI->carabiner->js('jquery-ui-1.8.5.min.js');
+                    $this->CI->carabiner->js('jquery.tagger.js');
+                    $this->CI->carabiner->js('polazak/edit.js');
+                    $this->CI->carabiner->js('polazak/shared.js');
                     break;
                 case 'view':
                     $this->CI->carabiner->js('tablesorter/jquery.tablesorter.js');
