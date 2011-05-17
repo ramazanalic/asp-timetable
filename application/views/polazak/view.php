@@ -1,16 +1,15 @@
 <style> .main-table-style table tr td{ line-height : 16px; } </style>
+<style> .main-table-style table tr td { font-size: 11px; line-height: 16px; } </style>
 
 <div class="box">
     <div class="clearfix">
         <div class="cnt-inner">                        
             <div class="cnt_ttl">Pregled polazaka</div>
             <div class="cnt_cnt main-table-style"   style="position: relative;">
-                <div id="infomessage" style="display: block;">
-                <div id="stanice_tooltip">
-                    Test tooltip!
+                <div id="infomessage">
+
                 </div>
-                </div>
-                
+
                 <table class="tablesorter" id="prevoznik_tbl" cellpadding="0" cellspacing="0" width="100%">
                     <thead>
                         <tr class="header-row">
@@ -42,7 +41,9 @@
                                 <td> <?=$polazak['naziv_prevoznika']. '<br />'.$polazak['grad_prevoznika']; ?> </td>    
                                 <td><?=date('d.m.Y',$polazak['prvipolazak']).'<br />'. date('d.m.Y',$polazak['zadnjipolazak']);?></td>                    
                                 <td><?=$polazak['peron'];?></td>
-                                <td><a href="javacript:void(0)" class="stanice_tip">POGLEADJ</a></td>
+                                <td>
+                                    <a href="javascript:void(0)" class="stanice_tip" id="<?=$polazak['id']?>">POGLEADAJ</a>                                                                             
+                                </td>
 
                                 <td style="text-align: center; padding-top: 4px;" class="actiontd">
                                     <a href="<?=base_url();?>prevoznik/core/edit/<?=$polazak['id'];?>" class="edit_grid cmsbtnsml" id="<?=$polazak['id']?>">Uredi</a> 

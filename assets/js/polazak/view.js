@@ -26,9 +26,9 @@ $(document).ready(function(){
 
     $('.delete_grid').live('click',function(){
         if(confirm('Briši?')){
-            
+
             //Must be 2 char length with _  -  #pz_
-            
+
             var id = $(this).attr('id').substr(3);
             $.ajax({
                 url : base_url+'prevoznik/core/db_delete',
@@ -41,15 +41,25 @@ $(document).ready(function(){
             });
         }
     });
-    
+
     /* JavaScript code */ 
     // Selects one or more elements to assign a simpletip to 
-    $(".stanice_tip").simpletip({ 
-        // Configuration properties 
-        content: 'stanice_tooltip', 
-         position: 'right', offset: [30, 0]
+    /*$('.stanice_tip').quicktip({
+        speed:100,
+        xOffset:-8,
+        yOffset:-140,
+        elem:'#tip_cont'
+    });*/
+    
+    $('.stanice_tip').quicktip({
+        speed:100,
+        xOffset:-16,
+        yOffset:-380,
+        elem:'#tip_cont'
     });
 
-    
-    
+
+
+
+
 });
