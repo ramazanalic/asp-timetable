@@ -496,6 +496,9 @@ strong{
     font-size:14px;
     display:none;
     width: 100px;
+    background: url(../img/backgnds/ajax-loader.gif) center center no-repeat;
+    width: 272px;
+    height: 100px;
 }
 .tooltip h3{
     margin: 0 0 5px;
