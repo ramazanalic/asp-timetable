@@ -1,8 +1,6 @@
 $(function(){     
 
-    delete_answer = false;
-    var rb_stanice = 6;
-
+    rb_stanice = 6;
 
 
     $('#addpolazak').live('submit',function(){

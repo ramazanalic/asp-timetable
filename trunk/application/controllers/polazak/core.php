@@ -19,9 +19,10 @@ class Core extends navigator
         $this->core_index('polazak','add','POLAZAK');
     }
 
-    function edit($id){
+    function edit($polazak_id){
          
-        $this->data['polazak'] = $this->polazak->listaj_polazak($id);
+        $this->data['polazak'] = $this->polazak->listaj_polazak($polazak_id);
+        $this->data['st_stanice'] = $this->polazak->listaj_stop_stanice($polazak_id);
         
         $this->data['prevoznici'] = $this->prevoznik->listaj_prevoznike();
         $this->data['stanice'] = $this->polazak->listaj_stanice(); 
@@ -41,7 +42,7 @@ class Core extends navigator
     }
 
     function db_edit(){
-        $this->prevoznik->edit();        
+        $this->polazak->edit();        
     }
 
     function db_delete(){
