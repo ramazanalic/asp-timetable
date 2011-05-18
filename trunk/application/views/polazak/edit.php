@@ -79,7 +79,12 @@
                             </ul>
 
                         </div>
-                        <label class="create-stop-label"><a href="javascript:void(0)" class="cmsbtn create-stop">Dodaj stop-stancu</a></label><br /> <br />
+                        
+                        <label class="create-stop-label">
+                            <a href="javascript:void(0)" class="cmsbtn create-stop">Dodaj stop-stancu</a>
+                            <a href="javascript:void(0)" class="stanice_tip nova_stanica">Unesi novu stop-stancu</a>
+                        </label><br /> <br />
+                        
                     </div>
 
                     <? $this->load->view('polazak/stopstanica_edit', array('stoptype'=>'zadnja')); ?> 
