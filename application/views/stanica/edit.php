@@ -18,7 +18,7 @@
                     
                     <div class="lineinput">
                         <label>
-                            <input type="submit" value="Dodaj" class="cmsbtn" />
+                            <input type="submit" value="Uredi" class="cmsbtn" />
                         </label>
                     </div>
 
