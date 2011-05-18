@@ -44,20 +44,20 @@ $active_record = TRUE;
 
 /* Localhost */
 
-/*$db['default']['hostname'] = 'localhost';
+$db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
 $db['default']['database'] = 'asp';
-$db['default']['dbdriver'] = 'mysql';*/
+$db['default']['dbdriver'] = 'mysql';
 
 
 /* Server busterminal */
                                 
-$db['default']['hostname'] = 'localhost';
+/*$db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'bustekcu_user';
 $db['default']['password'] = 'asproprigos';
 $db['default']['database'] = 'bustekcu_asp';
-$db['default']['dbdriver'] = 'mysql';
+$db['default']['dbdriver'] = 'mysql';*/
 
 
 $db['default']['dbprefix'] = '';
