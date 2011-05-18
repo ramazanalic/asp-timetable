@@ -40,12 +40,13 @@
                         <input name="peron" id="peron" type="text" class="inputbox" />                        
                     </div>
 
-                    <div class="cnt_ttl" style="padding: 14px 0 7px;">Ruta i vremena na stop stanicama</div>
+                    <div class="cnt_ttl clearfix" style="padding: 14px 0 7px;">Ruta i vremena na stop stanicama <div id="ajax_loader"><img src="<?=base_url()?>assets/img/backgnds/ajax-loader2.gif" /></div></div>
 
 
                     <? $this->load->view('polazak/stopstanica', array('stoptype'=>'pocetna','id'=>00)); ?>
 
                     <div id="stopstanice" class="diffbg">
+                        
                         <div id="stop-content">
                             <ul class="stanice ui-sortable" id="sortable">
                                 <? for($i=1; $i<=5;$i++){  $this->load->view('polazak/stopstanica', array('stoptype'=>'stop','id'=>$i)); } ?>     
@@ -55,6 +56,7 @@
                         <label class="create-stop-label">
                             <a href="javascript:void(0)" class="cmsbtn create-stop">Dodaj stop-stancu</a>
                             <a href="javascript:void(0)" class="stanice_tip nova_stanica">Unesi novu stop-stancu</a>
+                            
                         </label><br /> <br />
                         
                     </div>

@@ -51,7 +51,7 @@
                         <input name="peron" id="peron" type="text" class="inputbox" value="<?=$polazak['peron']?>" />                        
                     </div>
 
-                    <div class="cnt_ttl" style="padding: 14px 0 7px;">Ruta i vremena na stop stanicama</div>
+                    <div class="cnt_ttl" style="padding: 14px 0 7px;">Ruta i vremena na stop stanicama <div id="ajax_loader"><img src="<?=base_url()?>assets/img/backgnds/ajax-loader2.gif" /></div></div>
 
                     <? $this->load->view('polazak/stopstanica_edit', array('stoptype'=>'pocetna')); ?>
 

@@ -86,5 +86,66 @@ $(function(){
         });
     }) 
 
+    
+    
+    
+    /* Kreiraj Novu Stanicu u bazi preko ajaxa i repopulate autokomplete dataset */
+    
+    $('.nova_stanica').live('click', function(){
+        $.ajax({
+            url: base_url+'stanica/core/ajax_add/',
+            type: 'POST',
+            success: function(data){
+                $.modal(data.html);
+            },
+            dataType: 'json'
+        });
+    })
+
+    $('#addstanica').live('submit',function(){
+        $.ajax({
+            url: base_url+'stanica/core/db_add/',
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function(data){                
+                if(data.success == 'success'){
+                    $('#addstanica').fadeOut('fast',function(){$('#addstanica').remove()});
+                    repopulate_ac();
+                }else{
+                    $('#infomessage').html(data.message).fadeIn('normal');
+                }
+            },
+            dataType: 'json'
+        });
+    });
+
+    function repopulate_ac(){
+        
+        $.modal.close();
+
+        $('#ajax_loader').show('slow');
+
+        $('html, body').animate({
+            scrollTop: $("#ajax_loader").offset().top
+        }, 200);
+        
+        $.ajax({
+            
+            url: base_url+'stanica/core/ajax_ac_complete/',
+            
+            type: 'POST',
+            
+            success: function(data){
+                
+                $("input.ac_stanica").autocomplete({ source: data.html }); 
+                
+                $('#ajax_loader').hide('slow');
+                
+            },
+            
+            dataType: 'json'
+            
+        });           
+    }
 
 });
