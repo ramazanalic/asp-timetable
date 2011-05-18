@@ -5,19 +5,26 @@
             <div class="cnt_ttl">Uredi polazak</div>
             <div class="cnt_cnt">
                 <div id="infomessage" style="display: none;"></div>
-                <form name="addpolazak" id="addpolazak" method="post" action="javascript: void(0);">
+                <form name="editpolazak" id="editpolazak" method="post" action="javascript: void(0);">
 
                     <div class="lineinput">
                         <label>Prevoznik:</label><br />                 
                         <select name="prevoznik_id" class="inputbox">
                             <option value="0" class="idle">- Molimo odaberite prevoznika - </option>
                             <?
+
                                 $selected = '';
+
                                 foreach ($prevoznici as $prevoznik) {
+
                                     if ($prevoznik['id'] == $polazak['prevoznik_id']) $selected = 'selected = "selected"';
+
                                     echo "<option value='". $prevoznik['id'] . "'".  $selected . ">" . $prevoznik['naziv'] . ' ' . $prevoznik['grad'] . "</option>";
+
                                     $selected ='';
+
                                 }
+
                             ?>
                         </select>
                     </div>
@@ -46,25 +53,42 @@
 
                     <div class="cnt_ttl" style="padding: 14px 0 7px;">Ruta i vremena na stop stanicama</div>
 
-
-                    <? $this->load->view('polazak/stopstanica', array('stoptype'=>'pocetna','id'=>00)); ?>
+                    <? $this->load->view('polazak/stopstanica_edit', array('stoptype'=>'pocetna')); ?>
 
                     <div id="stopstanice" class="diffbg">
                         <div id="stop-content">
                             <ul class="stanice ui-sortable" id="sortable">
-                                <? for($i=1; $i<=5;$i++){  $this->load->view('polazak/stopstanica', array('stoptype'=>'stop','id'=>$i)); } ?>     
+
+                                <?
+
+                                    $stop_stanice = array_slice($st_stanice, 1, -1);
+
+                                    $i = 1;
+
+                                    foreach($stop_stanice as $st_stanica){
+
+                                        $this->load->view('polazak/stopstanica_edit', array('stoptype'=>'stop', 'id'=>$i, 'res' => $st_stanica));    
+
+                                        $i++;
+
+                                    }
+
+                                ?>
+                                <script>rb_stanice = '<?=$i;?>'</script>                                
+
                             </ul>
 
                         </div>
                         <label class="create-stop-label"><a href="javascript:void(0)" class="cmsbtn create-stop">Dodaj stop-stancu</a></label><br /> <br />
                     </div>
 
-                    <? $this->load->view('polazak/stopstanica', array('stoptype'=>'zadnja','id'=>01)); ?> 
+                    <? $this->load->view('polazak/stopstanica_edit', array('stoptype'=>'zadnja')); ?> 
 
+                    <input name="id" id="id" type="hidden" value="<?=$polazak['id']?>" />
 
                     <div class="lineinput">
                         <label>
-                            <input type="submit" value="Dodaj" class="cmsbtn" />
+                            <input type="submit" value="Uredi" class="cmsbtn" />
                         </label>
                     </div>
 
