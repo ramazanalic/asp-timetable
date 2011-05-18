@@ -38,8 +38,6 @@ $(function(){
         
         var id = this.id.substring(15,this.id.length);
         
-        console.log("#vrijemepolaska-"+id)
-        
         $("#vrijemepolaska-"+id).val($(this).val());
         
     })
@@ -49,9 +47,6 @@ $(function(){
         var id = this.id.substring(15,this.id.length);
         
         id = parseInt(id)+1;
-        
-        console.log("#vrijemedolaska-"+id)
-        console.log("rb_stanice:"+rb_stanice)
         
         if(rb_stanice == id){
             
