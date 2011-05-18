@@ -29,35 +29,35 @@ $(function(){
     /* Time Set Handlers */
 
     $('#vrijemepolaska_pocetna').change(function(){
-        
+
         $("#vrijemedolaska-1").val($(this).val());
-        
+
     })
 
     $('.vrijemedolaska').live('change', function(){
-        
+
         var id = this.id.substring(15,this.id.length);
-        
+
         $("#vrijemepolaska-"+id).val($(this).val());
-        
-    })
-    
-    $('.vrijemepolaska').live('change', function(){
-        
-        var id = this.id.substring(15,this.id.length);
-        
-        id = parseInt(id)+1;
-        
-        if(rb_stanice == id){
-            
-            $("#vrijemedolaska_zadnja").val($(this).val());    
-            
-        }else{
-            
-            $("#vrijemedolaska-"+id).val($(this).val());     
-            
-        }
-        
+
     })
 
+    $('.vrijemepolaska').live('change', function(){
+
+        var id = this.id.substring(15,this.id.length);
+
+        id = parseInt(id)+1;
+
+        if(rb_stanice == id){
+
+            $("#vrijemedolaska_zadnja").val($(this).val());    
+
+        }else{
+
+            $("#vrijemedolaska-"+id).val($(this).val());     
+
+        }
+
+    })
+     
 });

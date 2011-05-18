@@ -41,6 +41,23 @@
             $this->db->where('id',$this->input->post('id'))->delete('stanica');
             echo json_encode(array('success'=>'success'));
         }
+        
+        function ajax_ac_complete(){
+            /* Return as regular string Array */
+            
+            $arr = array();
+            $this->db->order_by("naziv", "asc");             
+            $res = $this->db->get('stanica')->result_array();  
+
+            
+            /* Prepare data for autocomplete */
+            
+            foreach($res as $stanica){
+                $arr[]= $stanica['naziv'];
+            }
+
+            return $arr; 
+        }
 
         function validate() {
             $this->form_validation->set_rules('naziv','<b>naziv</b> stanice','trim|required');

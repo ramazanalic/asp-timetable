@@ -14,6 +14,15 @@ class Core extends navigator
     function add(){
         $this->core_index('stanica','add','STANICA');
     }
+    
+    function ajax_add(){
+        echo json_encode(array('html' => $this->load->view('stanica/add',NULL,TRUE)));
+    }
+    
+    function ajax_ac_complete(){
+        $this->load->model('polazak/polazak_m', 'polazak'); 
+        echo json_encode(array('html' => $this->polazak->listaj_stanice()));
+    }
 
     function edit($id){
         $this->data['stanica'] = $this->stanica->listaj_stanicu($id);

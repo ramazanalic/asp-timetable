@@ -1,4 +1,4 @@
-//JQuery Quick Tip
+/*//JQuery Quick Tip
 //Author: Owain Lewis
 //Author URL: www.Owainlewis.com
 
@@ -18,10 +18,10 @@ jQuery.fn.quicktip = function(options){
         var $this = jQuery(this)
 
         $(this).css('cursor', 'pointer')  
-
+        
 
         $(this).hover(function(e){
-
+            
             $("body").append("<div id='tooltip'></div>");  
  
             var id = $(this).attr('id');
@@ -81,3 +81,4 @@ jQuery.fn.quicktip = function(options){
 };
 
 
+*/

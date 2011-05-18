@@ -42,17 +42,77 @@ $(document).ready(function(){
         }
     });
 
-   
-    /* Toll tip */
-   
-    $('.stanice_tip').quicktip({
-        speed:100,
-        xOffset:-16,
-        yOffset:-380,
-        elem:'#tip_cont'
+
+    var defaults = {
+        speed: 200,
+        xOffset: -16,
+        yOffset: -380
+    };
+
+    $('.stanice_tip').live("mouseover mouseout",
+
+    function (event) {
+
+        if (event.type == "mouseover") {
+
+            $("body").append("<div id='tooltip'></div>");
+
+            var id = this.id;
+
+            $.ajax({
+
+                url : base_url+'polazak/core/pogledaj_stop_stanice',
+
+                type: 'post',
+
+                data: {id_polaska:id},
+
+                dataType:'json',
+
+                success: function(data){
+
+                    $("#tooltip").html(data.html);
+
+                    $("#stop_stanice_tbl").tablesorter({
+
+                        headers: {
+                            0: { sorter: false }, 1: { sorter: false }, 2: { sorter: false }, 3: { sorter: false }   
+                        },
+
+                        widthFixed: false,
+
+                        widgets: ['zebra']
+
+                    })
+
+                }
+            });
+
+            $("#tooltip")
+
+            .css("top", (event.pageY + defaults.xOffset) + "px")
+
+            .css("left", (event.pageX + defaults.yOffset) + "px")
+
+            .fadeIn(defaults.speed);
+
+        }
+        else {
+
+            $("#tooltip").remove();
+
+        } 
     });
 
-    
+    $('.stanice_tip').live('mousemove', function(evt){
+
+        $("#tooltip")
+
+        .css("top", (evt.pageY + defaults.xOffset) + "px")
+
+        .css("left", (evt.pageX + defaults.yOffset) + "px");
+
+    })
 
 
 });

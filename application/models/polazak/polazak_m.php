@@ -134,7 +134,8 @@
 
                 /* Stop Stanice */
 
-                $cnt = count($_POST['stanica']);
+                $cnt = 0;
+                if(isset($_POST['stanica'])) $cnt = count($_POST['stanica']);
 
                 for($i=0;$i<$cnt;$i++) {
 
@@ -268,7 +269,8 @@
 
                 /* Stop Stanice */
 
-                $cnt = count($_POST['stanica']);
+                $cnt = 0;
+                if(isset($_POST['stanica'])) $cnt = count($_POST['stanica']);
 
                 for($i=0;$i<$cnt;$i++) {
 

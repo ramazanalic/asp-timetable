@@ -525,3 +525,7 @@ table thead th {
     padding: 10px;
     text-align: left;
 }
+#ajax_loader{
+    float: right;
+    display: none;
+}
