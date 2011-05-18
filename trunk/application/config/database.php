@@ -41,11 +41,25 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
+
+/* Localhost */
+
+/*$db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
 $db['default']['database'] = 'asp';
+$db['default']['dbdriver'] = 'mysql';*/
+
+
+/* Server busterminal */
+                                
+$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'bustekcu_user';
+$db['default']['password'] = 'asproprigos';
+$db['default']['database'] = 'bustekcu_asp';
 $db['default']['dbdriver'] = 'mysql';
+
+
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
