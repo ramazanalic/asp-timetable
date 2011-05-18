@@ -83,7 +83,7 @@ class assetsload {
                 case 'view':
                     $this->CI->carabiner->js('tablesorter/jquery.tablesorter.js');
                     $this->CI->carabiner->js('tablesorter/pager/jquery.tablesorter.pager.js');
-                    $this->CI->carabiner->js('jquery.simpletip-1.3.1.min.js');
+                    $this->CI->carabiner->js('jquery.stanice.tip.js');
                     $this->CI->carabiner->js('polazak/view.js');
                     $this->CI->carabiner->css('tablesorter/style.css');
                     break;

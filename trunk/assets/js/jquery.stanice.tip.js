@@ -23,9 +23,7 @@ jQuery.fn.quicktip = function(options){
         $(this).hover(function(e){
 
             $("body").append("<div id='tooltip'></div>");  
-
-            $("#tooltip").html('<div>Hello World</div>');
-
+ 
             var id = $(this).attr('id');
 
             $.ajax({
