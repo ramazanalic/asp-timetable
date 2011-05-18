@@ -17,11 +17,11 @@
                             <th>DESTINACIJA OD/DO</th>
                             <th>VRIJEME</th>
                             <th>TIP POLASKA</th>
-                            <th>PREVOZNIK</th>
+                            <th width="140">PREVOZNIK</th>
                             <th>VAŽI OD/DO</th>
                             <th>PERON</th>
                             <th style="text-align: center;">STANICE</th>
-                            <th style="text-align: center;">AKCIJA</th>
+                            <th width="100" style="text-align: center;">AKCIJA</th>
 
                         </tr>
                     </thead>
@@ -38,7 +38,7 @@
                                         if($polazak['sezonski'] == 1) echo ' - sezonski';
                                     ?>
                                 </td>
-                                <td> <?=$polazak['naziv_prevoznika']. '<br />'.$polazak['grad_prevoznika']; ?> </td>    
+                                <td> <?=$polazak['naziv_prevoznika']. ' ' .$polazak['grad_prevoznika']; ?> </td>    
                                 <td><?=date('d.m.Y',$polazak['prvipolazak']).'<br />'. date('d.m.Y',$polazak['zadnjipolazak']);?></td>                    
                                 <td><?=$polazak['peron'];?></td>
                                 <td>

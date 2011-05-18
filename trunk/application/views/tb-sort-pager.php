@@ -4,7 +4,7 @@
         Rezultati po strani:</div>
     <div class="stylish-select-container" style="float: left; line-height: 16px; padding-top: 4px;">
         <select style="float: left;" class="pagesize">
-            <option value="5" selected="selected">5</option><option value="10">10</option><option value="20">20</option>
+            <option value="5">5</option><option value="10">10</option><option value="20" selected="selected">20</option>
         </select>
     </div>
 </div>
