@@ -36,7 +36,8 @@ $(function() {
     /*Home SWF Entrace*/ 
 
     if((page=='home')||1){
-        var so = new FlashObject(base_url+"assets/swf/entrance.swf", "Loader", "880", "116", "8", "#FFF");
+        var so = new FlashObject(base_url+"assets/swf/entrance-load.swf", "Loader", "880", "116", "8", "#FFF");
+        so.addVariable("p", base_url+"assets/swf/entrance.swf");
         so.addParam("wmode", "transparent");
         so.write('entrance');
     }

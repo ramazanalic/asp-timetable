@@ -27,7 +27,7 @@ class MY_Form_validation extends CI_Form_validation {
 
 
     function provjeri_stanicu($value, $field){
-  
+
         $message = '';
 
         if(substr($field,0,7)=='stanica'){
@@ -39,6 +39,10 @@ class MY_Form_validation extends CI_Form_validation {
                 $message = '<b>Početna stanica</b>'; 
             }else if($field=='zadnja_stanica'){
                     $message = '<b>Zadnja stanica</b>';
+                } else if($field=='srch_polazak'){
+                    $message = '<b>Polazna stanica</b>';
+                }else if($field=='srch_dolazak'){
+                    $message = '<b>Dolazna stanica</b>';
                 }
 
 
