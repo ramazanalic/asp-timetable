@@ -58,12 +58,8 @@ class Core extends navigator
         echo json_encode(array('html' => $this->polazak->pogledaj_stop_stanice(), TRUE));
     }
 
-    function db_brisi_stop_stanicu($answer_id){            
-        if($this->anketa->deleteanswer($answer_id)) {
-            echo json_encode(array('seccess'=>'seccess'));
-        }else echo json_encode(array('seccess'=>'failed')); 
+    function search(){
+        $this->polazak->search();
     }
-
-
 
 }

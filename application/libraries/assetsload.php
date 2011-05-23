@@ -69,23 +69,24 @@ class assetsload {
                 case 'add':
                     $this->CI->carabiner->css('jquery-ui-1.8.5.css');
                     $this->CI->carabiner->js('jquery-ui-1.8.5.min.js');
-                    $this->CI->carabiner->js('jquery.tagger.js');
                     $this->CI->carabiner->js('polazak/add.js');
                     $this->CI->carabiner->js('polazak/shared.js');
                     break;
                 case 'edit':
                     $this->CI->carabiner->css('jquery-ui-1.8.5.css');
                     $this->CI->carabiner->js('jquery-ui-1.8.5.min.js');
-                    $this->CI->carabiner->js('jquery.tagger.js');
                     $this->CI->carabiner->js('polazak/edit.js');
                     $this->CI->carabiner->js('polazak/shared.js');
                     break;
                 case 'view':
+                    $this->CI->carabiner->css('jquery-ui-1.8.5.css');
+                    $this->CI->carabiner->js('jquery-ui-1.8.5.min.js');
                     $this->CI->carabiner->js('tablesorter/jquery.tablesorter.js');
+                    $this->CI->carabiner->css('tablesorter/style.css');
                     $this->CI->carabiner->js('tablesorter/pager/jquery.tablesorter.pager.js');
                     $this->CI->carabiner->js('jquery.stanice.tip.js');
                     $this->CI->carabiner->js('polazak/view.js');
-                    $this->CI->carabiner->css('tablesorter/style.css');
+                    $this->CI->carabiner->js('polazak/search.js');                             
                     break;
             }
             break; 

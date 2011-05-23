@@ -3,7 +3,28 @@
 
 <div class="box">
     <div class="clearfix">
-        <div class="cnt-inner">                        
+        <div class="cnt-inner">
+            <div class="cnt_ttl">Pretraži polaske</div> 
+            <div id="pretrazivac">
+                    <div id="infomessage_search" style="display: none;">
+
+                    </div>
+                    <div class="lineinput mr-30">
+                        <label>POLAZNA STANICA:</label><br />                 
+                        <input name="srch_polazak" id="srch_polazak" type="text" class="inputbox ac_stanica" />                        
+                    </div>
+                    
+                    <div class="lineinput">
+                        <label>DOLAZNA STANICA:</label><br />                 
+                        <input name="srch_dolazak" id="srch_dolazak" type="text" class="inputbox ac_stanica" />                        
+                    </div>
+                    <div class="clear"></div>
+                    
+                    <div style="float: right; margin: 10px 10px 10px 0;">
+                        <a href="javascript:void(0)" id="trazi" class="cmsbtn">PRIKAŽI POLASKE</a>
+                    </div>
+
+            </div>                       
             <div class="cnt_ttl">Pregled polazaka</div>
             <div class="cnt_cnt main-table-style"   style="position: relative;">
                 <div id="infomessage">
@@ -14,7 +35,7 @@
                     <thead>
                         <tr class="header-row">
                             <th width="20" style="text-align: center;">ID</th>
-                            <th>DESTINACIJA OD/DO</th>
+                            <th width="80">DESTINACIJA OD/DO</th>
                             <th>VRIJEME</th>
                             <th>TIP POLASKA</th>
                             <th width="140">PREVOZNIK</th>
@@ -26,31 +47,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <? foreach($polasci as $polazak): ?>
-                            <tr>
-                                <td style="text-align: center;"><?=$polazak['id']?></td>
-                                <td><strong><?=$polazak['pocetnastanica'].' <br />'. $polazak['zadnjastanica']?></strong></td>                    
-                                <td><strong><?=date('H:i',$polazak['vrijemepolaska']).' h <br />'. date('H:s',$polazak['vrijemedolaska']).' h';?></strong></td>                    
-                                <td>
-                                    <?
-                                        if($polazak['dnevni'] == 1) echo 'Dnevni';
-                                        if($polazak['vikendom'] == 1) echo 'Vikendom';
-                                        if($polazak['sezonski'] == 1) echo ' - sezonski';
-                                    ?>
-                                </td>
-                                <td> <?=$polazak['naziv_prevoznika']. ' ' .$polazak['grad_prevoznika']; ?> </td>    
-                                <td><?=date('d.m.Y',$polazak['prvipolazak']).'<br />'. date('d.m.Y',$polazak['zadnjipolazak']);?></td>                    
-                                <td><?=$polazak['peron'];?></td>
-                                <td>
-                                    <a href="javascript:void(0)" class="stanice_tip" id="<?=$polazak['id']?>">POGLEADAJ</a>                                                                             
-                                </td>
-
-                                <td style="text-align: center; padding-top: 4px;" class="actiontd">
-                                    <a href="<?=base_url();?>polazak/core/edit/<?=$polazak['id'];?>" class="cmsbtnsml" id="<?=$polazak['id']?>">Uredi</a> 
-                                    <a href="javascript:void(null);" class="delete_grid cmsbtnsml" id="pz_<?=$polazak['id']?>">Briši</a>
-                                </td>
-                            </tr>
-                            <? endforeach;  ?>
+                        <? $this->load->view('polazak/search'); ?>
                     </tbody>
                 </table>
                 <div id="prevoznik_pgr" class="pager">
