@@ -41,7 +41,13 @@
             $html = '<!-- make full -->';
             $html .= '<select name="'.$name.'" '.$htmli.' ' .$htmlc.' >';
             
+            
             $selected = '';
+            
+            if($sel=='abcd') $selected = 'selected="selected"'; 
+            $html .= '<option value="0" '.$selected.' >--- Odaberite</option>';
+            $selected = ''; 
+            
             
             for($i=0; $i<=23; $i++) {
 
@@ -53,7 +59,7 @@
                             
                             if("0".$i.":0".$j == $sel) $selected = 'selected="selected"';
                             
-                            $html .= '<option value="0'.$i.':0'.$j.'" ' .$selected. ' >--- Ponoć ---</option>';
+                            $html .= '<option value="0'.$i.':0'.$j.'" ' .$selected. ' >00:00</option>';
                             
                             $selected = '';
                             
