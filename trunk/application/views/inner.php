@@ -1,6 +1,6 @@
 <div class="box-top png_bg">&nbsp;</div>
 <div class="box-middle png_bg clearfix">   
-    <div id="entrance" class="entrance"></div>
+    <!--<div id="entrance" class="entrance"></div>-->
 
     <div class="content box">
         <div class="hdr"><?=$title?></div>
