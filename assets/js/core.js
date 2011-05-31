@@ -45,17 +45,16 @@ $(function() {
 
     /*Navigation RollOver*/
 
-    if($.browser.msie == false){
-       alert ("IE FALSE") 
-        $('#main-nav ul li a')
-        .css( {backgroundPosition: "0 0"} )
-        .mouseover(function(){
-            $(this).stop().animate({backgroundPosition:"(0 -250px)"}, {duration:450})
-        })
-        .mouseout(function(){
-            $(this).stop().animate({backgroundPosition:"(0 0)"}, {duration:450}) 
-        }) 
-    }
+
+    $('#main-nav ul li a')
+    .css( {backgroundPosition: "0 0"} )
+    .mouseover(function(){
+        $(this).stop().animate({backgroundPosition:"(0 -250px)"}, {duration:450})
+    })
+    .mouseout(function(){
+        $(this).stop().animate({backgroundPosition:"(0 0)"}, {duration:450}) 
+    }) 
+
 
 
 
