@@ -39,7 +39,7 @@ $(function() {
         var so = new FlashObject(base_url+"assets/swf/entrance-load.swf", "Loader", "880", "116", "8", "#FFF");
         so.addVariable("p", base_url+"assets/swf/entrance.swf");
         so.addParam("wmode", "transparent");
-        so.write('entrance');
+        //so.write('entrance');
     }
 
 
