@@ -137,7 +137,9 @@ table.tablesorter thead tr .headerSortUp {
 .main-table-style table tr.even {
     background-color: #FFFFFF !important;
 }
-
+.main-table-style table tr:hover {
+    background-color: #DEDADA !important;
+}
 /*Pager*/
 .pager{
     -moz-border-bottom-colors: none;
