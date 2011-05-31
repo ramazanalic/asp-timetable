@@ -9,6 +9,11 @@
                     <div id="infomessage_search" style="display: none;">
 
                     </div>
+                    
+                    <div style="float: right; margin: 32px 10px 0;">
+                        <a href="javascript:void(0)" id="trazi" class="cmsbtn" style="background: none #EA1B2F;">PRIKAŽI POLASKE</a>
+                    </div>
+                    
                     <div class="lineinput mr-30">
                         <label>POLAZNA STANICA:</label><br />                 
                         <input name="srch_polazak" id="srch_polazak" type="text" class="inputbox ac_stanica" />                        
@@ -18,11 +23,8 @@
                         <label>DOLAZNA STANICA:</label><br />                 
                         <input name="srch_dolazak" id="srch_dolazak" type="text" class="inputbox ac_stanica" />                        
                     </div>
-                    <div class="clear"></div>
                     
-                    <div style="float: right; margin: 10px 10px 10px 0;">
-                        <a href="javascript:void(0)" id="trazi" class="cmsbtn">PRIKAŽI POLASKE</a>
-                    </div>
+                    <div class="clear"></div>               
 
             </div>                       
             <div class="cnt_ttl">Pregled polazaka</div>
