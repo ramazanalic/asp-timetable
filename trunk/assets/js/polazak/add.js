@@ -30,7 +30,7 @@ $(function(){
 
     $('#vrijemepolaska_pocetna').change(function(){
 
-        $("#vrijemedolaska-1").val($(this).val());
+        //$("#vrijemedolaska-1").val($(this).val());
 
     })
 
@@ -38,7 +38,7 @@ $(function(){
 
         var id = this.id.substring(15,this.id.length);
 
-        $("#vrijemepolaska-"+id).val($(this).val());
+        //$("#vrijemepolaska-"+id).val($(this).val());
 
     })
 
@@ -50,11 +50,11 @@ $(function(){
 
         if(rb_stanice == id){
 
-            $("#vrijemedolaska_zadnja").val($(this).val());    
+            //$("#vrijemedolaska_zadnja").val($(this).val());    
 
         }else{
 
-            $("#vrijemedolaska-"+id).val($(this).val());     
+            //$("#vrijemedolaska-"+id).val($(this).val());     
 
         }
 

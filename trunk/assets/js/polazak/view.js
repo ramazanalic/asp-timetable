@@ -16,7 +16,7 @@ $(document).ready(function(){
         widgets: ['zebra']
     }).tablesorterPager({
         container: $("#prevoznik_pgr"),
-        size: 20,
+        size: 33,
         seperator: ' / ',
         positionFixed: false
     }); 
