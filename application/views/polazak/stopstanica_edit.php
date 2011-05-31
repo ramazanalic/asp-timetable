@@ -17,7 +17,13 @@
 
             <div class="lineinput">
                 <label>Vrijeme polaska:</label><br />                 
-                <? echo makefull('vrijemepolaska_pocetna' , 5 , 'id="vrijemepolaska_pocetna"' , 'class="inputbox vrijemepolaska"' , date('H:i',$first['vrijemepolaska'])); ?>                        
+                <? 
+                    if(floor($first['vrijemepolaska'])!=0){
+                        $first_pol = date('H:i',$first['vrijemepolaska']);
+                    }else{
+                        $first_pol = 'abcd';
+                    }
+                    echo makefull('vrijemepolaska_pocetna' , 5 , 'id="vrijemepolaska_pocetna"' , 'class="inputbox vrijemepolaska"' , $first_pol); ?>                        
             </div>
 
             <div class="lineinput space"></div>
@@ -48,12 +54,26 @@
 
                 <div class="lineinput">
                     <label>Vrijeme polaska:</label><br />                 
-                    <? echo makefull('vrijemepolaska[]' , 5 , 'id="vrijemepolaska-'.$id.'"' , 'class="inputbox vrijemepolaska"' , date('H:i',$res['vrijemepolaska'])); ?>                        
+                    <? 
+
+                        if(floor($res['vrijemepolaska'])!=0){
+                            $pol = date('H:i',$res['vrijemepolaska']);
+                        }else{
+                            $pol = 'abcd';
+                        }
+
+                        echo makefull('vrijemepolaska[]' , 5 , 'id="vrijemepolaska-'.$id.'"' , 'class="inputbox vrijemepolaska"' , $pol); ?>                        
                 </div>
 
                 <div class="lineinput">
                     <label>Vrijeme dolaska:</label><br />                 
-                    <? echo makefull('vrijemedolaska[]' , 5 , 'id="vrijemedolaska-'.$id.'"' , 'class="inputbox vrijemedolaska"' , date('H:i',$res['vrijemedolaska'])); ?>                        
+                    <? 
+                        if(floor($res['vrijemedolaska'])!=0){
+                            $dol = date('H:i',$res['vrijemedolaska']);
+                        }else{
+                            $dol = 'abcd';
+                        }
+                        echo makefull('vrijemedolaska[]' , 5 , 'id="vrijemedolaska-'.$id.'"' , 'class="inputbox vrijemedolaska"' , $dol); ?>                        
                 </div>                        
 
                 <div class="lineinput">
@@ -73,9 +93,9 @@
 
 
         case 'zadnja':
-        
-        $last = end($st_stanice);
-        
+
+            $last = end($st_stanice);
+
         ?>
 
         <div class="stopstanica clearfix zadnja">
@@ -89,7 +109,13 @@
 
             <div class="lineinput">
                 <label>Vrijeme dolaska:</label><br />                 
-                <? echo makefull('vrijemedolaska_zadnja' , 5 , 'id="vrijemedolaska_zadnja"' , 'class="inputbox vrijemedolaska"' , date('H:i',$last['vrijemedolaska'])); ?>                        
+                <? 
+                    if(floor($last['vrijemedolaska'])!=0){
+                        $last_dol = date('H:i',$last['vrijemedolaska']);
+                    }else{
+                        $last_dol = 'abcd';
+                    }
+                    echo makefull('vrijemedolaska_zadnja' , 5 , 'id="vrijemedolaska_zadnja"' , 'class="inputbox vrijemedolaska"' , $last_dol); ?>                        
             </div>
 
             <div class="lineinput">
