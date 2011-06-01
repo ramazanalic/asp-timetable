@@ -3,7 +3,6 @@ $(document).ready(function(){
     // TABLSE SORTER
     var rowCount = $('#prevoznik_tbl tr').length-1;
     $("#prevoznik_tbl").tablesorter({
-        // pass the headers argument and assing a object
         headers: {
             7: {
                 sorter: false
@@ -14,12 +13,12 @@ $(document).ready(function(){
         },
         widthFixed: false,
         widgets: ['zebra']
-    }).tablesorterPager({
+    })/*.tablesorterPager({
         container: $("#prevoznik_pgr"),
         size: 33,
         seperator: ' / ',
         positionFixed: false
-    }); 
+    })*/; 
 
     $('.tbl_total').html(rowCount);
     $('.tbl_subtitle').html('polazaka');

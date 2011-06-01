@@ -3,12 +3,12 @@
     <div style="float: left; height: 29px; line-height: 29px; padding-right: 5px;">
         Rezultati po strani:</div>
     <div class="stylish-select-container" style="float: left; line-height: 16px; padding-top: 4px;">
-        <select style="float: left;" class="pagesize">
+        <!--<select style="float: left;" class="pagesize">
             <option value="5">5</option><option value="10">10</option><option value="20">20</option>  <option value="33" selected="selected">33</option>
-        </select>
+        </select> -->
     </div>
 </div>
-<div class="clear-fix" style="float: left; width: 260px;">
+<!--<div class="clear-fix" style="float: left; width: 260px;">
     <div style="float: right; padding-top: 6px;">
         <div title="Last" class="myr-sprite myr-last-arrow last" style="float: left;">
         </div>
@@ -30,4 +30,4 @@
         <div title="First" class="myr-sprite myr-first-arrow first" style="float: left;">
         </div>
     </div>
-</div>
+</div>-->
