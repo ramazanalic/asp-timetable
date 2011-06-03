@@ -37,14 +37,14 @@
                     <thead>
                         <tr class="header-row">
                             <th width="20" style="text-align: center;">ID</th>
-                            <th width="80">Polazak od/do</th>
-                            <th>Vrijeme</th>
-                            <th>Tip</th>
-                            <th width="140">Prevoznik</th>
-                            <th>Važi od/do</th>
-                            <th>Peron</th>
-                            <th width="50" style="text-align: center;">Stanice</th>
-                            <th width="80" style="text-align: center;">Akcija</th>
+                            <th width="80">DESTINACIJA OD/DO</th>
+                            <th>VRIJEME</th>
+                            <th>TIP POLASKA</th>
+                            <th width="140">PREVOZNIK</th>
+                            <th>VAŽI OD/DO</th>
+                            <th>PERON</th>
+                            <th style="text-align: center;">STANICE</th>
+                            <th width="100" style="text-align: center;">AKCIJA</th>
 
                         </tr>
                     </thead>

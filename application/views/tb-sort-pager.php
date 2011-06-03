@@ -1,7 +1,8 @@
-<div style="float: left; width: 280px; padding-left: 10px;">Ukupno <b><span class="tbl_total"></span></b> &nbsp;<span class="tbl_subtitle"></span></div>
-<div class="clear-fix" style="float: left; width: 230px;">
-    <div style="float: left; height: 29px; line-height: 29px; padding-right: 5px;">
-        Rezultati po strani:</div>
+<div style="float: left; width: 100px; padding-left: 10px;">Polazaka: <b><span class="tbl_total"><?=$count;?></span></b> &nbsp;<span class="tbl_subtitle"></span></div>
+<div class="clear-fix" style="float: right;">
+    <div id="paginator" style="float: right; height: 29px; line-height: 29px; padding-right: 20px;">
+        <? echo $paginator; ?>
+    </div>
     <div class="stylish-select-container" style="float: left; line-height: 16px; padding-top: 4px;">
         <!--<select style="float: left;" class="pagesize">
             <option value="5">5</option><option value="10">10</option><option value="20">20</option>  <option value="33" selected="selected">33</option>
