@@ -46,8 +46,8 @@ table.tablesorter thead tr .headerSortUp {
 }
 .main-table-style table {
     background-color: #FFFFFF;
-    border-left: 1px solid #B2B2B2;
-    border-top: 1px solid #B2B2B2 !important;
+    border-left: 1px solid #808080;
+    border-top: 1px solid #808080 !important;
     font-size: 12px;
     width: 100%;
 }
@@ -80,11 +80,16 @@ table.tablesorter thead tr .headerSortUp {
 .main-table-style table thead th img {
     vertical-align: text-bottom;
 }
-.main-table-style table tr td {
-    border-bottom: 1px solid #B2B2B2;
-    border-right: 1px solid #B2B2B2;
+.main-table-style  tr td {
+    border-bottom: 1px solid #808080;
+    border-right: 1px solid #808080;
     padding: 5px 10px;
+    padding: 2px 5px;
     vertical-align: middle;
+    color: #000066;
+}
+table#polasci_tbl tr td {
+    padding: 5px 10px;
 }
 .main-table-style table tr td span.expiring {
     color: #E36C1B;
@@ -104,13 +109,15 @@ table.tablesorter thead tr .headerSortUp {
 .main-table-style table tr.header-row {
     /*background: url(../../img/tablesorter/table_header_1x45.gif) repeat-x scroll 0 0 transparent;*/
     height: 45px;
+    height: 38px;
 }
 .main-table-style table tr.header-row th {
-    border-bottom: 1px solid #B2B2B2;
-    border-right: 1px solid #B2B2B2;
+    border-bottom: 1px solid #808080;
+    border-right: 1px solid #808080;
     font-size: 11px !important;
     font-weight: bold;
     padding: 0 10px;
+    padding: 0 5px;
     vertical-align: middle;
     line-height: 13px;
 }
@@ -139,6 +146,12 @@ table.tablesorter thead tr .headerSortUp {
 }
 .main-table-style table tr:hover {
     background-color: #DEDADA !important;
+    background-color: #669999 !important;
+}
+.main-table-style table tr:hover td{
+    color:#FFFFFF;
+    font-weight: bold;
+    font-weight: normal;
 }
 /*Pager*/
 .pager{
@@ -285,8 +298,8 @@ table.tablesorter thead tr .headerSortUp {
 }
 #tooltip table {
     background-color: #FFFFFF;
-    border-left: 1px solid #B2B2B2;
-    border-top: 1px solid #B2B2B2 !important;
+    border-left: 1px solid #808080;
+    border-top: 1px solid #808080 !important;
     font-size: 12px;
     width: 100%;
 }
@@ -320,10 +333,11 @@ table.tablesorter thead tr .headerSortUp {
     vertical-align: text-bottom;
 }
 #tooltip table tr td {
-    border-bottom: 1px solid #B2B2B2;
-    border-right: 1px solid #B2B2B2;
+    border-bottom: 1px solid #808080;
+    border-right: 1px solid #808080;
     padding: 5px 10px;
     vertical-align: middle;
+    color: #8C4510;
 }
 #tooltip table tr td span.expiring {
     color: #E36C1B;
@@ -344,14 +358,19 @@ table.tablesorter thead tr .headerSortUp {
     /*background: url(../../img/tablesorter/table_header_1x45.gif) repeat-x scroll 0 0 transparent;*/
     height: 32px;
 }
+#tooltip table thead th {
+    background: none #A55129;
+}
 #tooltip table tr.header-row th {
-    border-bottom: 1px solid #B2B2B2;
-    border-right: 1px solid #B2B2B2;
+    border-bottom: 1px solid #808080;
+    border-right: 1px solid #808080;
     font-size: 11px !important;
     font-weight: bold;
     padding: 0 10px;
+    padding: 0 3px;
     vertical-align: middle;
     line-height: 13px;
+    text-align: center;
 }
 #tooltip table tr.header-row th a, #tooltip table tr.header-row th a:link, #tooltip table tr.header-row th a:visited {
     color: #000000;
@@ -371,8 +390,11 @@ table.tablesorter thead tr .headerSortUp {
     vertical-align: middle;
 }
 #tooltip table tr.odd {
-    background-color: #F5F5F5 !important;
+    background-color: #FFF7E7 !important;
 }
 #tooltip table tr.even {
     background-color: #FFFFFF !important;
+}
+#tooltip table tr#lst_odd {
+    background-color: #F7DFB5 !important;   
 }
