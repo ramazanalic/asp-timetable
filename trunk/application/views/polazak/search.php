@@ -7,7 +7,7 @@
 
             if($polazak['vrijemedolaska'] != 0){
                 echo date('H:s',$polazak['vrijemedolaska']).' h';    
-            }else echo " --:-- h "
+            }else echo "";//" --:-- h "
 
             ?></strong></td>                    
         <td>
@@ -21,7 +21,7 @@
         <td><?=date('d.m.Y',$polazak['prvipolazak']).'<br />'. date('d.m.Y',$polazak['zadnjipolazak']);?></td>                               
         <td><?=$polazak['peron'];?></td>
         <td>
-            <a href="javascript:void(0)" class="stanice_tip" id="<?=$polazak['id']?>">POGLEADAJ</a>                                                                             
+            <a href="javascript:void(0)" class="stanice_tip" id="<?=$polazak['id']?>">Stanice</a>                                                                             
         </td>
 
         <td style="text-align: center; padding-top: 4px;" class="actiontd">

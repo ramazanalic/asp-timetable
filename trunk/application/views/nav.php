@@ -12,7 +12,7 @@
                 <li><a href="<?=base_url();?>polazak/core/view">Pregledaj</a></li>
             </ul>
         </li>
-        <li><a <? if($page=='pretrazivac') echo'class="selected"'; ?> href="parking">Pretraživač</a></li>
+        <li><a <? if($page=='pretrazivac') echo'class="selected"'; ?> href="<?=base_url();?>search/core/view">Pretraživač</a></li>
 
         <li class="no-margin"><a href="<?=base_url();?>stanica/core/view" class="no-margin <? if($page=='stanica') echo'selected"'; ?>" >Stanica</a>
             <ul>
