@@ -91,7 +91,20 @@ class assetsload {
             }
             break; 
 
-
+            case 'search':    
+            switch($this->sub){
+                case 'view':
+                    $this->CI->carabiner->css('jquery-ui-1.8.5.css');
+                    $this->CI->carabiner->js('jquery-ui-1.8.5.min.js');
+                    $this->CI->carabiner->js('tablesorter/jquery.tablesorter.js');
+                    $this->CI->carabiner->css('tablesorter/style.css');
+                    $this->CI->carabiner->js('tablesorter/pager/jquery.tablesorter.pager.js');
+                    $this->CI->carabiner->js('jquery.stanice.tip.js');
+                    $this->CI->carabiner->js('search/view.js');
+                    $this->CI->carabiner->js('search/search.js');                             
+                    break;
+            }
+            break; 
 
 
             case 'stanica':    

@@ -506,17 +506,13 @@ strong{
 * ======================================*/
 #tooltip{
     position:absolute;
-    /*background:#DDD;*/
-    /*padding:20px*/;
-    opacity:0.9;
     -moz-border-radius:3px;border-radius:3px;-webkit-border-radius:3px;
-    /*font-weight:bold;*/
     font-size:14px;
     display:none;
     width: 100px;
     background: url(../img/backgnds/ajax-loader.gif) center center no-repeat;
-    width: 272px;
-    height: 100px;
+    width: 300px;
+    /*height: 100px;*/
 }
 .tooltip h3{
     margin: 0 0 5px;
@@ -525,6 +521,7 @@ strong{
 
 .stanice_tip {
     background-color: #FF7C0A;
+    background-color: #A55129;
     border: 0 none;
     border-radius: 5px 5px 5px 5px;
     color: white;
@@ -536,7 +533,7 @@ strong{
 }
 
 table thead th {
-    background-color: #6699CC;
+    background-color: #006699;
     color: white;
     font-weight: bold;
     margin: 0;
@@ -546,4 +543,9 @@ table thead th {
 #ajax_loader{
     float: right;
     display: none;
+}
+.pgnlink{
+    text-decoration: none;
+    font-size: 11px;
+    color: #000066;
 }
