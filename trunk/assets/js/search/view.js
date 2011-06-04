@@ -90,7 +90,7 @@ $(document).ready(function(){
 
 
     $("#prevoznik_pgr a").live('click', function(evt) {               
-        
+
         evt.preventDefault();
 
         $.ajax({
