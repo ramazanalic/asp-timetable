@@ -549,3 +549,8 @@ table thead th {
     font-size: 11px;
     color: #000066;
 }
+.pgnlink-noajax{
+    text-decoration: none;
+    font-size: 11px;
+    color: #000066;
+}

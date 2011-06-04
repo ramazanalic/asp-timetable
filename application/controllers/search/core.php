@@ -120,13 +120,8 @@ class Core extends navigator
         echo json_encode(array('html' => $this->polazak->pogledaj_stop_stanice(), TRUE));
     }
 
-    function get_serach_html(){
-        $html = $this->load->view('search/search_html',NULL,TRUE);
-        $this->json_encode_get($html);
-    }
-
     function search($from=0){
-        $this->search->search($from);
+        $this->search->search($from,'search/search',base_url().'search/core/search');
     }
 
 }

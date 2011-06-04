@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     // TABLSE SORTER
-    var rowCount = $('#prevoznik_tbl tr').length-1;
+    //var rowCount = $('#prevoznik_tbl tr').length-1;
     $("#prevoznik_tbl").tablesorter({
         headers: {
             7: {
@@ -20,8 +20,8 @@ $(document).ready(function(){
         positionFixed: false
     })*/; 
 
-    $('.tbl_total').html(rowCount);
-    $('.tbl_subtitle').html('polazaka');
+    //$('.tbl_total').html(rowCount);
+    //$('.tbl_subtitle').html('polazaka');
 
     $('.delete_grid').live('click',function(){
         if(confirm('Briši?')){

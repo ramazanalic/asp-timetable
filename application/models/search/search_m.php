@@ -12,7 +12,7 @@
         /* Pretraga voznog reda Autobuske Stanice Podgorica 
         do kraja klase*/
 
-        function search($from){
+        function search($from,$view,$baseurl){
 
             /* Paging */
             $limit = 10;
@@ -45,7 +45,7 @@
                         
                         if(($i<($from+$limit))&&($i>=$j)){
                         
-                            $html .= $this->load->view('search/search', array('polasci' => $this->listaj_podatke_stanice_sa_id_polaska($value)), TRUE);     
+                            $html .= $this->load->view($view, array('polasci' => $this->listaj_podatke_stanice_sa_id_polaska($value)), TRUE);     
                             
                         }  
                         
@@ -55,7 +55,7 @@
 
                     $this->load->library('pagination');
 
-                    $config['base_url'] = 'http://localhost/asp-timetable/search/core/search';
+                    $config['base_url'] = $baseurl;
                     $config['total_rows'] = $count;
                     $config['per_page'] = $limit;
                     $config['uri_segment'] = 4;
