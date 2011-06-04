@@ -1,6 +1,5 @@
 <? foreach($polasci as $polazak): ?>
     <tr>          
-        <td><?=$polazak['id']?></td>
         <td><?
             echo date('H:i',$polazak['vrijemepolaska']); 
 
