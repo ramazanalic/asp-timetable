@@ -4,7 +4,7 @@
 
 <div class="box">
     <div class="clearfix">
-        <div class="cnt-inner">
+        <div class="cnt-inner" style="height: 550px;">
             <div class="cnt_ttl">Pretraži polaske</div> 
             <div id="pretrazivac">
                 <div id="infomessage_search" style="display: none;">
@@ -38,7 +38,6 @@
                     <table class="tablesorter" id="polasci_tbl" cellpadding="0" cellspacing="0" width="100%">
                         <thead>
                             <tr class="header-row">
-                                <th width="10">ID</th>
                                 <th width="40">Vrijeme<br />polaska</th>
                                 <th width="40">Vrijeme<br />dolaska</th>
                                 <th>Tip polaska</th>
