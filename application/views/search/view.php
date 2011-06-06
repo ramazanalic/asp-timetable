@@ -12,7 +12,7 @@
                 </div>
 
                 <div style="float: right; margin: 32px 10px 0;">
-                    <a href="javascript:void(0)" id="trazi" class="cmsbtn" style="background: none #EA1B2F;">PRIKAŽI POLASKE</a>
+                    <a href="javascript:void(0)" id="trazi" class="cmsbtn-noloader" style="background: none #EA1B2F;">PRIKAŽI POLASKE</a>
                 </div>
 
                 <div class="lineinput mr-30">

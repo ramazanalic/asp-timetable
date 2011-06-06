@@ -89,6 +89,8 @@ $(document).ready(function(){
 
         evt.preventDefault();
 
+        var that = jQuery(this).busy({ img :base_url+'assets/img/loader/ajax-loader-sml.gif'});
+        
         $.ajax({
             type: 'GET',
             url:  $(this).get()+'/?jsoncall=?',
@@ -98,7 +100,8 @@ $(document).ready(function(){
             }),
             dataType: 'jsonp',
             success: function(data){
-
+                
+                that.busy('hide');
                 $('#infomessage_search').hide();
                 $('#polasci_tbl tbody').html(data.html);
                 $('#paginator').html(data.paginator);

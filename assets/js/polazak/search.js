@@ -12,6 +12,8 @@ $(function(){
     
     $('#trazi').live('click', function(){
         
+        var that = jQuery(this).busy({ img :base_url+'assets/img/loader/ajax-loader-red.gif'});
+        
         $.ajax({
             type: 'GET',
             url: base_url+'polazak/core/search/?jsoncall=?',
@@ -21,6 +23,9 @@ $(function(){
             }),
             dataType: 'jsonp',
             success: function(data){
+                
+                that.busy("hide");
+                
                 if(data.success==true){
                     $('#infomessage_search').hide();
                     $('#prevoznik_tbl tbody').html(data.html); 
@@ -43,6 +48,8 @@ $(function(){
 
         evt.preventDefault();
 
+        var that = jQuery(this).busy({ img :base_url+'assets/img/loader/ajax-loader-sml.gif'});
+        
         $.ajax({
             type: 'GET',
             url:  $(this).get()+'/?jsoncall=?',
@@ -53,6 +60,7 @@ $(function(){
             dataType: 'jsonp',
             success: function(data){
 
+                that.busy("hide");
                 $('#infomessage_search').hide();
                 $('#prevoznik_tbl tbody').html(data.html);
                 $('#paginator').html(data.paginator);
