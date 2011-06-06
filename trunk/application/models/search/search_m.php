@@ -18,7 +18,7 @@
             $limit = 10;
             $count = 0;
             $cur_page = 1;
-            $num_links = 8;
+            $num_links = 2;
 
             if($this->validate_search()==TRUE){
 

@@ -4,7 +4,7 @@
 
 <div class="box">
     <div class="clearfix">
-        <div class="cnt-inner" style="height: 550px;">
+        <div class="cnt-inner" style="height: 630px;">
             <div class="cnt_ttl">Pretraži polaske</div> 
             <div id="pretrazivac">
                 <div id="infomessage_search" style="display: none;">
@@ -55,7 +55,24 @@
                     <div id="prevoznik_pgr" class="pager">
                         <? $this->load->view('tb-sort-pager')?>    
                     </div>
-                    <i>* Polasci su sortirani po nazivu prevoznika.</i>
+
+                    <div class="note_box">
+                        <div class="note_body clearfix">
+
+                            <div class="left_note">
+                                <strong class="note_title">Napomena:</strong>
+                            </div>
+
+                            <div class="right_note">
+                                <ul>
+                                    <li>Vrijepe polaska se odnosi na početnu stanicu.</li>
+                                    <li>Svi polasci su sortirani po nazivu prevoznika.</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>                    
+
                 </div>
             </div>                       
         </div>

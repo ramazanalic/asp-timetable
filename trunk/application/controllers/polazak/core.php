@@ -37,7 +37,7 @@ class Core extends navigator
         $limit = 10;
         $count = 0;
         $cur_page = 1;
-        $num_links = 8;
+        $num_links = 2;
 
         $this->db->select('polazak.*, prevoznik.naziv as naziv_prevoznika, prevoznik.grad as grad_prevoznika', FALSE);
         $this->db->join('prevoznik', 'prevoznik.id = polazak.prevoznik_id ');

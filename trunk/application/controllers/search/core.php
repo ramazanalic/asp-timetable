@@ -58,7 +58,7 @@ class Core extends navigator
         $this->data['polasci'] = $res->result_array(); 
         $this->data['paginator'] = $this->pagination->create_links(); 
         $this->data['count'] = $count;
-        $this->core_index('search','view','PRETRAÅ½IVAÄŒ');
+        $this->core_index('search','view','PRETRAŽIVAČ');
         
         
     }
