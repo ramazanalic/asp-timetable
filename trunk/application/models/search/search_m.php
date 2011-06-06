@@ -12,10 +12,11 @@
         /* Pretraga voznog reda Autobuske Stanice Podgorica 
         do kraja klase*/
 
+
         function search($from,$view,$baseurl){
 
             /* Paging */
-            $limit = 10;
+            $limit = 990;
             $count = 0;
             $cur_page = 1;
             $num_links = 2;
@@ -37,20 +38,20 @@
 
                     $i = 0;
                     $j = $from;
-                    
+
                     $this->firephp->fb('i: '.$i);
                     $this->firephp->fb('limit: '.($from+$limit));
-                    
+
                     foreach($polasci_ids as $value){
-                        
+
                         if(($i<($from+$limit))&&($i>=$j)){
-                        
+
                             $html .= $this->load->view($view, array('polasci' => $this->listaj_podatke_stanice_sa_id_polaska($value)), TRUE);     
-                            
+
                         }  
-                        
+
                         $i++;                      
-                        
+
                     }
 
                     $this->load->library('pagination');
@@ -63,7 +64,7 @@
 
                     $config['prev_link'] = '<';
                     $config['next_link'] = '>';
-                    
+
                     $config['first_link'] = 'Početna';
                     $config['last_link'] = 'Zadnja';
 
@@ -80,7 +81,7 @@
 
                 }else{
                     $paginator = '';
-                    echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> '<tr class="odd"><td colspan="9" style="text-align: center;"><b>NEMA POLAZAKA ZA TRAÅ½ENU RUTU</b></td></tr>.', 'paginator' => $paginator, 'count'=> $count)) . ');';   
+                    echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> '<tr class="odd"><td colspan="9" style="text-align: center;"><b>NEMA POLAZAKA ZA TRAŽENU RUTU</b></td></tr>.', 'paginator' => $paginator, 'count'=> $count)) . ');';   
                 }
 
 
@@ -94,8 +95,8 @@
         }
 
         function search_ajax_paging($from){
-            
-            
+
+
 
         }
 
@@ -145,7 +146,9 @@
 
             /* Listaj sve polaske */
 
-            $res1 = $this->db->get('polazak')->result_array();
+            $res1 = $this->db->order_by('vrijemepolaska', 'asc')->get('polazak')->result_array();
+
+            $this->firephp->fb($this->db->last_query());
 
             foreach($res1 as $rs1){
 
@@ -215,6 +218,72 @@
                 RETURN $polazak_id;
 
             } else RETURN FALSE;
+        }
+
+
+
+
+
+        /*UNIT TESTING*/
+
+
+        function unit_func_search($polazna,$dolazna){
+
+            $polazna_id = $this->get_stanica_id($polazna);
+            $dolazna_id = $this->get_stanica_id($dolazna);
+
+            $polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id);
+
+            if(count($polasci_ids)>0){
+
+                $count = count($polasci_ids);
+
+                echo "TOTAL RECORDS:".$count;                 
+
+                $style1 = '';
+                $style2 = 'style="border-bottom:1px solid #DEDEDE;border-right:1px solid #DEDEDE; padding:4px"';
+                
+                echo '<table '.$style1.' cellpadding=0 cellspacing=0>';
+
+                foreach($polasci_ids as $value){
+
+                    $res =  $this->listaj_podatke_stanice_sa_id_polaska($value);
+
+                    foreach($res as $row){
+                        echo '<tr>';
+
+                            echo '<td '.$style2.'>'.$row['id'].'</td>';
+                            echo '<td '.$style2.'>';
+                            
+                            /*$date = date('H:i',$row['vrijemepolaska']);
+
+                            $date="01.01.2011 ".$date; */
+
+
+                            //$my_date = strtotime($date); 
+                            
+                            
+                            //$this->db->where('id', $row['id']);
+                            //$this->db->update('polazak', array('vrijemepolaska'=>$my_date)); 
+                            
+                            echo  date('d.m.Y H:i',$row['vrijemepolaska']);
+
+                            echo '</td>';
+                            /*echo '<td>'.date($row['vrijemepolaska']).'</td>';
+                            echo '<td>'.$date.'</td>';
+                            echo '<td>'.date('H:i',$row['vrijemepolaska']).'</td>'; */
+
+                        echo '</tr>';
+                    }
+
+
+                }
+
+                echo '</table>'; 
+
+            }else{
+                echo 'NO RESULTS';
+            }
         }
 
     }

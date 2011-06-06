@@ -71,5 +71,11 @@ class Core extends navigator
     function search($from=0){
         $this->search->search($from,'search/search',base_url().'search/core/search');
     }
+    
+    function measuring_time(){
+        
+          $this->search->unit_func_search('podgorica','danilovgrad');
+        
+    }
 
 }

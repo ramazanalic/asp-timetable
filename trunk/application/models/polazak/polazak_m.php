@@ -92,8 +92,8 @@
                 $polazak = array(
                 'pocetnastanica' => $_POST['pocetna_stanica'],
                 'zadnjastanica' => $_POST['zadnja_stanica'],
-                'vrijemepolaska' => strtotime($_POST['vrijemepolaska_pocetna']),
-                'vrijemedolaska' => strtotime($_POST['vrijemedolaska_zadnja']),
+                'vrijemepolaska' => strtotime("01.01.2011 ".$_POST['vrijemepolaska_pocetna']),
+                'vrijemedolaska' => strtotime("01.01.2011 ".$_POST['vrijemedolaska_zadnja']),
                 'dnevni' => $dnevni,
                 'vikendom' => $vikendom,
                 'sezonski' => $sezonski,
@@ -121,7 +121,7 @@
                 $pocetna = array(
 
                 'stanica_id' => $stanica['id'],
-                'vrijemepolaska' => strtotime($_POST['vrijemepolaska_pocetna']),
+                'vrijemepolaska' => strtotime("01.01.2011 ".$_POST['vrijemepolaska_pocetna']),
                 'vrijemedolaska' => NULL,
                 'km' => $_POST['km_pocetna'],
                 'polazak_id' => $polazak_id                    
@@ -152,8 +152,8 @@
                         $stop_stanica = array(
 
                         'stanica_id' => $stanica['id'],
-                        'vrijemepolaska' => strtotime($_POST['vrijemepolaska'][$i]),
-                        'vrijemedolaska' => strtotime($_POST['vrijemedolaska'][$i]),
+                        'vrijemepolaska' => strtotime("01.01.2011 ".$_POST['vrijemepolaska'][$i]),
+                        'vrijemedolaska' => strtotime("01.01.2011 ".$_POST['vrijemedolaska'][$i]),
                         'km' => $_POST['km'][$i],
                         'polazak_id' => $polazak_id                    
 
@@ -179,7 +179,7 @@
 
                 'stanica_id' => $stanica['id'],
                 'vrijemepolaska' => NULL,
-                'vrijemedolaska' => strtotime($_POST['vrijemedolaska_zadnja']),
+                'vrijemedolaska' => strtotime("01.01.2011 ".$_POST['vrijemedolaska_zadnja']),
                 'km' => $_POST['km_zadnja'],
                 'polazak_id' => $polazak_id                    
 
@@ -222,8 +222,8 @@
                 $polazak = array(
                 'pocetnastanica' => $_POST['pocetna_stanica'],
                 'zadnjastanica' => $_POST['zadnja_stanica'],
-                'vrijemepolaska' => strtotime($_POST['vrijemepolaska_pocetna']),
-                'vrijemedolaska' => strtotime($_POST['vrijemedolaska_zadnja']),
+                'vrijemepolaska' => strtotime("01.01.2011 ".$_POST['vrijemepolaska_pocetna']),
+                'vrijemedolaska' => strtotime("01.01.2011 ".$_POST['vrijemedolaska_zadnja']),
                 'dnevni' => $dnevni,
                 'vikendom' => $vikendom,
                 'sezonski' => $sezonski,
@@ -256,7 +256,7 @@
                 $pocetna = array(
 
                 'stanica_id' => $stanica['id'],
-                'vrijemepolaska' => strtotime($_POST['vrijemepolaska_pocetna']),
+                'vrijemepolaska' => strtotime("01.01.2011 ".$_POST['vrijemepolaska_pocetna']),
                 'vrijemedolaska' => NULL,
                 'km' => $_POST['km_pocetna'],
                 'polazak_id' => $polazak_id                    
@@ -287,8 +287,8 @@
                         $stop_stanica = array(
 
                         'stanica_id' => $stanica['id'],
-                        'vrijemepolaska' => strtotime($_POST['vrijemepolaska'][$i]),
-                        'vrijemedolaska' => strtotime($_POST['vrijemedolaska'][$i]),
+                        'vrijemepolaska' => strtotime("01.01.2011 ".$_POST['vrijemepolaska'][$i]),
+                        'vrijemedolaska' => strtotime("01.01.2011 ".$_POST['vrijemedolaska'][$i]),
                         'km' => $_POST['km'][$i],
                         'polazak_id' => $polazak_id                    
 
@@ -314,7 +314,7 @@
 
                 'stanica_id' => $stanica['id'],
                 'vrijemepolaska' => NULL,
-                'vrijemedolaska' => strtotime($_POST['vrijemedolaska_zadnja']),
+                'vrijemedolaska' => strtotime("01.01.2011 ".$_POST['vrijemedolaska_zadnja']),
                 'km' => $_POST['km_zadnja'],
                 'polazak_id' => $polazak_id                    
 
