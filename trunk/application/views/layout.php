@@ -73,7 +73,13 @@
         <div class="col-mid">
             <div id="main-nav">  <? $this->load->view('nav'); ?> </div>      
             <div class="clear"></div>
-            <div id="main-cont"> <? $this->load->view('inner'); ?> </div>            
+            <div id="main-cont"> <? $this->load->view('inner'); ?> </div> 
+            
+            <!--Caching-->
+            <div style="display: none;">
+                <img src="<?=base_url()?>assets/img/loader/ajax-loader-red.gif">
+                <img src="<?=base_url()?>assets/img/loader/ajax-loader-sml.gif">
+            </div>
         </div>
     </body>
 </html>
