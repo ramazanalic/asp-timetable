@@ -383,6 +383,23 @@ i{
 .cmsbtn:hover, .cmsbtnsml:hover{
     background: none repeat scroll 0 0 #414141;
 }
+.cmsbtn-noloader {
+    background: url(../img/backgnds/cmsbtn.gif) center center repeat-x scroll #414141;
+    border: medium none;
+    border-radius: 5px 5px 5px 5px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 4px;
+    padding: 5px;
+    text-indent: 0;
+    text-decoration: none;
+    font-family: Arial,Helvetica;
+}
+.cmsbtn-noloader:hover{
+    background: none repeat scroll 0 0 #414141;
+}
 #infomessage, #infomessage_search {
     border-left: 4px solid #EA1B2F;
     display: none;
@@ -544,13 +561,17 @@ table thead th {
     float: right;
     display: none;
 }
-.pgnlink{
-    text-decoration: none;
-    font-size: 11px;
+.pgnlink, .pgnlink-noajax{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #000066;
     color: #000066;
+    font-size: 11px;
+    margin: 0 2px;
+    padding: 4px 7px;
+    text-decoration: none;
 }
-.pgnlink-noajax{
-    text-decoration: none;
-    font-size: 11px;
-    color: #000066;
+.pgnlink:hover, .pgnlink-noajax:hover{ 
+    background-color:gray;
+    border: 1px solid #000066; 
+    color: white;
 }
