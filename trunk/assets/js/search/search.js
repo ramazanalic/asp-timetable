@@ -12,6 +12,8 @@ $(function(){
     
     $('#trazi').live('click', function(){
         
+        var that = jQuery(this).busy({ img :base_url+'assets/img/loader/ajax-loader-red.gif'});
+        
         $.ajax({
             type: 'GET',
             url: base_url+'search/core/search/?jsoncall=?',
@@ -23,6 +25,8 @@ $(function(){
             }),
             dataType: 'jsonp',
             success: function(data){
+              
+                that.busy("hide"); 
                 
                 if(data.success==true){
                     
