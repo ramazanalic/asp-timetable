@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
     // TABLSE SORTER
-    //var rowCount = $('#polasci_tbl tr').length-1;
 
     $("#polasci_tbl").tablesorter({
 
@@ -12,9 +11,6 @@ $(document).ready(function(){
         widgets: ['zebra']
 
     }); 
-
-    //$('.tbl_total').html(rowCount);
-    //$('.tbl_subtitle').html('polazaka');
 
 
     var defaults = {
