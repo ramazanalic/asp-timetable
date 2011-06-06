@@ -18,7 +18,7 @@ class Core extends navigator
         $limit = 10;
         $count = 0;
         $cur_page = 1;
-        $total_page = 0;
+        $num_links = 8;
         
         $this->db->select('polazak.*, prevoznik.naziv as naziv_prevoznika, prevoznik.grad as grad_prevoznika', FALSE);
         $this->db->join('prevoznik', 'prevoznik.id = polazak.prevoznik_id ');        
@@ -40,13 +40,13 @@ class Core extends navigator
         $config['total_rows'] = $count;
         $config['per_page'] = $limit;
         $config['uri_segment'] = 4;
-        $config['num_links'] = $total_page;
+        $config['num_links'] = $num_links;
         
         $config['prev_link'] = '<';
         $config['next_link'] = '>';
         
-        $config['first_link'] = 'First';
-        $config['last_link'] = 'Last';
+        $config['first_link'] = 'Početna';
+        $config['last_link'] = 'Zadnja';
         
         $config['anchor_class'] = 'class="pgnlink"';
         
@@ -58,7 +58,7 @@ class Core extends navigator
         $this->data['polasci'] = $res->result_array(); 
         $this->data['paginator'] = $this->pagination->create_links(); 
         $this->data['count'] = $count;
-        $this->core_index('search','view','PRETRAŽIVAČ');
+        $this->core_index('search','view','PRETRAÅ½IVAÄŒ');
         
         
     }

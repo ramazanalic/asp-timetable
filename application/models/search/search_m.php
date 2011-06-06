@@ -18,7 +18,7 @@
             $limit = 10;
             $count = 0;
             $cur_page = 1;
-            $total_page = 0;
+            $num_links = 8;
 
             if($this->validate_search()==TRUE){
 
@@ -59,10 +59,13 @@
                     $config['total_rows'] = $count;
                     $config['per_page'] = $limit;
                     $config['uri_segment'] = 4;
-                    $config['num_links'] = $total_page;
+                    $config['num_links'] = $num_links;
 
                     $config['prev_link'] = '<';
                     $config['next_link'] = '>';
+                    
+                    $config['first_link'] = 'Početna';
+                    $config['last_link'] = 'Zadnja';
 
                     $config['anchor_class'] = 'class="pgnlink"';
 
@@ -77,7 +80,7 @@
 
                 }else{
                     $paginator = '';
-                    echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> '<tr class="odd"><td colspan="9" style="text-align: center;"><b>NEMA POLAZAKA ZA TRAŽENU RUTU</b></td></tr>.', 'paginator' => $paginator, 'count'=> $count)) . ');';   
+                    echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> '<tr class="odd"><td colspan="9" style="text-align: center;"><b>NEMA POLAZAKA ZA TRAÅ½ENU RUTU</b></td></tr>.', 'paginator' => $paginator, 'count'=> $count)) . ');';   
                 }
 
 
