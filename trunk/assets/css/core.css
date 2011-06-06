@@ -575,3 +575,27 @@ table thead th {
     border: 1px solid #000066; 
     color: white;
 }
+.note_body {
+    background-color: #F5F5F5;
+    border-bottom: 1px solid #006699;
+    border-top: 1px solid #006699;
+    font-size: 11px;
+    height: 60px;
+    padding: 10px 10px 7px;
+    margin: 8px 0 0;
+}
+.right_note {
+    float: left;
+}
+.left_note {
+    float: left;
+    margin-left: 20px;
+    width: 85px;
+}
+.note_body ul li {
+    background: url(../img/backgnds/icon_dot_black.gif) no-repeat scroll 0 9px transparent;
+    font-size: 11px;
+    list-style-type: none;
+    padding-left: 10px;
+    color: #848484;
+}
