@@ -1,15 +1,15 @@
 <? foreach($polasci as $polazak): ?>
     <tr>
         <td style="text-align: center;"><?=$polazak['id']?></td>
-        <td><strong><?=$polazak['pocetnastanica'].' <br />'. $polazak['zadnjastanica']?></strong></td>                    
-        <td><strong><?
+        <td><?=$polazak['pocetnastanica'].' <br />'. $polazak['zadnjastanica']?></td>                    
+        <td><?
             echo date('H:i',$polazak['vrijemepolaska']).' h <br />'; 
 
             if($polazak['vrijemedolaska'] != 0){
                 echo date('H:s',$polazak['vrijemedolaska']).' h';    
             }else echo "";//" --:-- h "
 
-            ?></strong></td>                    
+            ?></td>                    
         <td>
             <?
                 if($polazak['dnevni'] == 1) echo 'Dnevni';
