@@ -16,7 +16,7 @@
         function search($from,$view,$baseurl){
 
             /* Paging */
-            $limit = 990;
+            $limit = 10;
             $count = 0;
             $cur_page = 1;
             $num_links = 2;
@@ -240,9 +240,9 @@
 
                 echo "TOTAL RECORDS:".$count;                 
 
-                $style1 = '';
+                $style1 = 'style="font-size:11px"';
                 $style2 = 'style="border-bottom:1px solid #DEDEDE;border-right:1px solid #DEDEDE; padding:4px"';
-                
+
                 echo '<table '.$style1.' cellpadding=0 cellspacing=0>';
 
                 foreach($polasci_ids as $value){
@@ -250,22 +250,28 @@
                     $res =  $this->listaj_podatke_stanice_sa_id_polaska($value);
 
                     foreach($res as $row){
-                        echo '<tr>';
+
+                        if(($row['vrijemepolaska'] != '')&&($row['vrijemepolaska'] != 0)){
+
+
+                            echo '<tr>';
 
                             echo '<td '.$style2.'>'.$row['id'].'</td>';
                             echo '<td '.$style2.'>';
-                            
+
                             /*$date = date('H:i',$row['vrijemepolaska']);
 
-                            $date="01.01.2011 ".$date; */
+                            $date="01.01.2011 ".$date; 
 
 
-                            //$my_date = strtotime($date); 
-                            
-                            
-                            //$this->db->where('id', $row['id']);
-                            //$this->db->update('polazak', array('vrijemepolaska'=>$my_date)); 
-                            
+                            $my_date = strtotime($date); 
+
+
+                            $this->db->where('id', $row['id']);
+                            $this->db->update('stopstanica', array('vrijemepolaska'=>$my_date));*/ 
+
+
+
                             echo  date('d.m.Y H:i',$row['vrijemepolaska']);
 
                             echo '</td>';
@@ -273,7 +279,9 @@
                             echo '<td>'.$date.'</td>';
                             echo '<td>'.date('H:i',$row['vrijemepolaska']).'</td>'; */
 
-                        echo '</tr>';
+                            echo '</tr>';
+
+                        }
                     }
 
 

@@ -65,8 +65,8 @@
 
                             <div class="right_note">
                                 <ul>
-                                    <li>Vrijepe polaska se odnosi na početnu stanicu.</li>
-                                    <li>Svi polasci su sortirani po nazivu prevoznika.</li>
+                                    <li>Vrijeme polaska odnosi se na početnu stanicu.</li>
+                                    <li>Svi polasci su sortirani po vremenu polaska.</li>
                                 </ul>
                             </div>
 

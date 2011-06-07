@@ -363,7 +363,7 @@
         }
 
         /* Pretraga voznog reda Autobuske Stanice Podgorica 
-        do kraja klase*/
+        do kraja klase
 
         function search(){
 
@@ -442,14 +442,12 @@
             $lista_polazaka = array();
 
 
-            /* Listaj sve polaske */
 
             $res1 = $this->db->get('polazak')->result_array();
 
             foreach($res1 as $rs1){
 
 
-                /* Za svaki polazak listaj stop stanice koje ukljucuju polaznu stanicu */
 
                 $id_ili_false = $this->da_li_ima_ovaj_polazak_ovim_redosledom($polazna_id, $dolazna_id, $rs1['id']);
 
@@ -467,11 +465,7 @@
         function da_li_ima_ovaj_polazak_ovim_redosledom($polazna_id, $dolazna_id, $polazak_id){  //return id polaska
 
 
-            /* 
-            Provjeri da li ima polazna stanica 
-            u stop-stanicama 
-            za dati polazak 
-            */
+
 
             $this->db->where(array('stanica_id' => $polazna_id , 'polazak_id' => $polazak_id));
             $this->db->from('stopstanica');
@@ -480,17 +474,13 @@
             if($cnt1 ==0)   RETURN FALSE;
 
 
-            /* Uzmi id stop-stanice */
+
 
             $res1 = $this->db->get_where('stopstanica', array('stanica_id' => $polazna_id , 'polazak_id' => $polazak_id))->row_array();
             $id1 = $res1['id'];
 
 
-            /* 
-            Provjeri da li ima dolazna stanica 
-            u stop-stanicama 
-            za dati polazak 
-            */
+
 
             $this->db->where(array('stanica_id' => $dolazna_id , 'polazak_id' => $polazak_id));
             $this->db->from('stopstanica');
@@ -499,7 +489,6 @@
             if($cnt2 ==0)   RETURN FALSE;
 
 
-            /* Uzmi id stop-stanice */
 
             $res2 = $this->db->get_where('stopstanica', array('stanica_id' => $dolazna_id , 'polazak_id' => $polazak_id))->row_array();
             $id2 = $res2['id'];
@@ -516,5 +505,6 @@
             } else RETURN FALSE;
         }
 
+        */
     }
 ?>
