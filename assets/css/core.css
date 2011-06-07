@@ -571,7 +571,7 @@ table thead th {
     text-decoration: none;
 }
 .pgnlink:hover, .pgnlink-noajax:hover{ 
-    background-color:gray;
+    background-color:#669999;
     border: 1px solid #000066; 
     color: white;
 }
