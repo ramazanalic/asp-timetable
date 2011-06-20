@@ -43,11 +43,15 @@ class Unit extends navigator
 
     function getPrevoznik($xmlData){
 
-        $html = '<table cellpadding="0" cellspacing="0" border="1">';
+        $counter = 0;
+        
+        $html = "";
+        
+        $html.= '<table cellpadding="0" cellspacing="0" border="1">';
         $html.= '<thead>';
         $html.= '<tr>';
-        $html.= '<td>NAZIV</td>';
-        $html.= '<td>GRAD</td>';
+        $html.= '<td><b>NAZIV</b></td>';
+        $html.= '<td><b>GRAD</b></td>';
         $html.= '</tr>';
         $html.= '</thead>';
         $html.= '<tbody>';
@@ -71,6 +75,8 @@ class Unit extends navigator
 
                 $this->db->insert('prevoznik',$data);
 
+                $counter++;
+                
             }
 
         }  
@@ -78,19 +84,20 @@ class Unit extends navigator
 
         $html.= $result;
         $html.= '</tbody>';
-
+                                                                             
         echo $html;        
 
-        echo 'Rows inserted.';
+        echo 'TABLE "<b>PREVOZNK</b>" - '.$counter. ' rows inserted';
 
     }    
 
     function getStanica($xmlData){
 
+        
         $html = '<table cellpadding="0" cellspacing="0" border="1">';
         $html.= '<thead>';
         $html.= '<tr>';
-        $html.= '<td>NAZIV</td>';
+        $html.= '<td><b>NAZIV</b></td>';
         $html.= '</tr>';
         $html.= '</thead>';
         $html.= '<tbody>';
@@ -127,13 +134,20 @@ class Unit extends navigator
         $html.= '</tbody>';
 
         echo $html;        
+        
+        echo "<br /><br />"; 
+        
+        echo 'TABLE "<b>STANICA</b>" - '.$i. ' rows inserted'; 
 
-        echo $i.' rows inserted.';
-
+        
+        
     }
 
     function getPolazak($xmlData){
 
+        $counter = 0;
+        $counter2 = 0;
+        
         $html = '<table cellpadding="0" cellspacing="0" border="1">';
         $html.= '<thead>';
         $html.= '<tr>';
@@ -161,7 +175,7 @@ class Unit extends navigator
                 $zadnjastanica = NULL;
                 $peron = NULL;
                 $prevoznik = NULL;
-                
+
                 if(isset($row['vrijemepolaska'])) $vrijemepolaska = $row['vrijemepolaska'];
                 if(isset($row['vrijemedolaska'])) $vrijemedolaska = $row['vrijemedolaska'];
                 if(isset($row['pocetnastanica'])) $pocetnastanica = $row['pocetnastanica'];
@@ -170,7 +184,7 @@ class Unit extends navigator
                 if(isset($row['prevoznik'])) $prevoznik = $row['prevoznik'];
 
                 $prevoznik = $this->getPrevoznikID($prevoznik);
-                
+
                 $data = array(
                 'vrijemepolaska' =>  $vrijemepolaska ,
                 'vrijemedolaska' =>  $vrijemedolaska ,
@@ -183,8 +197,11 @@ class Unit extends navigator
 
                 $this->db->insert('polazak',$data);
                 // $last_id = 111;
-                $last_id =   $this->db->insert_id();  
                 
+                $counter++;
+                
+                $last_id =   $this->db->insert_id();  
+
                 $result .= '<tr>';
                 $result .= '<td>'.$last_id.'</td>';
                 $result .= '<td>'.$vrijemepolaska.'</td>';
@@ -194,17 +211,49 @@ class Unit extends navigator
                 $result .= '<td>'.$peron.'</td>';
                 $result .= '<td>'.$prevoznik.'</td>';
                 $result .= '<td>';
-                
+
                 foreach( $row['LISTA_STANICA'] as $stanica) {  
-                     foreach( $stanica as $row2) {
-                         $result.= $row2['naziv'].'<br />';
-                     }
-                 }
+                    
+                    foreach( $stanica as $row2) {
+
+                        $vrijemepolaska_stop = NULL;
+                        $vrijemedolaska_stop = NULL;
+                        $km = NULL;
+                        
+                        $result.= $row2['naziv'].'<br />';
+
+                        $stanica_id = $this->getStanicaID($row2['naziv']);
+                        
+                        //echo "<br />ID STANICE:".$stanica_id."<br />";  
+                        
+                        if(isset($row['vrijemepolaska'])) $vrijemepolaska_stop = $row['vrijemepolaska'];
+                        if(isset($row['vrijemedolaska'])) $vrijemedolaska_stop = $row['vrijemedolaska'];
+                        if(isset($row['km'])) $km = $row['km'];
+                        
+                        $stop_stanica = array(
+                        'stanica_id' =>  $stanica_id ,
+                        'vrijemepolaska' =>  $vrijemepolaska_stop ,
+                        'vrijemedolaska' =>  $vrijemedolaska_stop ,
+                        'km' =>  $km ,
+                        'polazak_id' =>   $last_id 
+                        );
+                        
+                        $this->db->insert('stopstanica',$stop_stanica);
+                        $counter2++;
+                        
+                        
+                    }
+                    
+                }
+                
+                $result.= '<br />TABLE "<b>STOPSTANICA</b>" - '.$counter2. ' rows inserted<br />';
+
+                $counter2 = 0;
                 
                 $result .= '</td>';
                 $result .= '</tr>';
-                
-                
+
+
             }
 
         }  
@@ -215,18 +264,28 @@ class Unit extends navigator
 
         echo $html;        
 
-        echo 'Rows inserted.';
+        echo '<br /><br />TABLE "<b>POLAZAK</b>" - '.$counter. ' rows inserted';  
 
     }
-    
+
     function getPrevoznikID($naziv){
-        
-        
+
+
         $res = $this->db->get_where('prevoznik',array('naziv'=>$naziv))->row_array();
         //echo $this->db->last_query();
         return $res['id'];
-        
-        
+
+
+    }
+
+    function getStanicaID($naziv){
+
+
+        $res = $this->db->get_where('stanica',array('naziv'=>$naziv))->row_array();
+        //echo $this->db->last_query();
+        return $res['id'];
+
+
     }
 
 }
