@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RED_VOZNJE>
+  <LISTA_PREVOZNIKA>
+    <PREVOZNIK>
+      <naziv>ALO EXPRESS DOO</naziv>
+      <grad>PODGORICA</grad>
+    </PREVOZNIK>
+    <PREVOZNIK>
+      <naziv>AS NIKČEVIĆ</naziv>
+      <grad>NIKŠIĆ</grad>
+    </PREVOZNIK>
+    <PREVOZNIK>
+      <naziv>BJELOPAVLIJA TRANS</naziv>
+      <grad>DANILOVGRAD</grad>
+    </PREVOZNIK>
+  </LISTA_PREVOZNIKA>
+  <LISTA_STANICA>
+    <naziv>PODGORICA</naziv>
+    <naziv>NIKŠIĆ</naziv>
+    <naziv>DANILOVGRAD</naziv>
+  </LISTA_STANICA>
+  <LISTA_POLAZAKA>
+    <POLAZAK>
+      <vrijemepolaska>13:05</vrijemepolaska>
+      <vrijemedolaska />
+      <pocetnastanica>PODGORICA</pocetnastanica>
+      <zadnjastanica>HERCEG NOVI</zadnjastanica>
+      <peron>5</peron>
+      <prevoznik>ALO EXPRESS DOO</prevoznik>
+      <LISTA_STANICA>
+        <STANICA>
+          <naziv>PODGORICA</naziv>
+          <vrijemepolaska>13:05</vrijemepolaska>
+          <vrijemedolaska />
+          <km />
+        </STANICA>
+        <STANICA>
+          <naziv>CETINJE</naziv>
+          <vrijemepolaska />
+          <vrijemedolaska />
+          <km />
+        </STANICA>
+        <STANICA>
+          <naziv>KOTOR</naziv>
+          <vrijemepolaska />
+          <vrijemedolaska />
+          <km />
+        </STANICA>
+        <STANICA>
+          <naziv>HERCEG NOVI</naziv>
+          <vrijemepolaska />
+          <vrijemedolaska />
+          <km />
+        </STANICA>
+      </LISTA_STANICA>
+    </POLAZAK>
+    <POLAZAK>
+      <vrijemepolaska>17:15</vrijemepolaska>
+      <vrijemedolaska />
+      <pocetnastanica>PODGORICA </pocetnastanica>
+      <zadnjastanica>KOTOR</zadnjastanica>
+      <peron />
+      <prevoznik>AS NIKČEVIĆ</prevoznik>
+      <LISTA_STANICA>
+        <STANICA>
+          <naziv>PODGORICA</naziv>
+          <vrijemepolaska>17:15</vrijemepolaska>
+          <vrijemedolaska />
+          <km />
+        </STANICA>
+        <STANICA>
+          <naziv>CETINJE</naziv>
+          <vrijemepolaska />
+          <vrijemedolaska />
+          <km />
+        </STANICA>
+        <STANICA>
+          <naziv>TIVAT</naziv>
+          <vrijemepolaska />
+          <vrijemedolaska />
+          <km />
+        </STANICA>
+        <STANICA>
+          <naziv>KOTOR</naziv>
+          <vrijemepolaska />
+          <vrijemedolaska />
+          <km />
+        </STANICA>
+      </LISTA_STANICA>
+    </POLAZAK>
+    <POLAZAK>
+      <vrijemepolaska>09:10 </vrijemepolaska>
+      <vrijemedolaska />
+      <pocetnastanica>PODGORICA </pocetnastanica>
+      <zadnjastanica>IGALO</zadnjastanica>
+      <peron />
+      <prevoznik>BJELOPAVLIJA TRANS</prevoznik>
+      <LISTA_STANICA>
+        <STANICA>
+          <naziv>PODGORICA </naziv>
+          <vrijemepolaska>09:10 </vrijemepolaska>
+          <vrijemedolaska />
+          <km />
+        </STANICA>
+        <STANICA>
+          <naziv>KOTOR</naziv>
+          <vrijemepolaska />
+          <vrijemedolaska />
+          <km />
+        </STANICA>
+        <STANICA>
+          <naziv>IGALO</naziv>
+          <vrijemepolaska />
+          <vrijemedolaska />
+          <km />
+        </STANICA>
+      </LISTA_STANICA>
+    </POLAZAK>
+  </LISTA_POLAZAKA>
+</RED_VOZNJE>
