@@ -19,7 +19,7 @@ class Unit extends navigator
         echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">';
         echo '</head><body>';
 
-        $this->_getXML('red_voznje');
+        $this->_getXML('RV_06.07.11.xml');
 
         echo '</body></html>';
 
@@ -28,7 +28,7 @@ class Unit extends navigator
     function _getXML($fname)
     {
 
-        $filename = $fname.'.xml';
+        $filename = $fname;
         $xmlfile="./assets/xml/".$filename;
         $xmlRaw = file_get_contents($xmlfile);
 
