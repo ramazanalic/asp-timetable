@@ -50,6 +50,14 @@ $db['default']['password'] = '';
 $db['default']['database'] = 'bustekcu_asp';
 $db['default']['dbdriver'] = 'mysql';
 
+/* LOGIC SOL 
+
+$db['default']['hostname'] = "mysql";
+$db['default']['username'] = "logicsol_ivan";
+$db['default']['password'] = "print00";
+$db['default']['database'] = "logicsol_asp";
+$db['default']['dbdriver'] = "mysql"; */ 
+
 
 /* Server busterminal */
                                 

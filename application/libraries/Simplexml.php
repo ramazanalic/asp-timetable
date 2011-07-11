@@ -27,7 +27,7 @@ class Simplexml{
             xml_get_current_byte_index($parser));
         }
 
-        xml_parser_free($parser);
+        xml_parser_free($parser);   
         return $this->xml_reorganize($values);
     }
 
@@ -123,7 +123,7 @@ class Simplexml{
                     break;
             }
         }
-        eval($this->evalCode);
+        eval($this->evalCode); 
         $last = $this->array_reindex($this->result);
         return $last;
     }    
