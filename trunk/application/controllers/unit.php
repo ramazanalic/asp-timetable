@@ -21,9 +21,9 @@ class Unit extends navigator
         echo '<style>table,tr,td{font-size:12px; border:1px dotted #dedede}</style>';
         echo '<style>td{padding:4px}</style>';
         echo '</head><body>';
-
-        $this->_getXML('RV_06.07.11.xml');
-        //$this->_getXML('red_voznje.xml');
+        
+        $this->_getXML('rv.xml');
+        //$this->_getXML('red_voznje.xml'); 
 
         echo '</body></html>';
 
@@ -33,12 +33,12 @@ class Unit extends navigator
     {
 
         $filename = $fname;
-        $xmlfile="./assets/xml/".$filename;
+        $xmlfile="./assets/xml/".$filename; 
         $xmlRaw = file_get_contents($xmlfile);
-
-        $this->load->library('simplexml');
+        
+        $this->load->library('simplexml');  
         $xmlData = $this->simplexml->xml_parse($xmlRaw);
-
+          
         $this->getPrevoznik($xmlData);
         $this->getStanica($xmlData);
         $this->getPolazak($xmlData);
