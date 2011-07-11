@@ -17,9 +17,13 @@ class Unit extends navigator
         echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> ';
         echo '<html><head>';
         echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">';
+        echo '<style>body{font-size:11px;}</style>';
+        echo '<style>table,tr,td{font-size:12px; border:1px dotted #dedede}</style>';
+        echo '<style>td{padding:4px}</style>';
         echo '</head><body>';
 
         $this->_getXML('RV_06.07.11.xml');
+        //$this->_getXML('red_voznje.xml');
 
         echo '</body></html>';
 
@@ -176,8 +180,8 @@ class Unit extends navigator
                 $peron = NULL;
                 $prevoznik = NULL;
 
-                if(isset($row['vrijemepolaska'])) $vrijemepolaska = $row['vrijemepolaska'];
-                if(isset($row['vrijemedolaska'])) $vrijemedolaska = $row['vrijemedolaska'];
+                if(isset($row['vrijemepolaska'])) $vrijemepolaska = strtotime("01.01.2011 ".$row['vrijemepolaska']);
+                if(isset($row['vrijemedolaska'])) $vrijemedolaska = strtotime("01.01.2011 ".$row['vrijemedolaska']);
                 if(isset($row['pocetnastanica'])) $pocetnastanica = $row['pocetnastanica'];
                 if(isset($row['zadnjastanica'])) $zadnjastanica = $row['zadnjastanica'];
                 if(isset($row['peron'])) $peron = $row['peron'];
@@ -201,11 +205,16 @@ class Unit extends navigator
                 $counter++;
                 
                 $last_id =   $this->db->insert_id();  
+                
+                $printvp = '';
+                $printvd = '';
+                if(isset($vrijemepolaska)){$printvp = date('d.m.Y H:i',$vrijemepolaska);}
+                if(isset($vrijemedolaska)){$printvd = date('d.m.Y H:i',$vrijemedolaska);}
 
                 $result .= '<tr>';
                 $result .= '<td>'.$last_id.'</td>';
-                $result .= '<td>'.$vrijemepolaska.'</td>';
-                $result .= '<td>'.$vrijemedolaska.'</td>';
+                $result .= '<td>'.$printvp.'</td>';
+                $result .= '<td>'.$printvd.'</td>';
                 $result .= '<td>'.$pocetnastanica.'</td>';
                 $result .= '<td>'.$zadnjastanica.'</td>';
                 $result .= '<td>'.$peron.'</td>';
@@ -219,16 +228,21 @@ class Unit extends navigator
                         $vrijemepolaska_stop = NULL;
                         $vrijemedolaska_stop = NULL;
                         $km = NULL;
-                        
-                        $result.= $row2['naziv'].'<br />';
+
 
                         $stanica_id = $this->getStanicaID($row2['naziv']);
                         
                         //echo "<br />ID STANICE:".$stanica_id."<br />";  
                         
-                        if(isset($row['vrijemepolaska'])) $vrijemepolaska_stop = $row['vrijemepolaska'];
-                        if(isset($row['vrijemedolaska'])) $vrijemedolaska_stop = $row['vrijemedolaska'];
-                        if(isset($row['km'])) $km = $row['km'];
+                        if(isset($row2['vrijemepolaska'])) $vrijemepolaska_stop = strtotime("01.01.2011 ".$row2['vrijemepolaska']);
+                        if(isset($row2['vrijemedolaska'])) $vrijemedolaska_stop = strtotime("01.01.2011 ".$row2['vrijemedolaska']);
+                        if(isset($row2['km'])) $km = $row2['km'];
+                        
+                        $printvps = '';
+                        $printvds = '';
+                        
+                        if(isset($vrijemepolaska_stop)){$printvps = date('d.m.Y H:i',$vrijemepolaska_stop);}
+                        if(isset($vrijemedolaska_stop)){$printvps = date('d.m.Y H:i',$vrijemedolaska_stop);}
                         
                         $stop_stanica = array(
                         'stanica_id' =>  $stanica_id ,
@@ -240,6 +254,11 @@ class Unit extends navigator
                         
                         $this->db->insert('stopstanica',$stop_stanica);
                         $counter2++;
+                        
+                        $result.='<TABLE><TR>';
+                        $result.= '<TD style="width:100px">'.$row2['naziv'].'</TD><TD> vp: '.$printvps.'</TD><TD>vd: '.$printvds.'</TD>';
+                        $result.='</TR></TABLE>';
+                        
                         
                         
                     }
