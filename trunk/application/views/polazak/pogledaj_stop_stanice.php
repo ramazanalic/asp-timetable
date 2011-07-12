@@ -5,6 +5,7 @@
             <th width="30">Polazak</th>
             <th width="30">Dolazak</th>
             <th width="20">Km</th>
+            <th width="20"><a href="javascript:" id="close_stop" ><img src="assets/img/backgnds/x.png" style="margin-top: 3px;" /></a></th>
         </tr>
     </thead>
     <tbody>
@@ -22,11 +23,13 @@
                         ?>
                     </strong></td>                    
                 <td><?=$st_stanica['km']?></td>
+                <td>&nbsp;</td>
             </tr>
 
             <? endforeach;  ?>
 
         <tr id="lst_odd">
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
