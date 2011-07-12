@@ -805,7 +805,7 @@
       <naziv>DAKOVICA PREVOZ</naziv>
       <grad>Dakovica</grad>
     </PREVOZNIK>
-  </LISTA_PREVOZNIKA>
+  </LISTA_PREVOZNIKA> 
   <LISTA_STANICA>
     <naziv>ALEKSINAC</naziv>
     <naziv>ANDRIJEVICA</naziv>
@@ -1078,7 +1078,7 @@
     <naziv>CACAK</naziv>
     <naziv>DAKOVICA</naziv>
     <naziv>DURDEVICA TARA</naziv>
-  </LISTA_STANICA>
+  </LISTA_STANICA> 
   <LISTA_POLAZAKA>
     <POLAZAK>
       <vrijemepolaska>00:30</vrijemepolaska>
@@ -18074,5 +18074,5 @@
         </STANICA>
       </LISTA_STANICA>
     </POLAZAK>
-  </LISTA_POLAZAKA>
+  </LISTA_POLAZAKA> 
 </RED_VOZNJE>
