@@ -21,7 +21,7 @@ class Unit extends navigator
         echo '<style>table,tr,td{font-size:12px; border:1px dotted #dedede}</style>';
         echo '<style>td{padding:4px}</style>';
         echo '</head><body>';
-        
+
         $this->_getXML('rv.xml');
         //$this->_getXML('red_voznje.xml'); 
 
@@ -35,10 +35,10 @@ class Unit extends navigator
         $filename = $fname;
         $xmlfile="./assets/xml/".$filename; 
         $xmlRaw = file_get_contents($xmlfile);
-        
+
         $this->load->library('simplexml');  
         $xmlData = $this->simplexml->xml_parse($xmlRaw);
-          
+
         $this->getPrevoznik($xmlData);
         $this->getStanica($xmlData);
         $this->getPolazak($xmlData);
@@ -48,9 +48,9 @@ class Unit extends navigator
     function getPrevoznik($xmlData){
 
         $counter = 0;
-        
+
         $html = "";
-        
+
         $html.= '<table cellpadding="0" cellspacing="0" border="1">';
         $html.= '<thead>';
         $html.= '<tr>';
@@ -80,7 +80,7 @@ class Unit extends navigator
                 $this->db->insert('prevoznik',$data);
 
                 $counter++;
-                
+
             }
 
         }  
@@ -88,7 +88,7 @@ class Unit extends navigator
 
         $html.= $result;
         $html.= '</tbody>';
-                                                                             
+
         echo $html;        
 
         echo 'TABLE "<b>PREVOZNK</b>" - '.$counter. ' rows inserted';
@@ -97,7 +97,7 @@ class Unit extends navigator
 
     function getStanica($xmlData){
 
-        
+
         $html = '<table cellpadding="0" cellspacing="0" border="1">';
         $html.= '<thead>';
         $html.= '<tr>';
@@ -138,20 +138,20 @@ class Unit extends navigator
         $html.= '</tbody>';
 
         echo $html;        
-        
+
         echo "<br /><br />"; 
-        
+
         echo 'TABLE "<b>STANICA</b>" - '.$i. ' rows inserted'; 
 
-        
-        
+
+
     }
 
     function getPolazak($xmlData){
 
         $counter = 0;
         $counter2 = 0;
-        
+
         $html = '<table cellpadding="0" cellspacing="0" border="1">';
         $html.= '<thead>';
         $html.= '<tr>';
@@ -201,11 +201,11 @@ class Unit extends navigator
 
                 $this->db->insert('polazak',$data);
                 // $last_id = 111;
-                
+
                 $counter++;
-                
+
                 $last_id =   $this->db->insert_id();  
-                
+
                 $printvp = '';
                 $printvd = '';
                 if(isset($vrijemepolaska)){$printvp = date('d.m.Y H:i',$vrijemepolaska);}
@@ -222,7 +222,7 @@ class Unit extends navigator
                 $result .= '<td>';
 
                 foreach( $row['LISTA_STANICA'] as $stanica) {  
-                    
+
                     foreach( $stanica as $row2) {
 
                         $vrijemepolaska_stop = NULL;
@@ -231,19 +231,19 @@ class Unit extends navigator
 
 
                         $stanica_id = $this->getStanicaID($row2['naziv']);
-                        
+
                         //echo "<br />ID STANICE:".$stanica_id."<br />";  
-                        
+
                         if(isset($row2['vrijemepolaska'])) $vrijemepolaska_stop = strtotime("01.01.2011 ".$row2['vrijemepolaska']);
                         if(isset($row2['vrijemedolaska'])) $vrijemedolaska_stop = strtotime("01.01.2011 ".$row2['vrijemedolaska']);
                         if(isset($row2['km'])) $km = $row2['km'];
-                        
+
                         $printvps = '';
                         $printvds = '';
-                        
+
                         if(isset($vrijemepolaska_stop)){$printvps = date('d.m.Y H:i',$vrijemepolaska_stop);}
                         if(isset($vrijemedolaska_stop)){$printvps = date('d.m.Y H:i',$vrijemedolaska_stop);}
-                        
+
                         $stop_stanica = array(
                         'stanica_id' =>  $stanica_id ,
                         'vrijemepolaska' =>  $vrijemepolaska_stop ,
@@ -251,24 +251,24 @@ class Unit extends navigator
                         'km' =>  $km ,
                         'polazak_id' =>   $last_id 
                         );
-                        
+
                         $this->db->insert('stopstanica',$stop_stanica);
                         $counter2++;
-                        
+
                         $result.='<TABLE><TR>';
                         $result.= '<TD style="width:100px">'.$row2['naziv'].'</TD><TD> vp: '.$printvps.'</TD><TD>vd: '.$printvds.'</TD>';
                         $result.='</TR></TABLE>';
-                        
-                        
-                        
+
+
+
                     }
-                    
+
                 }
-                
+
                 $result.= '<br />TABLE "<b>STOPSTANICA</b>" - '.$counter2. ' rows inserted<br />';
 
                 $counter2 = 0;
-                
+
                 $result .= '</td>';
                 $result .= '</tr>';
 
@@ -304,6 +304,24 @@ class Unit extends navigator
         //echo $this->db->last_query();
         return $res['id'];
 
+
+    }   
+    
+    /*
+    * 
+    * The strtotime function [php.net] will accept a wide range of textual formats, 
+    * including counts of particular day names like "+3 monday" (third monday from today) 
+    * or "-2 friday" (two fridays ago). So, if you want the next 52 weeks worth of mondays, 
+    * a simple loop will do the trick.
+    * 
+    */
+    
+    
+    function loop_everu_moday(){
+
+        for($i=1; $i<=52; $i++){
+            echo date("M d Y", strtotime('+'.$i.' Monday')).'<br>';
+        }
 
     }
 

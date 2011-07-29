@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <RED_VOZNJE>
   <LISTA_PREVOZNIKA>
     <PREVOZNIK>
@@ -25,13 +25,16 @@
     <naziv>IGALO</naziv>
   </LISTA_STANICA>
   <LISTA_POLAZAKA>
-    <POLAZAK>
+    <POLAZAK tippolaska="n" opis="preiodicni polazak">
       <vrijemepolaska>13:05</vrijemepolaska>
       <vrijemedolaska />
       <pocetnastanica>PODGORICA</pocetnastanica>
       <zadnjastanica>HERCEG NOVI</zadnjastanica>
       <peron>5</peron>
       <prevoznik>ALO EXPRESS DOO</prevoznik>
+      <vaziod>31.05.2011</vaziod>
+      <vazido>30.06.2012</vazido>
+      <brojponavljanja>3</brojponavljanja>
       <LISTA_STANICA>
         <STANICA>
           <naziv>PODGORICA</naziv>
@@ -59,7 +62,7 @@
         </STANICA>
       </LISTA_STANICA>
     </POLAZAK>
-    <POLAZAK>
+    <POLAZAK tippolaska="d" opis="dnevn polazak">
       <vrijemepolaska>17:15</vrijemepolaska>
       <vrijemedolaska />
       <pocetnastanica>PODGORICA </pocetnastanica>
@@ -93,13 +96,18 @@
         </STANICA>
       </LISTA_STANICA>
     </POLAZAK>
-    <POLAZAK>
+    <POLAZAK tippolaska="o" opis="odredjenim danima">
       <vrijemepolaska>09:10 </vrijemepolaska>
       <vrijemedolaska />
       <pocetnastanica>PODGORICA </pocetnastanica>
       <zadnjastanica>IGALO</zadnjastanica>
       <peron />
       <prevoznik>BJELOPAVLIJA TRANS</prevoznik>
+      <DANI>
+        <DAN>Ponedjeljak</DAN>
+        <DAN>Cetvrtak</DAN>
+        <DAN>Subota</DAN>        
+      </DANI>
       <LISTA_STANICA>
         <STANICA>
           <naziv>PODGORICA </naziv>
