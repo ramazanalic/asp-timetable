@@ -1,4 +1,5 @@
 <?php
+
 require_once($application_folder."/controllers/navigator.php");
 class Unit extends navigator 
 {
@@ -22,15 +23,31 @@ class Unit extends navigator
         echo '<style>td{padding:4px}</style>';
         echo '</head><body>';
 
-        $this->_getXML('rv.xml');
-        //$this->_getXML('red_voznje.xml'); 
+        //$this->_getXML('rv.xml');
+        $this->_getXML('red_voznje.xml'); 
 
         echo '</body></html>';
 
     }
 
+    function trancuate(){
+        $query1 = 'TRUNCATE `danipolaska`';
+        $query2 = 'TRUNCATE `polazak`';
+        $query3 = 'TRUNCATE `prevoznik`';
+        $query4 = 'TRUNCATE `stanica`';
+        $query5 = 'TRUNCATE `stopstanica`';
+
+        $this->db->query($query1);
+        $this->db->query($query2);
+        $this->db->query($query3);
+        $this->db->query($query4);
+        $this->db->query($query5);
+    }
+
     function _getXML($fname)
     {
+
+        $this->trancuate();
 
         $filename = $fname;
         $xmlfile="./assets/xml/".$filename; 
@@ -147,6 +164,16 @@ class Unit extends navigator
 
     }
 
+
+    /* 
+    *  Tipovi polaska
+    *  
+    *  p = peridiocni polazaka na svakih n dana
+    *  d = dnevni polazaka svakim danom
+    *  o = polasci odredjenim danima (ponedjeljak, utorak, pretak...)
+    * 
+    */
+
     function getPolazak($xmlData){
 
         $counter = 0;
@@ -156,12 +183,15 @@ class Unit extends navigator
         $html.= '<thead>';
         $html.= '<tr>';
         $html.= '<td>id</td>';
+        $html.= '<td>prvipolazak</td>';
+        $html.= '<td>zadnjipolazak</td>';
         $html.= '<td>vrijemepolaska</td>';
         $html.= '<td>vrijemedolaska</td>';
         $html.= '<td>pocetnastanica</td>';
         $html.= '<td>zadnjastanica</td>';
         $html.= '<td>peron</td>';
         $html.= '<td>prevoznik</td>';
+        $html.= '<td>tippolaska</td>';
         $html.= '<td>stanice</td>';
         $html.= '</tr>';
         $html.= '</thead>';
@@ -173,13 +203,21 @@ class Unit extends navigator
         {
             foreach( $polazak as $row) {
 
+                $prvipolazak = NULL;
+                $zadnjipolazak = NULL;
                 $vrijemepolaska = NULL;
                 $vrijemedolaska = NULL;
                 $pocetnastanica = NULL;
                 $zadnjastanica = NULL;
                 $peron = NULL;
                 $prevoznik = NULL;
+                $tippolaska = NULL;
+                $periodicni = NULL;
+                $dnevni = NULL;
+                $odredjenidani = NULL;
 
+                if(isset($row['vaziod'])) $prvipolazak = strtotime($row['vaziod']);
+                if(isset($row['vazido'])) $zadnjipolazak = strtotime($row['vazido']);
                 if(isset($row['vrijemepolaska'])) $vrijemepolaska = strtotime("01.01.2011 ".$row['vrijemepolaska']);
                 if(isset($row['vrijemedolaska'])) $vrijemedolaska = strtotime("01.01.2011 ".$row['vrijemedolaska']);
                 if(isset($row['pocetnastanica'])) $pocetnastanica = $row['pocetnastanica'];
@@ -187,15 +225,40 @@ class Unit extends navigator
                 if(isset($row['peron'])) $peron = $row['peron'];
                 if(isset($row['prevoznik'])) $prevoznik = $row['prevoznik'];
 
+                if(isset($row['@attributes']['tippolaska'])) {
+
+                    $tippolaska = $row['@attributes']['tippolaska'];
+
+                    if($tippolaska == 'p'){
+
+                        $periodicni = $row['brojponavljanja'];
+
+                    }else if ($tippolaska == 'd'){
+
+                            $dnevni = TRUE;
+
+                        }else if ($tippolaska == 'o'){
+
+                                $odredjenidani = TRUE;
+
+                            }
+                }
+
                 $prevoznik = $this->getPrevoznikID($prevoznik);
 
                 $data = array(
+                'prvipolazak' =>  $prvipolazak ,
+                'zadnjipolazak' =>  $zadnjipolazak ,
                 'vrijemepolaska' =>  $vrijemepolaska ,
                 'vrijemedolaska' =>  $vrijemedolaska ,
                 'pocetnastanica' =>  $pocetnastanica ,
                 'zadnjastanica' =>   $zadnjastanica ,
                 'peron' =>  $peron ,
-                'prevoznik_id' =>  $prevoznik
+                'prevoznik_id' =>  $prevoznik,
+                'tippolaska' =>  $tippolaska,
+                'periodicni'  => $periodicni,          
+                'dnevni'  => $dnevni,          
+                'odredjenidani'  => $odredjenidani          
                 );
 
 
@@ -204,21 +267,43 @@ class Unit extends navigator
 
                 $counter++;
 
-                $last_id =   $this->db->insert_id();  
+                $last_id =   $this->db->insert_id(); 
 
+                //Unesi odredjene dane polaska
+                if($odredjenidani){
+                    foreach( $row['DANI'] as $dan) {  
+
+                        foreach($dan as $value){
+                            $this->db->insert('danipolaska',array('polazak_id' =>  $last_id , 'dan' => strtolower($value)));
+                        }
+
+
+                    }  
+                } 
+
+                $printpp = '';
+                $printzp = '';
                 $printvp = '';
                 $printvd = '';
+
+                if(isset($prvipolazak)){$printpp = date('d.m.Y H:i',$prvipolazak);}
+                if(isset($zadnjipolazak)){$printzp = date('d.m.Y H:i',$zadnjipolazak);}
                 if(isset($vrijemepolaska)){$printvp = date('d.m.Y H:i',$vrijemepolaska);}
                 if(isset($vrijemedolaska)){$printvd = date('d.m.Y H:i',$vrijemedolaska);}
 
                 $result .= '<tr>';
                 $result .= '<td>'.$last_id.'</td>';
+                $result .= '<td>'.$printpp.'</td>';
+                $result .= '<td>'.$printzp.'</td>';
                 $result .= '<td>'.$printvp.'</td>';
                 $result .= '<td>'.$printvd.'</td>';
                 $result .= '<td>'.$pocetnastanica.'</td>';
                 $result .= '<td>'.$zadnjastanica.'</td>';
                 $result .= '<td>'.$peron.'</td>';
                 $result .= '<td>'.$prevoznik.'</td>';
+
+                $result .= '<td>'.$tippolaska.' - '. $row['@attributes']['opis'] .'</td>';
+
                 $result .= '<td>';
 
                 foreach( $row['LISTA_STANICA'] as $stanica) {  
@@ -285,7 +370,7 @@ class Unit extends navigator
 
         echo '<br /><br />TABLE "<b>POLAZAK</b>" - '.$counter. ' rows inserted';  
 
-    }
+    }      
 
     function getPrevoznikID($naziv){
 
@@ -306,7 +391,7 @@ class Unit extends navigator
 
 
     }   
-    
+
     /*
     * 
     * The strtotime function [php.net] will accept a wide range of textual formats, 
@@ -315,8 +400,8 @@ class Unit extends navigator
     * a simple loop will do the trick.
     * 
     */
-    
-    
+
+
     function loop_everu_moday(){
 
         for($i=1; $i<=52; $i++){

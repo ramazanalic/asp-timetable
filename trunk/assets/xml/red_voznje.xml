@@ -25,7 +25,7 @@
     <naziv>IGALO</naziv>
   </LISTA_STANICA>
   <LISTA_POLAZAKA>
-    <POLAZAK tippolaska="n" opis="preiodicni polazak">
+    <POLAZAK tippolaska="p" opis="preiodicni polazak">
       <vrijemepolaska>13:05</vrijemepolaska>
       <vrijemedolaska />
       <pocetnastanica>PODGORICA</pocetnastanica>
@@ -69,6 +69,8 @@
       <zadnjastanica>KOTOR</zadnjastanica>
       <peron />
       <prevoznik>AS NIKČEVIĆ</prevoznik>
+      <vaziod>31.05.2011</vaziod>
+      <vazido>30.06.2012</vazido>
       <LISTA_STANICA>
         <STANICA>
           <naziv>PODGORICA</naziv>
@@ -103,10 +105,12 @@
       <zadnjastanica>IGALO</zadnjastanica>
       <peron />
       <prevoznik>BJELOPAVLIJA TRANS</prevoznik>
+      <vaziod>31.05.2011</vaziod>
+      <vazido>30.06.2012</vazido>
       <DANI>
-        <DAN>Ponedjeljak</DAN>
-        <DAN>Cetvrtak</DAN>
-        <DAN>Subota</DAN>        
+        <dan>Ponedjeljak</dan>
+        <dan>Cetvrtak</dan>
+        <dan>Subota</dan>        
       </DANI>
       <LISTA_STANICA>
         <STANICA>
