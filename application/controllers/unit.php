@@ -23,8 +23,8 @@ class Unit extends navigator
         echo '<style>td{padding:4px}</style>';
         echo '</head><body>';
 
-        //$this->_getXML('rv.xml');
-        $this->_getXML('red_voznje.xml'); 
+        $this->_getXML('rv.xml');
+        //$this->_getXML('red_voznje.xml'); 
 
         echo '</body></html>';
 
