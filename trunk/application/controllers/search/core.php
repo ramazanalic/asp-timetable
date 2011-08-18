@@ -15,7 +15,7 @@ class Core extends navigator
 
     function view($from = 0){
 
-        $limit = 10;
+        $limit = 25;
         $count = 0;
         $cur_page = 1;
         $num_links = 8;
