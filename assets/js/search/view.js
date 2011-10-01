@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    // TABLSE SORTER
+    // TABLSE SORTER     
 
     $("#polasci_tbl").tablesorter({
 
