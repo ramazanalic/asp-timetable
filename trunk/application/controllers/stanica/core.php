@@ -20,6 +20,7 @@ class Core extends navigator
     }
     
     function ajax_ac_complete(){
+        header('Content-Type: text/javascript; charset=UTF-8');
         $this->load->model('polazak/polazak_m', 'polazak'); 
         echo json_encode(array('html' => $this->polazak->listaj_stanice()));
     }
