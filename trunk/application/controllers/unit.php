@@ -41,13 +41,13 @@ class Unit extends navigator
         $this->db->query($query2);
         $this->db->query($query3);
         $this->db->query($query4);
-        $this->db->query($query5);
+        $this->db->query($query5); 
     }
 
     function _getXML($fname)
     {
 
-        $this->trancuate();
+        //$this->trancuate();
 
         $filename = $fname;
         $xmlfile="./assets/xml/".$filename; 
@@ -56,8 +56,8 @@ class Unit extends navigator
         $this->load->library('simplexml');  
         $xmlData = $this->simplexml->xml_parse($xmlRaw);
 
-        $this->getPrevoznik($xmlData);
-        $this->getStanica($xmlData);
+        //$this->getPrevoznik($xmlData);
+        //$this->getStanica($xmlData);
         $this->getPolazak($xmlData);
 
     }
@@ -170,7 +170,7 @@ class Unit extends navigator
     *  
     *  p = peridiocni polazaka na svakih n dana
     *  d = dnevni polazaka svakim danom
-    *  o = polasci odredjenim danima (ponedjeljak, utorak, pretak...)
+    *  o = polasci odredjenim danima (ponedjeljak, utorak, petak...)
     * 
     */
 
@@ -216,6 +216,7 @@ class Unit extends navigator
                 $dnevni = NULL;
                 $odredjenidani = NULL;
 
+
                 if(isset($row['vaziod'])) $prvipolazak = strtotime($row['vaziod']);
                 if(isset($row['vazido'])) $zadnjipolazak = strtotime($row['vazido']);
                 if(isset($row['vrijemepolaska'])) $vrijemepolaska = strtotime("01.01.2011 ".$row['vrijemepolaska']);
@@ -241,7 +242,7 @@ class Unit extends navigator
 
                                 $odredjenidani = TRUE;
 
-                            }
+                            }else echo 'erro tip polaska';
                 }
 
                 $prevoznik = $this->getPrevoznikID($prevoznik);
@@ -263,22 +264,28 @@ class Unit extends navigator
 
 
                 $this->db->insert('polazak',$data);
-                // $last_id = 111;
 
                 $counter++;
 
                 $last_id =   $this->db->insert_id(); 
 
+                //echo 'odredjenidani-'.$odredjenidani.'<br />';
+
                 //Unesi odredjene dane polaska
                 if($odredjenidani){
-                    foreach( $row['DANI'] as $dan) {  
 
-                        foreach($dan as $value){
-                            $this->db->insert('danipolaska',array('polazak_id' =>  $last_id , 'dan' => strtolower($value)));
-                        }
+                    if(count($row['DANI'])==1){
+                        $this->db->insert('danipolaska',array('polazak_id' =>  $last_id , 'dan' => strtolower($row['DANI']['dan'][0])));    
+                    }else{
+                        foreach( $row['DANI'] as $dan) {  
 
+                            foreach($dan as $value){
+                                $this->db->insert('danipolaska',array('polazak_id' =>  $last_id , 'dan' => strtolower($value)));
+                            } 
 
-                    }  
+                        } 
+                    }
+
                 } 
 
                 $printpp = '';
@@ -337,7 +344,7 @@ class Unit extends navigator
                         'polazak_id' =>   $last_id 
                         );
 
-                        $this->db->insert('stopstanica',$stop_stanica);
+                        //$this->db->insert('stopstanica',$stop_stanica);
                         $counter2++;
 
                         $result.='<TABLE><TR>';
