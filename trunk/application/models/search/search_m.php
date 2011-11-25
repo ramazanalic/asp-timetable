@@ -16,7 +16,7 @@
         function search($from,$view,$baseurl){
 
             /* Paging */
-            $limit = 25;
+            $limit = 100;
             $count = 0;
             $cur_page = 1;
             $num_links = 2;
@@ -148,14 +148,34 @@
 
             $res1 = $this->db->order_by('vrijemepolaska', 'asc')->get('polazak')->result_array();
 
-            $this->firephp->fb($this->db->last_query());
+            //$this->firephp->fb($this->db->last_query());
 
             foreach($res1 as $rs1){
 
 
-                /* Za svaki polazak listaj stop stanice koje ukljucuju polaznu stanicu */
+                /************************************************************* 
+                *  Za svaki polazak listaj stop stanice koje ukljucuju polaznu stanicu
+                *************************************************************/
 
                 $id_ili_false = $this->da_li_ima_ovaj_polazak_ovim_redosledom($polazna_id, $dolazna_id, $rs1['id']);
+
+                /************************************************************* 
+                *  Da li ima polazak određenim danom
+                *************************************************************/
+
+                if(($id_ili_false != FALSE)&&($rs1['tippolaska']=='o')){ 
+                    
+                    $danasnjidan = $this->translateDays(date("l",time()));
+                    $dan = 'Subota';
+                    $ima_li_odredjenim_danom = $this->da_li_ima_ovaj_polazak_ovim_danom($id_ili_false, $dan);
+                    if($ima_li_odredjenim_danom==TRUE){
+                       $ima_li_odredjenim_danom = TRUE; 
+                    }else{
+                       $id_ili_false = FALSE; 
+                    }
+                    
+
+                }
 
                 if($id_ili_false != FALSE){
                     $lista_polazaka[] = $id_ili_false;  
@@ -220,7 +240,16 @@
             } else RETURN FALSE;
         }
 
+        function da_li_ima_ovaj_polazak_ovim_danom($id, $dan){
 
+              $r = $this->db->get_where('danipolaska', array('polazak_id' => $id, 'dan' => $dan))->result_array();
+              if(count($r)>0){
+                  return TRUE;
+              }else{
+                  RETURN FALSE;
+              }
+              
+        }
 
 
 
@@ -294,5 +323,19 @@
             }
         }
 
+
+        function translateDays($dayEng){
+
+            switch ( $dayEng ){
+                case 'Monday': return 'Ponedjeljak'; break;
+                case 'Tuesday': return 'Utorak'; break;
+                case 'Wednesday': return 'Srijeda'; break;
+                case 'Thursday': return 'Cetvrtak'; break;
+                case 'Friday': return 'Petak'; break;
+                case 'Saturday': return 'Subota'; break;
+                case 'Sunday': return 'Nedjelja'; break;
+            }
+
+        }
     }
 ?>
