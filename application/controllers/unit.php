@@ -10,6 +10,26 @@ class Unit extends navigator
     }
 
 
+    function timetest(){
+        $timestamp = time();
+        $datum = $this->translateDays(date("l",$timestamp));
+        echo "Current day on this server is $datum <br>\n";
+    }
+    
+    function translateDays($dayEng){
+        
+        switch ( $dayEng ){
+            case 'Monday': return 'Ponedjeljak'; break;
+            case 'Tuesday': return 'Utorak'; break;
+            case 'Wednesday': return 'Srijeda'; break;
+            case 'Thursday': return 'Cetvrtak'; break;
+            case 'Friday': return 'Petak'; break;
+            case 'Saturday': return 'Subota'; break;
+            case 'Sunday': return 'Nedjelja'; break;
+        }
+        
+    }
+
     function index()
     {
         //load the parser library
@@ -269,8 +289,8 @@ class Unit extends navigator
                 if($odredjenidani){
 
                     //echo '<br /><br />Polazak '.$pocetnastanica.' - '.$zadnjastanica.' ide danima:<br />';
-                    
-                    
+
+
                     if(count($polazak['DANI']['dan'])==1){
                         $this->db->insert('danipolaska',array('polazak_id' =>  $last_id , 'dan' => strtolower($polazak['DANI']['dan'])));
                         //echo strtolower($polazak['DANI']['dan']);    
@@ -324,7 +344,7 @@ class Unit extends navigator
                 }
             }
         }
-        
+
         echo 'Usjesna akcija.';
     }
 
