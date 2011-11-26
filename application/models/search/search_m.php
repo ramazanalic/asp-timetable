@@ -4,7 +4,8 @@
 
         function __construct()
         {
-            parent::__construct(); 
+            parent::__construct();
+            date_default_timezone_set ('Europe/Belgrade');  
         }
 
         var $errors = '';
@@ -164,16 +165,17 @@
                 *************************************************************/
 
                 if(($id_ili_false != FALSE)&&($rs1['tippolaska']=='o')){ 
-                    
+
                     $danasnjidan = $this->translateDays(date("l",time()));
                     $dan = 'Subota';
+                    $dan = $danasnjidan;
                     $ima_li_odredjenim_danom = $this->da_li_ima_ovaj_polazak_ovim_danom($id_ili_false, $dan);
                     if($ima_li_odredjenim_danom==TRUE){
-                       $ima_li_odredjenim_danom = TRUE; 
+                        $ima_li_odredjenim_danom = TRUE; 
                     }else{
-                       $id_ili_false = FALSE; 
+                        $id_ili_false = FALSE; 
                     }
-                    
+
 
                 }
 
@@ -242,13 +244,13 @@
 
         function da_li_ima_ovaj_polazak_ovim_danom($id, $dan){
 
-              $r = $this->db->get_where('danipolaska', array('polazak_id' => $id, 'dan' => $dan))->result_array();
-              if(count($r)>0){
-                  return TRUE;
-              }else{
-                  RETURN FALSE;
-              }
-              
+            $r = $this->db->get_where('danipolaska', array('polazak_id' => $id, 'dan' => $dan))->result_array();
+            if(count($r)>0){
+                return TRUE;
+            }else{
+                RETURN FALSE;
+            }
+
         }
 
 
@@ -336,6 +338,22 @@
                 case 'Sunday': return 'Nedjelja'; break;
             }
 
+        }
+
+        function loop_every_day(){
+
+            date_default_timezone_set ( 'Europe/Belgrade');
+
+            $dayCount = 0;
+
+            for($i=1; $i<=365; $i++){
+
+                if ($dayCount++ % 2 == 1 ){
+                    echo date("M d Y", strtotime('2004-01-26 +'.$i.' days')).'<br>';    
+                }
+
+
+            }
         }
     }
 ?>
