@@ -6,7 +6,8 @@ class Unit extends navigator
 
     function __construct()
     {
-        parent::__construct(); 
+        parent::__construct();
+        date_default_timezone_set ('Europe/Belgrade');  
     }
 
 
@@ -15,9 +16,9 @@ class Unit extends navigator
         $datum = $this->translateDays(date("l",$timestamp));
         echo "Current day on this server is $datum <br>\n";
     }
-    
+
     function translateDays($dayEng){
-        
+
         switch ( $dayEng ){
             case 'Monday': return 'Ponedjeljak'; break;
             case 'Tuesday': return 'Utorak'; break;
@@ -27,7 +28,7 @@ class Unit extends navigator
             case 'Saturday': return 'Subota'; break;
             case 'Sunday': return 'Nedjelja'; break;
         }
-        
+
     }
 
     function index()
@@ -589,6 +590,20 @@ class Unit extends navigator
             echo date("M d Y", strtotime('+'.$i.' Monday')).'<br>';
         }
 
+    }
+
+    function loop_every_day(){
+
+        $dayCount = 0;
+
+        for($i=1; $i<=365; $i++){
+
+            if ($dayCount++ % 2 == 1 ){
+                echo date("M d Y", strtotime('+'.$i.' days')).'<br>';    
+            }
+
+
+        }
     }
 
 }
