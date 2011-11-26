@@ -171,11 +171,32 @@
                     $dan = $danasnjidan;
                     $ima_li_odredjenim_danom = $this->da_li_ima_ovaj_polazak_ovim_danom($id_ili_false, $dan);
                     if($ima_li_odredjenim_danom==TRUE){
-                        $ima_li_odredjenim_danom = TRUE; 
+                        //$ima_li_odredjenim_danom = TRUE; 
                     }else{
                         $id_ili_false = FALSE; 
                     }
 
+                }
+
+                //$id_ili_false = FALSE;
+
+                /************************************************************* 
+                *  Da li ima periodicni polazak
+                *************************************************************/
+
+                if(($id_ili_false != FALSE)&&($rs1['tippolaska']=='p')){
+
+                    $datum_poredjenja = '';
+                    $danasnjidatum = date("M d Y", strtotime('11-9-2011'));
+                    $prvipolazak = date("M d Y", $rs1['prvipolazak']);
+
+                    $ima_li_periodicni_polazak = $this->da_li_ima_ovaj_polazak_periodicno_na_svakih($rs1['periodicni'], $prvipolazak, $danasnjidatum, $rs1['id']);
+
+                    if($ima_li_periodicni_polazak==TRUE){
+                        //$ima_li_odredjenim_danom = TRUE; 
+                    }else{
+                        $id_ili_false = FALSE; 
+                    }
 
                 }
 
@@ -253,10 +274,65 @@
 
         }
 
+        function da_li_ima_ovaj_polazak_periodicno_na_svakih($broj_ponavljanja, $prvi_polazak, $datum_poredjenja, $id){
+
+            $html = ''; 
+            /*$html .= 'id:'.$id."<br />";
+            $html .= 'brojponavljanja:'.$broj_ponavljanja."<br />";
+            $html .= 'prvipolazak:'.$prvi_polazak."<br />";
+            $html .= 'datum_poredjenja:'.$datum_poredjenja."<br />";*/
+            
+            /************************************************************* 
+            *  Da li je prvi polazak danas
+            *************************************************************/
+
+            $comp = strtotime($datum_poredjenja)-strtotime($prvi_polazak);
+            
+            if($comp == '0') {
+                
+                $n_dan = date("M d Y", strtotime($prvi_polazak));                    
+
+                $html .= 'n_dan:'.$n_dan.'<br />';
+                
+                /*echo $html; 
+                echo '*********************************<br />'; */
+                
+                return TRUE;
+
+            }
 
 
-        /*UNIT TESTING*/
+            date_default_timezone_set ( 'Europe/Belgrade' );
 
+            $dayCount = 0; 
+
+            for($i=1; $i<=365; $i++){
+
+                if($dayCount++ % $broj_ponavljanja == 1 ){
+
+                    $n_dan = date("M d Y", strtotime($prvi_polazak.' +'.$i.' days'));                    
+
+                    //$html .= 'n_dan:'.$n_dan.'<br />';
+
+                    if($n_dan == $datum_poredjenja){
+
+                        /*echo $html; 
+                        echo '*********************************<br />';*/ 
+
+                        return TRUE;
+
+                    } 
+
+                } 
+
+            }
+
+            return FALSE;
+
+        }
+
+
+        /*UNIT TESTING*/   
 
         function unit_func_search($polazna,$dolazna){
 
@@ -290,25 +366,9 @@
                             echo '<td '.$style2.'>'.$row['id'].'</td>';
                             echo '<td '.$style2.'>';
 
-                            /*$date = date('H:i',$row['vrijemepolaska']);
-
-                            $date="01.01.2011 ".$date; 
-
-
-                            $my_date = strtotime($date); 
-
-
-                            $this->db->where('id', $row['id']);
-                            $this->db->update('stopstanica', array('vrijemepolaska'=>$my_date));*/ 
-
-
-
-                            echo  date('d.m.Y H:i',$row['vrijemepolaska']);
+                            echo  $row['tippolaska'];
 
                             echo '</td>';
-                            /*echo '<td>'.date($row['vrijemepolaska']).'</td>';
-                            echo '<td>'.$date.'</td>';
-                            echo '<td>'.date('H:i',$row['vrijemepolaska']).'</td>'; */
 
                             echo '</tr>';
 
@@ -323,8 +383,7 @@
             }else{
                 echo 'NO RESULTS';
             }
-        }
-
+        }       
 
         function translateDays($dayEng){
 
@@ -342,18 +401,18 @@
 
         function loop_every_day(){
 
-            date_default_timezone_set ( 'Europe/Belgrade');
+            date_default_timezone_set ( 'Europe/Belgrade' );
 
             $dayCount = 0;
 
             for($i=1; $i<=365; $i++){
 
                 if ($dayCount++ % 2 == 1 ){
-                    echo date("M d Y", strtotime('2004-01-26 +'.$i.' days')).'<br>';    
-                }
-
+                    echo date("M d Y", strtotime('+'.$i.' days')).'<br>';    
+                }   
 
             }
+
         }
     }
 ?>
