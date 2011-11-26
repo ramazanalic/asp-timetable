@@ -10,17 +10,21 @@
                 }
 
         ?></td> 
-        <td style="font-size: 11px; font-weight: bold;">
-
+        <td>
             <?
+                $tip_polaska ='';
                 switch($polazak['tippolaska']){
-                    case 'd': echo 'Dnevni'; break; 
-                    case 'p': echo 'Periodični'; break; 
-                    case 'o': echo 'Određenim danima'; break; 
+                    case 'd': $tip_polaska = 'Dnevni'; break; 
+                    case 'p': $tip_polaska = 'Periodični'; break; 
+                    case 'o': $tip_polaska = 'Određenim danima'; break; 
                 }
-                echo '&nbsp;';
+
             ?>
-            
+
+            <a href="javascript:" style="color: #A55129; font-weight: bold; font-size: 11px; text-decoration: none;" class="polazak_tip" id="<?=$polazak['id'].'-'.$polazak['tippolaska']?>">
+                <?=$tip_polaska.'&nbsp;'; ?>
+            </a>
+
         </td>
         <td> <?=$polazak['naziv_prevoznika']. ' ' .$polazak['grad_prevoznika']; ?> </td>                                  
         <td style="text-align: center"><?=$polazak['peron']; if($polazak['peron']=='')echo '&nbsp;'; ?></td>
