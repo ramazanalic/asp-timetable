@@ -49,6 +49,34 @@
 
         }
 
+        function pogledaj_detalje_polaska(){
+
+            switch ($_POST['tip_polaska']){
+                case 'o':
+
+                    $data['res'] = $this->db->get_where('danipolaska', array('polazak_id' => $_POST['id_polaska']))->result_array();
+
+                    return $this->load->view('polazak/pogledaj_detalje_polaska_oderedjenimdanima', $data, TRUE);
+
+                    break;
+
+                case 'p':
+                
+                    $data['res'] = $this->db->get_where('polazak', array('id' => $_POST['id_polaska']))->result_array();
+                    
+                    return $this->load->view('polazak/pogledaj_detalje_polaska_periodicno', $data, TRUE);
+                
+                    break;
+                    
+                    case 'd':
+                    return '<table class="tablesorter" id="stop_stanice_tbl" cellpadding="0" cellspacing="0" width="100%"><thead><tr class="header-row"><th width="140px">Dani polaska</th><th width="20"><a href="javascript:" id="close_stop" ><img src="assets/img/backgnds/x.png" style="margin-top: 3px;" /></a></th></tr></thead><tbody><tr><td>Polazi svakim danom.</td><td>&nbsp;</td></tr><tr id="lst_odd"><td>&nbsp;</td><td>&nbsp;</td></tr></tbody> ';
+                    break;
+            }
+
+
+
+        }
+
         function listaj_stop_stanice($polazak_id){
             $this->db->select('stopstanica.*, stanica.naziv as naziv_stanice', FALSE);
             $this->db->join('stanica', 'stanica.id = stopstanica.stanica_id ');
@@ -367,98 +395,98 @@
 
         function search(){
 
-            if($this->validate_search()==TRUE){
+        if($this->validate_search()==TRUE){
 
-                $polazna_id = $this->get_stanica_id($_GET['srch_polazak']);
-                $dolazna_id = $this->get_stanica_id($_GET['srch_dolazak']);
+        $polazna_id = $this->get_stanica_id($_GET['srch_polazak']);
+        $dolazna_id = $this->get_stanica_id($_GET['srch_dolazak']);
 
-                $polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id);
+        $polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id);
 
-                if(count($polasci_ids)>0){
-                    
-                    $html = '';
-                    
-                    foreach($polasci_ids as $value){
-                        $html .= $this->load->view('polazak/search', array('polasci' => $this->listaj_podatke_stanice_sa_id_polaska($value)), TRUE);
-                    }
+        if(count($polasci_ids)>0){
 
-                    echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> $html)) . ');';
-                    
-                }else{
-                    echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> '<tr class="odd"><td colspan="9" style="text-align: center;"><b>NEMA POLAZAKA ZA TRAŽENU RUTU</b></td></tr>.')) . ');';   
-                }
+        $html = '';
+
+        foreach($polasci_ids as $value){
+        $html .= $this->load->view('polazak/search', array('polasci' => $this->listaj_podatke_stanice_sa_id_polaska($value)), TRUE);
+        }
+
+        echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> $html)) . ');';
+
+        }else{
+        echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> '<tr class="odd"><td colspan="9" style="text-align: center;"><b>NEMA POLAZAKA ZA TRAŽENU RUTU</b></td></tr>.')) . ');';   
+        }
 
 
 
-            } else{
+        } else{
 
-                echo $_GET['jsoncall'] . '(' . json_encode(array('success' => false, 'html'=>$this->errors)) . ');';
+        echo $_GET['jsoncall'] . '(' . json_encode(array('success' => false, 'html'=>$this->errors)) . ');';
 
-            }
+        }
 
         }
 
         function validate_search() {
 
-            $_POST = $_GET;
+        $_POST = $_GET;
 
-            $this->form_validation->set_rules('srch_polazak','unesite <b>polaznu stanicu</b>','required|provjeri_stanicu[srch_polazak]');
+        $this->form_validation->set_rules('srch_polazak','unesite <b>polaznu stanicu</b>','required|provjeri_stanicu[srch_polazak]');
 
-            $this->form_validation->set_rules('srch_dolazak','unesite <b>dolaznu stanicu</b>','required|provjeri_stanicu[srch_dolazak]');
+        $this->form_validation->set_rules('srch_dolazak','unesite <b>dolaznu stanicu</b>','required|provjeri_stanicu[srch_dolazak]');
 
-            $this->form_validation->set_message('required', 'Molimo %s.');
+        $this->form_validation->set_message('required', 'Molimo %s.');
 
-            if($this->form_validation->run()== TRUE) {
-                return TRUE;
-            }else {
-                $this->errors = validation_errors(' ', '<br />');
-                return FALSE;
-            }
+        if($this->form_validation->run()== TRUE) {
+        return TRUE;
+        }else {
+        $this->errors = validation_errors(' ', '<br />');
+        return FALSE;
+        }
         }
 
         function get_stanica_id($name){
 
-            $res = $this->db->get_where('stanica',array('naziv' => $name))->row_array();
+        $res = $this->db->get_where('stanica',array('naziv' => $name))->row_array();
 
-            return $res['id'];
+        return $res['id'];
 
         }
 
         function listaj_podatke_stanice_sa_id_polaska($polazak_id){
 
-            $this->db->select('polazak.*, prevoznik.naziv as naziv_prevoznika, prevoznik.grad as grad_prevoznika', FALSE);
+        $this->db->select('polazak.*, prevoznik.naziv as naziv_prevoznika, prevoznik.grad as grad_prevoznika', FALSE);
 
-            $this->db->join('prevoznik', 'prevoznik.id = polazak.prevoznik_id ');
+        $this->db->join('prevoznik', 'prevoznik.id = polazak.prevoznik_id ');
 
-            $this->db->where(array('polazak.id' => $polazak_id));
+        $this->db->where(array('polazak.id' => $polazak_id));
 
-            return $this->db->get('polazak')->result_array(); 
+        return $this->db->get('polazak')->result_array(); 
 
         }
 
         function daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id){  //return Array
 
 
-            $lista_polazaka = array();
+        $lista_polazaka = array();
 
 
 
-            $res1 = $this->db->get('polazak')->result_array();
+        $res1 = $this->db->get('polazak')->result_array();
 
-            foreach($res1 as $rs1){
-
-
-
-                $id_ili_false = $this->da_li_ima_ovaj_polazak_ovim_redosledom($polazna_id, $dolazna_id, $rs1['id']);
-
-                if($id_ili_false != FALSE){
-                    $lista_polazaka[] = $id_ili_false;  
-                }
+        foreach($res1 as $rs1){
 
 
-            }
 
-            RETURN $lista_polazaka;
+        $id_ili_false = $this->da_li_ima_ovaj_polazak_ovim_redosledom($polazna_id, $dolazna_id, $rs1['id']);
+
+        if($id_ili_false != FALSE){
+        $lista_polazaka[] = $id_ili_false;  
+        }
+
+
+        }
+
+        RETURN $lista_polazaka;
 
         }
 
@@ -467,42 +495,42 @@
 
 
 
-            $this->db->where(array('stanica_id' => $polazna_id , 'polazak_id' => $polazak_id));
-            $this->db->from('stopstanica');
-            $cnt1 = $this->db->count_all_results();
+        $this->db->where(array('stanica_id' => $polazna_id , 'polazak_id' => $polazak_id));
+        $this->db->from('stopstanica');
+        $cnt1 = $this->db->count_all_results();
 
-            if($cnt1 ==0)   RETURN FALSE;
-
-
-
-
-            $res1 = $this->db->get_where('stopstanica', array('stanica_id' => $polazna_id , 'polazak_id' => $polazak_id))->row_array();
-            $id1 = $res1['id'];
+        if($cnt1 ==0)   RETURN FALSE;
 
 
 
 
-            $this->db->where(array('stanica_id' => $dolazna_id , 'polazak_id' => $polazak_id));
-            $this->db->from('stopstanica');
-            $cnt2 = $this->db->count_all_results();
-
-            if($cnt2 ==0)   RETURN FALSE;
+        $res1 = $this->db->get_where('stopstanica', array('stanica_id' => $polazna_id , 'polazak_id' => $polazak_id))->row_array();
+        $id1 = $res1['id'];
 
 
 
-            $res2 = $this->db->get_where('stopstanica', array('stanica_id' => $dolazna_id , 'polazak_id' => $polazak_id))->row_array();
-            $id2 = $res2['id'];
+
+        $this->db->where(array('stanica_id' => $dolazna_id , 'polazak_id' => $polazak_id));
+        $this->db->from('stopstanica');
+        $cnt2 = $this->db->count_all_results();
+
+        if($cnt2 ==0)   RETURN FALSE;
 
 
-            if($id2 > $id1){
 
-                $this->firephp->fb('stopstanicaid-1: '.$id1);
-                $this->firephp->fb('stopstanicaid-2: '.$id2);
-                $this->firephp->fb('id-polaska: '.$polazak_id);
-                $this->firephp->fb('---------------------------');
-                RETURN $polazak_id;
+        $res2 = $this->db->get_where('stopstanica', array('stanica_id' => $dolazna_id , 'polazak_id' => $polazak_id))->row_array();
+        $id2 = $res2['id'];
 
-            } else RETURN FALSE;
+
+        if($id2 > $id1){
+
+        $this->firephp->fb('stopstanicaid-1: '.$id1);
+        $this->firephp->fb('stopstanicaid-2: '.$id2);
+        $this->firephp->fb('id-polaska: '.$polazak_id);
+        $this->firephp->fb('---------------------------');
+        RETURN $polazak_id;
+
+        } else RETURN FALSE;
         }
 
         */
