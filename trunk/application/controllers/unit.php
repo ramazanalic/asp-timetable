@@ -81,8 +81,8 @@ class Unit extends navigator
         $this->load->library('simplexml');  
         $xmlData = $this->simplexml->xml_parse($xmlRaw);
 
-        //$this->getPrevoznik($xmlData);
-        //$this->getStanica($xmlData);
+        $this->getPrevoznik($xmlData);
+        $this->getStanica($xmlData);
         //$this->getPolazak($xmlData);
         $this->polasci($xmlData);
 
