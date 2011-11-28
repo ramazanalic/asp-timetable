@@ -17,7 +17,7 @@
         function search($from,$view,$baseurl){
 
             /* Paging */
-            $limit = 100;
+            $limit = 25;
             $count = 0;
             $cur_page = 1;
             $num_links = 2;

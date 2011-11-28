@@ -102,6 +102,10 @@ class Core extends navigator
     function pogledaj_stop_stanice(){        
         echo json_encode(array('html' => $this->polazak->pogledaj_stop_stanice(), TRUE));
     }
+    
+    function pogledaj_detalje_polaska(){
+        echo json_encode(array('html' => $this->polazak->pogledaj_detalje_polaska(), TRUE));
+    }
 
     function search($from=0){
         $this->search->search($from,'polazak/search',base_url().'polazak/core/search');
