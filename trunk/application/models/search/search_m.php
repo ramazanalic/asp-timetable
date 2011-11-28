@@ -27,11 +27,26 @@
                 $polazna_id = $this->get_stanica_id($_GET['srch_polazak']);
                 $dolazna_id = $this->get_stanica_id($_GET['srch_dolazak']);
 
-                $polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id);
+                $polasci_ids = array();
+                $svi_polasci_ids = array();
+                $danasnjidan = TRUE;
 
-                if(count($polasci_ids)>0){
+                $polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, FALSE); 
+
+                if(count($polasci_ids)==0){
+                    $svi_polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, TRUE); 
+                    $danasnjidan = FALSE;   
+                }
+
+
+                if((count($polasci_ids)>0)||(count($svi_polasci_ids)>0)){
 
                     $count = count($polasci_ids);
+                    if(count($polasci_ids)==0){
+
+                        $count = count($svi_polasci_ids);  
+
+                    }
 
                     $total_page = ceil($count/$limit);                    
 
@@ -43,7 +58,14 @@
                     $this->firephp->fb('i: '.$i);
                     $this->firephp->fb('limit: '.($from+$limit));
 
-                    foreach($polasci_ids as $value){
+                    if(count($polasci_ids)==0){
+                        $p_ids = $svi_polasci_ids;    
+                    }else{
+                        $p_ids = $polasci_ids;
+                    }
+
+
+                    foreach($p_ids as $value){
 
                         if(($i<($from+$limit))&&($i>=$j)){
 
@@ -78,7 +100,7 @@
 
                     $paginator = $this->pagination->create_links(); 
 
-                    echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> $html, 'paginator' => $paginator, 'count'=> $count)) . ');';
+                    echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> $html, 'paginator' => $paginator, 'count'=> $count, 'danasnjidan'=>$danasnjidan )) . ');';
 
                 }else{
                     $paginator = '';
@@ -139,7 +161,7 @@
 
         }
 
-        function daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id){  //return Array
+        function daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, $svi_polasci=FALSE){  //return Array
 
 
             $lista_polazaka = array();
@@ -173,7 +195,12 @@
                     if($ima_li_odredjenim_danom==TRUE){
                         //$ima_li_odredjenim_danom = TRUE; 
                     }else{
-                        $id_ili_false = FALSE; 
+                        if(!$svi_polasci){
+
+                            $id_ili_false = FALSE; 
+
+                        }
+
                     }
 
                 }
@@ -195,7 +222,11 @@
                     if($ima_li_periodicni_polazak==TRUE){
                         //$ima_li_odredjenim_danom = TRUE; 
                     }else{
-                        $id_ili_false = FALSE; 
+                        if(!$svi_polasci){
+
+                            $id_ili_false = FALSE; 
+
+                        } 
                     }
 
                 }
@@ -281,22 +312,22 @@
             $html .= 'brojponavljanja:'.$broj_ponavljanja."<br />";
             $html .= 'prvipolazak:'.$prvi_polazak."<br />";
             $html .= 'datum_poredjenja:'.$datum_poredjenja."<br />";*/
-            
+
             /************************************************************* 
             *  Da li je prvi polazak danas
             *************************************************************/
 
             $comp = strtotime($datum_poredjenja)-strtotime($prvi_polazak);
-            
+
             if($comp == '0') {
-                
+
                 $n_dan = date("M d Y", strtotime($prvi_polazak));                    
 
                 $html .= 'n_dan:'.$n_dan.'<br />';
-                
+
                 /*echo $html; 
                 echo '*********************************<br />'; */
-                
+
                 return TRUE;
 
             }
@@ -339,9 +370,19 @@
             $polazna_id = $this->get_stanica_id($polazna);
             $dolazna_id = $this->get_stanica_id($dolazna);
 
-            $polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id);
+            $polasci_ids = array();
+            $svi_polasci_ids = array();
 
-            if(count($polasci_ids)>0){
+            $polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, FALSE); 
+
+            echo 'polasci'.count($polasci_ids);
+
+            if(count($polasci_ids)==0){
+                $svi_polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, TRUE);    
+            }
+
+
+            if((count($polasci_ids)>0)||(count($svi_polasci_ids)>0)){
 
                 $count = count($polasci_ids);
 
@@ -351,8 +392,14 @@
                 $style2 = 'style="border-bottom:1px solid #DEDEDE;border-right:1px solid #DEDEDE; padding:4px"';
 
                 echo '<table '.$style1.' cellpadding=0 cellspacing=0>';
+                $p_ids = array();
+                if(count($polasci_ids)==0){
+                    $p_ids = $svi_polasci_ids;    
+                }else{
+                    $p_ids = $polasci_ids;
+                }
 
-                foreach($polasci_ids as $value){
+                foreach($p_ids as $value){
 
                     $res =  $this->listaj_podatke_stanice_sa_id_polaska($value);
 
