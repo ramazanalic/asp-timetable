@@ -16,6 +16,11 @@
 
         function search($from,$view,$baseurl){
 
+            
+            //$dd = $this->translateDays(date("l",strtotime($_GET['datum'])));  
+            //$dd =date("l",strtotime($_GET['datum']));  
+            //echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'danasnjidan'=>$dd )) . ');';
+            
             /* Paging */
             $limit = 25;
             $count = 0;
@@ -26,15 +31,16 @@
 
                 $polazna_id = $this->get_stanica_id($_GET['srch_polazak']);
                 $dolazna_id = $this->get_stanica_id($_GET['srch_dolazak']);
+                $datum = $_GET['datum'];
 
                 $polasci_ids = array();
                 $svi_polasci_ids = array();
                 $danasnjidan = TRUE;
 
-                $polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, FALSE); 
+                $polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, $datum, FALSE); 
 
                 if(count($polasci_ids)==0){
-                    $svi_polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, TRUE); 
+                    $svi_polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, $datum, TRUE); 
                     $danasnjidan = FALSE;   
                 }
 
@@ -55,9 +61,6 @@
                     $i = 0;
                     $j = $from;
 
-                    $this->firephp->fb('i: '.$i);
-                    $this->firephp->fb('limit: '.($from+$limit));
-
                     if(count($polasci_ids)==0){
                         $p_ids = $svi_polasci_ids;    
                     }else{
@@ -69,7 +72,11 @@
 
                         if(($i<($from+$limit))&&($i>=$j)){
 
-                            $html .= $this->load->view($view, array('polasci' => $this->listaj_podatke_stanice_sa_id_polaska($value)), TRUE);     
+                            $html .= $this->load->view($view, array(
+                                'polasci' => $this->listaj_podatke_stanice_sa_id_polaska($value),
+                                'polazna_vrijeme' => $this->nadji_vrijeme_polaska_za_stanicu($value, $polazna_id),
+                                'dolazna_vrijeme' => $this->nadji_vrijeme_polaska_za_stanicu($value, $dolazna_id)
+                                ), TRUE);     
 
                         }  
 
@@ -99,8 +106,8 @@
                     $this->pagination->initialize($config);
 
                     $paginator = $this->pagination->create_links(); 
-
-                    echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> $html, 'paginator' => $paginator, 'count'=> $count, 'danasnjidan'=>$danasnjidan )) . ');';
+                                                                                                                                                                                                    
+                    echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> $html, 'paginator' => $paginator, 'count'=> $count, 'danasnjidan'=>$danasnjidan, 'trazenidatum' => $this->translateDays(date("l",strtotime($_GET['datum']))), 'trazenidan' => date("d.m.Y",strtotime($_GET['datum'])) )) . ');';
 
                 }else{
                     $paginator = '';
@@ -148,20 +155,56 @@
             return $res['id'];
 
         }
+        
+        function get_stanica_name($id){
+
+            $res = $this->db->get_where('stanica',array('id' => $id))->row_array();
+
+            return $res['naziv'];
+
+        }
 
         function listaj_podatke_stanice_sa_id_polaska($polazak_id){
 
-            $this->db->select('polazak.*, prevoznik.naziv as naziv_prevoznika, prevoznik.grad as grad_prevoznika', FALSE);
+            /*$this->db->select('polazak.*, prevoznik.naziv as naziv_prevoznika, prevoznik.grad as grad_prevoznika', FALSE);
 
             $this->db->join('prevoznik', 'prevoznik.id = polazak.prevoznik_id ');
 
             $this->db->where(array('polazak.id' => $polazak_id));
 
-            return $this->db->get('polazak')->result_array(); 
+            return $this->db->get('polazak')->result_array();*/
+            
+            return  $this->db->get_where('polazak', array('polazak.id' => $polazak_id))->result_array();
+
+        }
+        
+        function nadji_vrijeme_polaska_za_stanicu($polazak_id, $stanica_id){
+            
+            $res = $this->db->get_where('stopstanica', array('polazak_id' => $polazak_id))->result_array();
+            
+            $c = 0;
+            $tot = count($res);
+            foreach($res as $r){
+                
+                $c++;
+                
+                if ($r['stanica_id']==$stanica_id){
+                    
+                    //return $this->get_stanica_name($r['stanica_id']);
+                    if($tot == $c){
+                        return $r['vrijemedolaska'];    
+                    }else{
+                        //return $c;
+                        return $r['vrijemepolaska'];
+                    }
+                    
+                    
+                }
+            }
 
         }
 
-        function daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, $svi_polasci=FALSE){  //return Array
+        function daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, $datum, $svi_polasci=FALSE){  //return Array
 
 
             $lista_polazaka = array();
@@ -171,7 +214,8 @@
 
             $res1 = $this->db->order_by('vrijemepolaska', 'asc')->get('polazak')->result_array();
 
-            //$this->firephp->fb($this->db->last_query());
+            //echo 'DATUM:'.$datum.'<br />';
+            $conv_date = strtotime($datum);
 
             foreach($res1 as $rs1){
 
@@ -182,15 +226,18 @@
 
                 $id_ili_false = $this->da_li_ima_ovaj_polazak_ovim_redosledom($polazna_id, $dolazna_id, $rs1['id']);
 
+                
                 /************************************************************* 
                 *  Da li ima polazak određenim danom
                 *************************************************************/
 
                 if(($id_ili_false != FALSE)&&($rs1['tippolaska']=='o')){ 
-
-                    $danasnjidan = $this->translateDays(date("l",time()));
-                    $dan = 'Subota';
+                    
+                    
+                    $danasnjidan = $this->translateDays(date("l",$conv_date));
+                    //$dan = 'Subota';
                     $dan = $danasnjidan;
+                    //echo $dan;
                     $ima_li_odredjenim_danom = $this->da_li_ima_ovaj_polazak_ovim_danom($id_ili_false, $dan);
                     if($ima_li_odredjenim_danom==TRUE){
                         //$ima_li_odredjenim_danom = TRUE; 
@@ -214,7 +261,7 @@
                 if(($id_ili_false != FALSE)&&($rs1['tippolaska']=='p')){
 
                     $datum_poredjenja = '';
-                    $danasnjidatum = date("M d Y", strtotime('11-9-2011'));
+                    $danasnjidatum = date("M d Y", $conv_date);
                     $prvipolazak = date("M d Y", $rs1['prvipolazak']);
 
                     $ima_li_periodicni_polazak = $this->da_li_ima_ovaj_polazak_periodicno_na_svakih($rs1['periodicni'], $prvipolazak, $danasnjidatum, $rs1['id']);
@@ -365,7 +412,7 @@
 
         /*UNIT TESTING*/   
 
-        function unit_func_search($polazna,$dolazna){
+        function unit_func_search($polazna,$dolazna, $datum){
 
             $polazna_id = $this->get_stanica_id($polazna);
             $dolazna_id = $this->get_stanica_id($dolazna);
@@ -373,12 +420,12 @@
             $polasci_ids = array();
             $svi_polasci_ids = array();
 
-            $polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, FALSE); 
+            $polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, $datum, FALSE); 
 
-            echo 'polasci'.count($polasci_ids);
+            //echo 'polasci'.count($polasci_ids);
 
             if(count($polasci_ids)==0){
-                $svi_polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, TRUE);    
+                $svi_polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, $datum, TRUE);    
             }
 
 
