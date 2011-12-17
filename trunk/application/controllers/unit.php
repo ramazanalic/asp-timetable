@@ -4,10 +4,41 @@ require_once($application_folder."/controllers/navigator.php");
 class Unit extends navigator 
 {
 
+
+    /************************************************************* 
+    *PROMJENI SAMO STRING U DOLASCI DA BI UNOSIO DOLASKE
+    *************************************************************/ 
+
+    var $TYPE = 'dolasci';
+    var $XML;
+    var $prefix; 
+    var $sufix; 
+
     function __construct()
     {
         parent::__construct();
-        date_default_timezone_set ('Europe/Belgrade');  
+        date_default_timezone_set ('Europe/Belgrade');
+
+        echo $this->TYPE;
+        switch ($this->TYPE) {
+
+            case 'polasci':
+
+                $this->XML = 'rvP.xml';
+                $this->sufix = '';
+                $this->prefix = 'p';
+
+                break;
+
+            case 'dolasci':
+
+                $this->XML = 'rvD.xml';
+                $this->sufix = '_d';
+                $this->prefix = 'd';
+
+                break;
+        }
+
     }
 
 
@@ -33,8 +64,6 @@ class Unit extends navigator
 
     function index()
     {
-        //load the parser library
-        $this->load->library('parser');
 
         echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> ';
         echo '<html><head>';
@@ -45,33 +74,15 @@ class Unit extends navigator
         echo '<title>Transfer podataka u bazu</title>';
         echo '</head><body>';
 
-        $this->_getXML('rvP.xml');
+        echo $this->XML;
+        $this->_getXML($this->XML);
 
         echo '</body></html>';
 
     }
 
-    function trancuate(){
-        $query1 = 'TRUNCATE `danipolaska`';
-        $query2 = 'DELETE FROM `polazak`';        
-        $query4 = 'TRUNCATE `stanica`';
-        $query5 = 'TRUNCATE `stopstanica`';
-        $query6 = 'DELETE FROM `danipolaska`'; 
-
-        $this->db->query($query6);
-        $this->db->query($query5);
-        $this->db->query($query2);
-
-        /*$this->db->query($query1);        
-        $this->db->query($query3);
-        $this->db->query($query4);
-        $this->db->query($query5);*/ 
-    }
-
     function _getXML($fname)
     {
-
-        $this->trancuate();
 
         $filename = $fname;
         $xmlfile="./assets/xml/".$filename; 
@@ -80,62 +91,10 @@ class Unit extends navigator
         $this->load->library('simplexml');  
         $xmlData = $this->simplexml->xml_parse($xmlRaw);
 
-        //$this->getPrevoznik($xmlData);
         $this->getStanica($xmlData);
-        //$this->getPolazak($xmlData);
         $this->polasci($xmlData);
 
-    }
-
-    function getPrevoznik($xmlData){
-
-        $counter = 0;
-
-        $html = "";
-
-        $html.= '<table cellpadding="0" cellspacing="0" border="1">';
-        $html.= '<thead>';
-        $html.= '<tr>';
-        $html.= '<td><b>NAZIV</b></td>';
-        $html.= '<td><b>GRAD</b></td>';
-        $html.= '</tr>';
-        $html.= '</thead>';
-        $html.= '<tbody>';
-
-        $result = '';
-
-        foreach($xmlData['LISTA_PREVOZNIKA'] as $prevoznik)
-        {
-            foreach( $prevoznik as $row) {
-
-                $result .= '<tr>';
-                $result .= '<td>'.$row['naziv'].'</td>';
-                $result .= '<td>'.$row['grad'].'</td>';
-                $result .= '</tr>';
-
-                $data = array(
-                'naziv' => $row['naziv'] ,
-                'grad' => $row['grad']
-                );
-
-
-                $this->db->insert('prevoznik',$data);
-
-                $counter++;
-
-            }
-
-        }  
-
-
-        $html.= $result;
-        $html.= '</tbody>';
-
-        echo $html;        
-
-        echo 'TABLE "<b>PREVOZNK</b>" - '.$counter. ' rows inserted';
-
-    }    
+    }  
 
     function getStanica($xmlData){
 
@@ -168,7 +127,7 @@ class Unit extends navigator
                 );
 
 
-                $this->db->insert('stanica',$data);
+                $this->db->insert('stanica'.$this->sufix,$data);
 
             } 
 
@@ -183,7 +142,7 @@ class Unit extends navigator
 
         echo "<br /><br />"; 
 
-        echo 'TABLE "<b>STANICA</b>" - '.$i. ' rows inserted'; 
+        echo 'TABLE "<b>STANICA'.$this->sufix.'</b>" - '.$i. ' rows inserted'; 
 
 
 
@@ -274,7 +233,7 @@ class Unit extends navigator
                 /************************************************************* 
                 *  Unesi polazak i uzmi id
                 *************************************************************/
-                $this->db->insert('polazak',$data);
+                $this->db->insert($this->prefix.'olazak',$data);
 
                 $last_id = $this->db->insert_id(); 
 
@@ -287,13 +246,13 @@ class Unit extends navigator
 
 
                     if(count($polazak['DANI']['dan'])==1){
-                        $this->db->insert('danipolaska',array('polazak_id' =>  $last_id , 'dan' => strtolower($polazak['DANI']['dan'])));
+                        $this->db->insert('danipolaska'.$this->sufix, array($this->prefix.'olazak_id' =>  $last_id , 'dan' => strtolower($polazak['DANI']['dan'])));
                         //echo strtolower($polazak['DANI']['dan']);    
                     }else{
                         foreach( $polazak['DANI'] as $dan) {  
 
                             foreach($dan as $value){
-                                $this->db->insert('danipolaska',array('polazak_id' =>  $last_id , 'dan' => strtolower($value)));
+                                $this->db->insert('danipolaska'.$this->sufix, array($this->prefix.'olazak_id' =>  $last_id , 'dan' => strtolower($value)));
                                 //echo strtolower($value).'<br />';
                             } 
 
@@ -325,14 +284,14 @@ class Unit extends navigator
                         if(isset($row['km'])) $km = $row['km'];
 
                         $stop_stanica = array(
-                        'stanica_id' =>  $stanica_id ,
+                        'stanica'.$this->sufix.'_id' =>  $stanica_id ,
                         'vrijemepolaska' =>  $vrijemepolaska_stop ,
                         'vrijemedolaska' =>  $vrijemedolaska_stop ,
                         'km' =>  $km ,
-                        'polazak_id' =>   $last_id 
+                        $this->prefix.'olazak_id' =>   $last_id 
                         );
 
-                        $this->db->insert('stopstanica',$stop_stanica);
+                        $this->db->insert('stopstanica'.$this->sufix, $stop_stanica);
 
                     }
 
@@ -346,7 +305,7 @@ class Unit extends navigator
     function getStanicaID($naziv){
 
 
-        $res = $this->db->get_where('stanica',array('naziv'=>$naziv))->row_array();
+        $res = $this->db->get_where('stanica'.$this->sufix, array('naziv'=>$naziv))->row_array();
         //echo $this->db->last_query();
         return $res['id'];
 
