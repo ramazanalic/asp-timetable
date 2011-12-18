@@ -9,13 +9,14 @@ class Unit extends navigator
     *PROMJENI SAMO STRING U DOLASCI DA BI UNOSIO DOLASKE
     *************************************************************/ 
 
-    var $TYPE = 'dolasci';
+    var $TYPE = 'polasci';
     var $XML;
     var $prefix; 
     var $sufix; 
 
     function __construct()
     {
+        return false;
         parent::__construct();
         date_default_timezone_set ('Europe/Belgrade');
 
@@ -65,6 +66,8 @@ class Unit extends navigator
     function index()
     {
 
+        return false; 
+        
         echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> ';
         echo '<html><head>';
         echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">';
