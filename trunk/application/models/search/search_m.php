@@ -2,6 +2,15 @@
 
     class Search_m extends CI_Model {
 
+        /************************************************************* 
+        *  $TYPE STRING 
+        *  POLASCI I DOLASCI
+        *************************************************************/ 
+
+        var $TYPE;
+        var $prefix; 
+        var $sufix;
+
         function __construct()
         {
             parent::__construct();
@@ -16,11 +25,27 @@
 
         function search($from,$view,$baseurl){
 
-            
-            //$dd = $this->translateDays(date("l",strtotime($_GET['datum'])));  
-            //$dd =date("l",strtotime($_GET['datum']));  
-            //echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'danasnjidan'=>$dd )) . ');';
-            
+            //tip polaska -> polazak ili dolazak
+            $this->TYPE = $_GET['type'];
+
+            switch ($this->TYPE) {
+
+                case 'polasci':
+
+                    $this->sufix = '';
+                    $this->prefix = 'p';
+
+                    break;
+
+                case 'dolasci':
+
+                    $this->sufix = '_d';
+                    $this->prefix = 'd';
+
+                    break;
+            }
+
+
             /* Paging */
             $limit = 25;
             $count = 0;
@@ -73,10 +98,10 @@
                         if(($i<($from+$limit))&&($i>=$j)){
 
                             $html .= $this->load->view($view, array(
-                                'polasci' => $this->listaj_podatke_stanice_sa_id_polaska($value),
-                                'polazna_vrijeme' => $this->nadji_vrijeme_polaska_za_stanicu($value, $polazna_id),
-                                'dolazna_vrijeme' => $this->nadji_vrijeme_polaska_za_stanicu($value, $dolazna_id)
-                                ), TRUE);     
+                            'polasci' => $this->listaj_podatke_stanice_sa_id_polaska($value),
+                            'polazna_vrijeme' => $this->nadji_vrijeme_polaska_za_stanicu($value, $polazna_id),
+                            'dolazna_vrijeme' => $this->nadji_vrijeme_polaska_za_stanicu($value, $dolazna_id)
+                            ), TRUE);     
 
                         }  
 
@@ -106,7 +131,7 @@
                     $this->pagination->initialize($config);
 
                     $paginator = $this->pagination->create_links(); 
-                                                                                                                                                                                                    
+
                     echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> $html, 'paginator' => $paginator, 'count'=> $count, 'danasnjidan'=>$danasnjidan, 'trazenidatum' => $this->translateDays(date("l",strtotime($_GET['datum']))), 'trazenidan' => date("d.m.Y",strtotime($_GET['datum'])) )) . ');';
 
                 }else{
@@ -121,12 +146,6 @@
                 echo $_GET['jsoncall'] . '(' . json_encode(array('success' => false, 'html'=>$this->errors)) . ');';
 
             }
-
-        }
-
-        function search_ajax_paging($from){
-
-
 
         }
 
@@ -150,15 +169,15 @@
 
         function get_stanica_id($name){
 
-            $res = $this->db->get_where('stanica',array('naziv' => $name))->row_array();
+            $res = $this->db->get_where('stanica'.$this->sufix, array('naziv' => $name))->row_array();
 
             return $res['id'];
 
         }
-        
+
         function get_stanica_name($id){
 
-            $res = $this->db->get_where('stanica',array('id' => $id))->row_array();
+            $res = $this->db->get_where('stanica'.$this->sufix, array('id' => $id))->row_array();
 
             return $res['naziv'];
 
@@ -173,23 +192,23 @@
             $this->db->where(array('polazak.id' => $polazak_id));
 
             return $this->db->get('polazak')->result_array();*/
-            
-            return  $this->db->get_where('polazak', array('polazak.id' => $polazak_id))->result_array();
+
+            return  $this->db->get_where($this->prefix.'olazak', array($this->prefix.'olazak.id' => $polazak_id))->result_array();
 
         }
-        
+
         function nadji_vrijeme_polaska_za_stanicu($polazak_id, $stanica_id){
-            
-            $res = $this->db->get_where('stopstanica', array('polazak_id' => $polazak_id))->result_array();
-            
+
+            $res = $this->db->get_where('stopstanica'.$this->sufix, array($this->prefix.'olazak_id' => $polazak_id))->result_array();
+
             $c = 0;
             $tot = count($res);
             foreach($res as $r){
-                
+
                 $c++;
-                
-                if ($r['stanica_id']==$stanica_id){
-                    
+
+                if ($r['stanica'.$this->sufix.'_id']==$stanica_id){
+
                     //return $this->get_stanica_name($r['stanica_id']);
                     if($tot == $c){
                         return $r['vrijemedolaska'];    
@@ -197,8 +216,8 @@
                         //return $c;
                         return $r['vrijemepolaska'];
                     }
-                    
-                    
+
+
                 }
             }
 
@@ -212,7 +231,7 @@
 
             /* Listaj sve polaske */
 
-            $res1 = $this->db->order_by('vrijemepolaska', 'asc')->get('polazak')->result_array();
+            $res1 = $this->db->order_by('vrijemepolaska', 'asc')->get($this->prefix.'olazak')->result_array();
 
             //echo 'DATUM:'.$datum.'<br />';
             $conv_date = strtotime($datum);
@@ -226,14 +245,14 @@
 
                 $id_ili_false = $this->da_li_ima_ovaj_polazak_ovim_redosledom($polazna_id, $dolazna_id, $rs1['id']);
 
-                
+
                 /************************************************************* 
                 *  Da li ima polazak određenim danom
                 *************************************************************/
 
                 if(($id_ili_false != FALSE)&&($rs1['tippolaska']=='o')){ 
-                    
-                    
+
+
                     $danasnjidan = $this->translateDays(date("l",$conv_date));
                     //$dan = 'Subota';
                     $dan = $danasnjidan;
@@ -298,8 +317,8 @@
             za dati polazak 
             */
 
-            $this->db->where(array('stanica_id' => $polazna_id , 'polazak_id' => $polazak_id));
-            $this->db->from('stopstanica');
+            $this->db->where(array('stanica'.$this->sufix.'_id' => $polazna_id , $this->prefix.'olazak_id' => $polazak_id));
+            $this->db->from('stopstanica'.$this->sufix);
             $cnt1 = $this->db->count_all_results();
 
             if($cnt1 ==0)   RETURN FALSE;
@@ -307,7 +326,7 @@
 
             /* Uzmi id stop-stanice */
 
-            $res1 = $this->db->get_where('stopstanica', array('stanica_id' => $polazna_id , 'polazak_id' => $polazak_id))->row_array();
+            $res1 = $this->db->get_where('stopstanica'.$this->sufix, array('stanica'.$this->sufix.'_id' => $polazna_id , $this->prefix.'olazak_id' => $polazak_id))->row_array();
             $id1 = $res1['id'];
 
 
@@ -317,8 +336,8 @@
             za dati polazak 
             */
 
-            $this->db->where(array('stanica_id' => $dolazna_id , 'polazak_id' => $polazak_id));
-            $this->db->from('stopstanica');
+            $this->db->where(array('stanica'.$this->sufix.'_id' => $dolazna_id , $this->prefix.'olazak_id' => $polazak_id));
+            $this->db->from('stopstanica'.$this->sufix);
             $cnt2 = $this->db->count_all_results();
 
             if($cnt2 ==0)   RETURN FALSE;
@@ -326,7 +345,7 @@
 
             /* Uzmi id stop-stanice */
 
-            $res2 = $this->db->get_where('stopstanica', array('stanica_id' => $dolazna_id , 'polazak_id' => $polazak_id))->row_array();
+            $res2 = $this->db->get_where('stopstanica'.$this->sufix, array('stanica'.$this->sufix.'_id' => $dolazna_id , $this->prefix.'olazak_id' => $polazak_id))->row_array();
             $id2 = $res2['id'];
 
 
@@ -343,7 +362,7 @@
 
         function da_li_ima_ovaj_polazak_ovim_danom($id, $dan){
 
-            $r = $this->db->get_where('danipolaska', array('polazak_id' => $id, 'dan' => $dan))->result_array();
+            $r = $this->db->get_where('danipolaska'.$this->sufix, array($this->prefix.'olazak_id' => $id, 'dan' => $dan))->result_array();
             if(count($r)>0){
                 return TRUE;
             }else{
@@ -412,7 +431,27 @@
 
         /*UNIT TESTING*/   
 
-        function unit_func_search($polazna,$dolazna, $datum){
+        function unit_func_search($polazna,$dolazna, $datum, $type){
+
+            //tip polaska -> polazak ili dolazak
+            $this->TYPE = $type;
+
+            switch ($this->TYPE) {
+
+                case 'polasci':
+
+                    $this->sufix = '';
+                    $this->prefix = 'p';
+
+                    break;
+
+                case 'dolasci':
+
+                    $this->sufix = '_d';
+                    $this->prefix = 'd';
+
+                    break;
+            }
 
             $polazna_id = $this->get_stanica_id($polazna);
             $dolazna_id = $this->get_stanica_id($dolazna);
@@ -452,21 +491,17 @@
 
                     foreach($res as $row){
 
-                        if(($row['vrijemepolaska'] != '')&&($row['vrijemepolaska'] != 0)){
+                        echo '<tr>';
 
+                        echo '<td '.$style2.'>'.$row['id'].'</td>';
+                        echo '<td '.$style2.'>'.$row['pocetnastanica'].'</td>';
+                        echo '<td '.$style2.'>'.$row['zadnjastanica'].'</td>';
+                        echo '<td '.$style2.'>'.$row['tippolaska'].'</td>';
+                        echo '<td '.$style2.'>'.date('H:i', $row['vrijemepolaska']).'</td>';
+                        echo '<td '.$style2.'>'.date('H:i', $row['vrijemedolaska']).'</td>';
 
-                            echo '<tr>';
+                        echo '</tr>';
 
-                            echo '<td '.$style2.'>'.$row['id'].'</td>';
-                            echo '<td '.$style2.'>';
-
-                            echo  $row['tippolaska'];
-
-                            echo '</td>';
-
-                            echo '</tr>';
-
-                        }
                     }
 
 
