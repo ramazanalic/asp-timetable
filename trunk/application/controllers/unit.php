@@ -9,7 +9,7 @@ class Unit extends navigator
     *PROMJENI SAMO STRING U DOLASCI DA BI UNOSIO DOLASKE
     *************************************************************/ 
 
-    var $TYPE = 'dolasci';
+    var $TYPE = 'polasci';
     var $XML;
     var $prefix; 
     var $sufix; 

@@ -34,6 +34,10 @@ class Core extends navigator
     }    
 
     function view($from=0){
+        
+        show_404();
+        return;
+        
         $limit = 10;
         $count = 0;
         $cur_page = 1;
