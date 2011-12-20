@@ -9,14 +9,14 @@ class Unit extends navigator
     *PROMJENI SAMO STRING U DOLASCI DA BI UNOSIO DOLASKE
     *************************************************************/ 
 
-    var $TYPE = 'polasci';
+    var $TYPE = 'dolasci';
     var $XML;
     var $prefix; 
     var $sufix; 
 
     function __construct()
     {
-        return false;
+        
         parent::__construct();
         date_default_timezone_set ('Europe/Belgrade');
 
@@ -98,7 +98,7 @@ class Unit extends navigator
         $this->polasci($xmlData);
 
     }  
-
+    
     function getStanica($xmlData){
 
 
@@ -118,14 +118,17 @@ class Unit extends navigator
             $cnt = count($value);
             for ($i=0;$i<$cnt;$i++){
 
-
+                // Capitalize string
+                $strstanica = strtolower($value[$i]);
+                $strstanica = ucwords($strstanica);
+                
                 $result .= '<tr>';
-                $result .= '<td>'.$value[$i].'</td>';
+                $result .= '<td>'.$strstanica.'</td>';
                 $result .= '</tr>';
 
                 $data = array(
 
-                'naziv' => $value[$i]
+                'naziv' => $strstanica
 
                 );
 

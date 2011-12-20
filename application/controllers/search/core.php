@@ -74,7 +74,7 @@ class Core extends navigator
     
     function unit_func_search(){
         
-          $this->search->unit_func_search('PODGORICA','BREMEN', '3-12-2011');
+          $this->search->unit_func_search('Pljevlja','Podgorica', '18-12-2011', 'dolasci');
         
     }
 

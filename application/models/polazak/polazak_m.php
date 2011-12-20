@@ -2,6 +2,15 @@
 
     class Polazak_m extends CI_Model {
 
+        /************************************************************* 
+        *  $TYPE STRING 
+        *  POLASCI I DOLASCI
+        *************************************************************/ 
+
+        var $TYPE;
+        var $prefix; 
+        var $sufix;
+        
         function __construct()
         {
             parent::__construct(); 
@@ -29,12 +38,32 @@
         }
 
         function pogledaj_stop_stanice(){
+            
+            //tip polaska -> polazak ili dolazak
+            $this->TYPE = $_POST['type'];
+
+            switch ($this->TYPE) {
+
+                case 'polasci':
+
+                    $this->sufix = '';
+                    $this->prefix = 'p';
+
+                    break;
+
+                case 'dolasci':
+
+                    $this->sufix = '_d';
+                    $this->prefix = 'd';
+
+                    break;
+            }
 
             $data = array();
 
-            $this->db->select('stopstanica.*, stanica.naziv as naziv_stanice', FALSE);
-            $this->db->join('stanica', 'stanica.id = stopstanica.stanica_id ');
-            $data['res'] = $this->db->get_where('stopstanica',array('polazak_id'=>$_POST['id_polaska']))->result_array();
+            $this->db->select('stopstanica'.$this->sufix.'.*, stanica'.$this->sufix.'.naziv as naziv_stanice', FALSE);
+            $this->db->join('stanica'.$this->sufix, 'stanica'.$this->sufix.'.id = stopstanica'.$this->sufix.'.stanica'.$this->sufix.'_id ');
+            $data['res'] = $this->db->get_where('stopstanica'.$this->sufix, array($this->prefix.'olazak_id'=>$_POST['id_polaska']))->result_array();
 
             //$this->firephp->fb($this->db->last_query());   
 
