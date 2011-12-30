@@ -132,7 +132,17 @@
 
                     $paginator = $this->pagination->create_links(); 
 
-                    echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> $html, 'paginator' => $paginator, 'count'=> $count, 'danasnjidan'=>$danasnjidan, 'trazenidatum' => $this->translateDays(date("l",strtotime($_GET['datum']))), 'trazenidan' => date("d.m.Y",strtotime($_GET['datum'])) )) . ');';
+                    $trazenidatum = '';
+                    
+                    if($this->session->userdata('lang')=='me'){
+                        $trazenidatum = $this->translateDays(date("l",strtotime($_GET['datum'])));
+                    }else{
+                        $trazenidatum = date("l",strtotime($_GET['datum']));
+                    }
+                    
+                    
+                    
+                    echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> $html, 'paginator' => $paginator, 'count'=> $count, 'danasnjidan'=>$danasnjidan, 'trazenidatum' => $trazenidatum, 'trazenidan' => date("d.m.Y",strtotime($_GET['datum'])) )) . ');';
 
                 }else{
                     $paginator = '';
