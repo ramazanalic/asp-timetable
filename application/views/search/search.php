@@ -28,7 +28,7 @@
         </td> -->
         <td> <?=$polazak['naziv_prevoznika']; ?> </td>                                  
         <td style="text-align: center;">
-            <a href="javascript:void(0)" class="stanice_tip" id="<?=$polazak['id']?>">Stanice</a>                                                                             
+            <a href="javascript:void(0)" class="stanice_tip" id="<?=$polazak['id']?>"><?=$this->lang->line('timetable-stations');?></a>                                                                             
         </td>
     </tr>
     <? endforeach;  ?>
