@@ -2,8 +2,8 @@
     <thead>
         <tr class="header-row">
             <th width="140px" style="text-align: left;"><?=$this->lang->line('timetable-station');?></th>
-            <th width="30"><?=$this->lang->line('timetable-arrival');?></th>
             <th width="30"><?=$this->lang->line('timetable-departure');?></th>
+            <th width="30"><?=$this->lang->line('timetable-arrival');?></th>
             <th width="20">Km</th>
             <th width="20"><a href="javascript:" id="close_stop" ><img src="assets/img/backgnds/x.png" /></a></th>
         </tr>
