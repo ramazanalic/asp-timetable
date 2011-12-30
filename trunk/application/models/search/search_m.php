@@ -136,7 +136,7 @@
 
                 }else{
                     $paginator = '';
-                    echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> '<tr class="odd"><td colspan="9" style="text-align: center;"><b>NEMA POLAZAKA ZA TRAŽENU RUTU</b></td></tr>.', 'paginator' => $paginator, 'count'=> $count)) . ');';   
+                    echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> '<tr class="odd"><td colspan="9" style="text-align: center;"><b>No result</b></td></tr>.', 'paginator' => $paginator, 'count'=> $count)) . ');';   
                 }
 
 
@@ -153,11 +153,11 @@
 
             $_POST = $_GET;
 
-            $this->form_validation->set_rules('srch_polazak','unesite <b>polaznu stanicu</b>','required|provjeri_stanicu[srch_polazak]');
+            $this->form_validation->set_rules('srch_polazak','<b>'.$this->lang->line('timetable-choosefrom').'</b>','required|provjeri_stanicu[srch_polazak]');
 
-            $this->form_validation->set_rules('srch_dolazak','unesite <b>dolaznu stanicu</b>','required|provjeri_stanicu[srch_dolazak]');
+            $this->form_validation->set_rules('srch_dolazak','<b>'.$this->lang->line('timetable-chooseto').'</b>','required|provjeri_stanicu[srch_dolazak]');
 
-            $this->form_validation->set_message('required', 'Molimo %s.');
+            $this->form_validation->set_message('required', $this->lang->line('timetable-choose').' %s.');
 
             if($this->form_validation->run()== TRUE) {
                 return TRUE;

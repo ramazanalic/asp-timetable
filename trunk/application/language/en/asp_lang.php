@@ -92,4 +92,13 @@
     $lang['b2b-p-1'] = 'Four all information on the commercial use of the Podgorica Bus Station, please contact the Bus Station Manager: busterminal.menager@t-com.me. <br />Telephone: 020 625 627, 621 287, Fax 601 998.';
     $lang['b2b-p-2'] = 'More information on the rights and obligations of PBS and its customers is available in the Rulebook on the Rights and Obligations of AD Intours Podgorica – Bus Station and the Customers of the Podgorica Bus Station.';
     
+    $lang['timetable-choose'] = 'Please enter';
+    $lang['timetable-choosefrom'] = 'from';
+    $lang['timetable-chooseto'] = 'to';
+    $lang['timetable-departure'] = 'Departure';
+    $lang['timetable-departures'] = 'Departures';
+    $lang['timetable-arrival'] = 'Arrival';
+    $lang['timetable-carrier'] = 'Carrier';
+    $lang['timetable-station'] = 'Station';
+    $lang['timetable-stations'] = 'Stations';
 ?>

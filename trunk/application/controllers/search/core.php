@@ -9,6 +9,7 @@ class Core extends navigator
         $this->load->model('prevoznik/core_m', 'prevoznik');
         $this->load->model('polazak/polazak_m', 'polazak');
         $this->load->model('search/search_m', 'search');
+        $this->lang->load('asp', $this->lang_ses->getlang());
     }
 
     function index(){ show_404(); }

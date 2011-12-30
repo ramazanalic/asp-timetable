@@ -92,4 +92,14 @@
     $lang['b2b-p-1'] = 'Za sve informacije o uslovima poslovnog korišćenja Autobuske Stanice Podgorica, molimo kontaktirajte menadžera Autobuske stanice: busterminal.menager@t-com.me. Telefon 020 625 627, 621 287, faks 601 998.';
     $lang['b2b-p-2'] = 'Više informacija  o pravima i obavezama ASP i korisnika usluga možete naći u Pravilniku o pravima i obavezama AD“Intours“ Podgorica – Autobuska stanica i korisnika usluga Autobuske stanice u Podgorici.';
     
+    $lang['timetable-choose'] = 'Molimo unesite';
+    $lang['timetable-choosefrom'] = 'polazište';
+    $lang['timetable-chooseto'] = 'odredište';
+    $lang['timetable-departure'] = 'Polazak';
+    $lang['timetable-departures'] = 'Polazaka';
+    $lang['timetable-arrival'] = 'Dolazak';
+    $lang['timetable-carrier'] = 'Prevoznik';
+    $lang['timetable-station'] = 'Stanica';
+    $lang['timetable-stations'] = 'Stanice';
+    
 ?>
