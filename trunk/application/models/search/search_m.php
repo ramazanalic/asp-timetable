@@ -26,7 +26,7 @@
         function search($from,$view,$baseurl){
 
             //tip polaska -> polazak ili dolazak
-            $this->TYPE = $_GET['type'];
+            $this->TYPE = $this->input->get('type');
 
             switch ($this->TYPE) {
 
@@ -54,9 +54,9 @@
 
             if($this->validate_search()==TRUE){
 
-                $polazna_id = $this->get_stanica_id($_GET['srch_polazak']);
-                $dolazna_id = $this->get_stanica_id($_GET['srch_dolazak']);
-                $datum = $_GET['datum'];
+                $polazna_id = $this->get_stanica_id($this->input->get('srch_polazak'));
+                $dolazna_id = $this->get_stanica_id($this->input->get('srch_dolazak'));
+                $datum = $this->input->get('datum');
 
                 $polasci_ids = array();
                 $svi_polasci_ids = array();
@@ -135,25 +135,25 @@
                     $trazenidatum = '';
                     
                     if($this->session->userdata('lang')=='me'){
-                        $trazenidatum = $this->translateDays(date("l",strtotime($_GET['datum'])));
+                        $trazenidatum = $this->translateDays(date("l",strtotime( $this->input->get('datum'))));
                     }else{
-                        $trazenidatum = date("l",strtotime($_GET['datum']));
+                        $trazenidatum = date("l",strtotime($this->input->get('datum')));
                     }
                     
                     
                     
-                    echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> $html, 'paginator' => $paginator, 'count'=> $count, 'danasnjidan'=>$danasnjidan, 'trazenidatum' => $trazenidatum, 'trazenidan' => date("d.m.Y",strtotime($_GET['datum'])) )) . ');';
+                    echo $this->input->get('jsoncall') . '(' . json_encode(array('success' => true, 'html'=> $html, 'paginator' => $paginator, 'count'=> $count, 'danasnjidan'=>$danasnjidan, 'trazenidatum' => $trazenidatum, 'trazenidan' => date("d.m.Y",strtotime($this->input->get('datum'))) )) . ');';
 
                 }else{
                     $paginator = '';
-                    echo $_GET['jsoncall'] . '(' . json_encode(array('success' => true, 'html'=> '<tr class="odd"><td colspan="9" style="text-align: center;"><b>No result</b></td></tr>.', 'paginator' => $paginator, 'count'=> $count)) . ');';   
+                    echo $this->input->get('jsoncall') . '(' . json_encode(array('success' => true, 'html'=> '<tr class="odd"><td colspan="9" style="text-align: center;"><b>No result</b></td></tr>.', 'paginator' => $paginator, 'count'=> $count)) . ');';   
                 }
 
 
 
             } else{
 
-                echo $_GET['jsoncall'] . '(' . json_encode(array('success' => false, 'html'=>$this->errors)) . ');';
+                echo $this->input->get('jsoncall') . '(' . json_encode(array('success' => false, 'html'=>$this->errors)) . ');';
 
             }
 
@@ -163,9 +163,9 @@
 
             $_POST = $_GET;
 
-            $this->form_validation->set_rules('srch_polazak','<b>'.$this->lang->line('timetable-choosefrom').'</b>','required|provjeri_stanicu[srch_polazak]');
+            $this->form_validation->set_rules('srch_polazak','<b>'.$this->lang->line('timetable-choosefrom').'</b>','required|provjeri_stanicu[srch_polazak]|xss_clean');
 
-            $this->form_validation->set_rules('srch_dolazak','<b>'.$this->lang->line('timetable-chooseto').'</b>','required|provjeri_stanicu[srch_dolazak]');
+            $this->form_validation->set_rules('srch_dolazak','<b>'.$this->lang->line('timetable-chooseto').'</b>','required|provjeri_stanicu[srch_dolazak]|xss_clean');
 
             $this->form_validation->set_message('required', $this->lang->line('timetable-choose').' %s.');
 
@@ -441,88 +441,88 @@
 
         /*UNIT TESTING*/   
 
-        function unit_func_search($polazna,$dolazna, $datum, $type){
-
-            //tip polaska -> polazak ili dolazak
-            $this->TYPE = $type;
-
-            switch ($this->TYPE) {
-
-                case 'polasci':
-
-                    $this->sufix = '';
-                    $this->prefix = 'p';
-
-                    break;
-
-                case 'dolasci':
-
-                    $this->sufix = '_d';
-                    $this->prefix = 'd';
-
-                    break;
-            }
-
-            $polazna_id = $this->get_stanica_id($polazna);
-            $dolazna_id = $this->get_stanica_id($dolazna);
-
-            $polasci_ids = array();
-            $svi_polasci_ids = array();
-
-            $polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, $datum, FALSE); 
-
-            //echo 'polasci'.count($polasci_ids);
-
-            if(count($polasci_ids)==0){
-                $svi_polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, $datum, TRUE);    
-            }
-
-
-            if((count($polasci_ids)>0)||(count($svi_polasci_ids)>0)){
-
-                $count = count($polasci_ids);
-
-                echo "TOTAL RECORDS:".$count;                 
-
-                $style1 = 'style="font-size:11px"';
-                $style2 = 'style="border-bottom:1px solid #DEDEDE;border-right:1px solid #DEDEDE; padding:4px"';
-
-                echo '<table '.$style1.' cellpadding=0 cellspacing=0>';
-                $p_ids = array();
-                if(count($polasci_ids)==0){
-                    $p_ids = $svi_polasci_ids;    
-                }else{
-                    $p_ids = $polasci_ids;
-                }
-
-                foreach($p_ids as $value){
-
-                    $res =  $this->listaj_podatke_stanice_sa_id_polaska($value);
-
-                    foreach($res as $row){
-
-                        echo '<tr>';
-
-                        echo '<td '.$style2.'>'.$row['id'].'</td>';
-                        echo '<td '.$style2.'>'.$row['pocetnastanica'].'</td>';
-                        echo '<td '.$style2.'>'.$row['zadnjastanica'].'</td>';
-                        echo '<td '.$style2.'>'.$row['tippolaska'].'</td>';
-                        echo '<td '.$style2.'>'.date('H:i', $row['vrijemepolaska']).'</td>';
-                        echo '<td '.$style2.'>'.date('H:i', $row['vrijemedolaska']).'</td>';
-
-                        echo '</tr>';
-
-                    }
-
-
-                }
-
-                echo '</table>'; 
-
-            }else{
-                echo 'NO RESULTS';
-            }
-        }       
+//        function unit_func_search($polazna,$dolazna, $datum, $type){
+//
+//            //tip polaska -> polazak ili dolazak
+//            $this->TYPE = $type;
+//
+//            switch ($this->TYPE) {
+//
+//                case 'polasci':
+//
+//                    $this->sufix = '';
+//                    $this->prefix = 'p';
+//
+//                    break;
+//
+//                case 'dolasci':
+//
+//                    $this->sufix = '_d';
+//                    $this->prefix = 'd';
+//
+//                    break;
+//            }
+//
+//            $polazna_id = $this->get_stanica_id($polazna);
+//            $dolazna_id = $this->get_stanica_id($dolazna);
+//
+//            $polasci_ids = array();
+//            $svi_polasci_ids = array();
+//
+//            $polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, $datum, FALSE); 
+//
+//            //echo 'polasci'.count($polasci_ids);
+//
+//            if(count($polasci_ids)==0){
+//                $svi_polasci_ids = $this->daj_spisak_polazaka_koji_ukljucuju($polazna_id, $dolazna_id, $datum, TRUE);    
+//            }
+//
+//
+//            if((count($polasci_ids)>0)||(count($svi_polasci_ids)>0)){
+//
+//                $count = count($polasci_ids);
+//
+//                echo "TOTAL RECORDS:".$count;                 
+//
+//                $style1 = 'style="font-size:11px"';
+//                $style2 = 'style="border-bottom:1px solid #DEDEDE;border-right:1px solid #DEDEDE; padding:4px"';
+//
+//                echo '<table '.$style1.' cellpadding=0 cellspacing=0>';
+//                $p_ids = array();
+//                if(count($polasci_ids)==0){
+//                    $p_ids = $svi_polasci_ids;    
+//                }else{
+//                    $p_ids = $polasci_ids;
+//                }
+//
+//                foreach($p_ids as $value){
+//
+//                    $res =  $this->listaj_podatke_stanice_sa_id_polaska($value);
+//
+//                    foreach($res as $row){
+//
+//                        echo '<tr>';
+//
+//                        echo '<td '.$style2.'>'.$row['id'].'</td>';
+//                        echo '<td '.$style2.'>'.$row['pocetnastanica'].'</td>';
+//                        echo '<td '.$style2.'>'.$row['zadnjastanica'].'</td>';
+//                        echo '<td '.$style2.'>'.$row['tippolaska'].'</td>';
+//                        echo '<td '.$style2.'>'.date('H:i', $row['vrijemepolaska']).'</td>';
+//                        echo '<td '.$style2.'>'.date('H:i', $row['vrijemedolaska']).'</td>';
+//
+//                        echo '</tr>';
+//
+//                    }
+//
+//
+//                }
+//
+//                echo '</table>'; 
+//
+//            }else{
+//                echo 'NO RESULTS';
+//            }
+//        }       
 
         function translateDays($dayEng){
 
